@@ -1,0 +1,34 @@
+import React from 'react';
+import {TouchableOpacity, Text} from 'react-native';
+import {Flex} from 'react-native-flex-layout';
+import GlobalStyles from '../../utils/globalStyles';
+import Handlers from '../../utils/handlers';
+import TeamLogo from '../TeamLogo';
+
+interface TeamCellProps {
+  cellId: number;
+  team: {
+    id: number;
+    name: string;
+    logo: string;
+  };
+}
+
+const TeamCell: React.FC<TeamCellProps> = ({cellId, team}) => {
+  const handlers = Handlers();
+  const teamCells = Handlers().teamCells;
+
+  return (
+    <TouchableOpacity onPress={() => handlers.handleTeamCell(cellId)}>
+      <Flex w={80} h={80} style={GlobalStyles.cells}>
+        {teamCells[cellId] !== null ? (
+          <Text style={GlobalStyles.fs30}>{teamCells[cellId]}</Text>
+        ) : (
+          <TeamLogo team={team} />
+        )}
+      </Flex>
+    </TouchableOpacity>
+  );
+};
+
+export default TeamCell;
