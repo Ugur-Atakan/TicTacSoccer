@@ -37,7 +37,8 @@ function WelcomeScreen(): JSX.Element {
           Profiller
         </Text>
         {profiles.map((value)=>{
-          return <Text>NAME:{value.name}</Text>
+          return <Text>İD:{value._id.toString()}{'\n'}Name:{value.name}</Text>
+         
         })}
       </View>
       <View style={{flex:1}}>
