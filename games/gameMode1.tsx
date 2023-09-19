@@ -2,39 +2,27 @@ import React from 'react';
 import {VStack, HStack, Flex} from 'react-native-flex-layout';
 import {SafeAreaView, View, Text, Button} from 'react-native';
 import {Teams} from '../utils/fakeData';
-import {RootState} from '../utils/redux/stores/store';
-import {useSelector} from 'react-redux';
 import Handlers from '../utils/handlers';
 import SoccerCell from '../components/cells/soccerCell';
 import TeamCell from '../components/cells/teamCell';
 import LogoCell from '../components/cells/logoCell';
 import GlobalStyles from '../utils/globalStyles';
 import ModalComponent from '../components/Modal';
+import GameStatusComponent from '../components/cells/gameStatusComponent';
+import Avatars from '../components/Avatars';
 
 function GameMode1(): React.JSX.Element {
-  const winnerUser = useSelector((state: RootState) => state.winner.userData);
-  const currentPlayer = useSelector(
-    (state: RootState) => state.currentPlayer.currentPlayer,
-  );
-  const handlers = Handlers();
-
+const handlers= Handlers();
+const {winnerUser, currentPlayer}= handlers;
   return (
     <SafeAreaView style={GlobalStyles.f1}>
       <View style={GlobalStyles.f1}>
         <View style={GlobalStyles.f9}>
           <VStack fill center spacing={2}>
-            {winnerUser === 'Berabere' ? (
-              <Text style={GlobalStyles.fs30bold}>Berabere Bitti</Text>
-            ) : winnerUser ? (
-              <Text style={GlobalStyles.fs30bold}>
-                Kazanan oyuncu {winnerUser}
-              </Text>
-            ) : (
-              <Text style={GlobalStyles.fs30bold}>
-                Sıradaki oyuncu {currentPlayer}
-              </Text>
-            )}
-
+            <HStack w={'100%'} spacing={10} shouldWrapChildren style={{backgroundColor:'limegreen', justifyContent:'flex-end'}}>
+            <GameStatusComponent  winnerUser={winnerUser} currentPlayer={currentPlayer}/>
+            <Avatars />     
+            </HStack>
             <HStack spacing={2} shouldWrapChildren>
               <LogoCell />
               <TeamCell cellId={0} team={Teams[0]} />

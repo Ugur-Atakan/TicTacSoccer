@@ -17,6 +17,7 @@ function Root() {
       <Drawer.Screen name="WELCOME" component={WelcomeScreen} />
       <Drawer.Screen name="Game Mods" component={GamesScreen} />
       <Drawer.Screen name="Game Rules" component={GameRulesScreen} />
+     
     </Drawer.Navigator>
   );
 }
