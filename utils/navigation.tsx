@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import GameModeScreen1 from '../screens/GameModes/GameModeScrren1';
 import GameModeScreen2 from '../screens/GameModes/GameModeScrren2';
 import GameModeScreen3 from '../screens/GameModes/GameModeScrren3';
+import SqlLite from '../screens/SqlLite';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -17,6 +18,7 @@ function Root() {
       <Drawer.Screen name="WELCOME" component={WelcomeScreen} />
       <Drawer.Screen name="Game Mods" component={GamesScreen} />
       <Drawer.Screen name="Game Rules" component={GameRulesScreen} />
+      <Drawer.Screen name="Local DB" component={SqlLite} />
     </Drawer.Navigator>
   );
 }
