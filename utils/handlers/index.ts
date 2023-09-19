@@ -14,9 +14,8 @@ export default function Handlers() {
   const dispatch = useDispatch();
   /* eslint-disable @typescript-eslint/no-unused-vars */
 
-  const {selectedSoccerCell,selectedTeamCell,soccerCells, teamCells}=useSelector(
-    (state: RootState) => state.cells,
-  );
+  const {selectedSoccerCell, selectedTeamCell, soccerCells, teamCells} =
+    useSelector((state: RootState) => state.cells);
 
   const currentPlayer = useSelector(
     (state: RootState) => state.currentPlayer.currentPlayer,
@@ -26,8 +25,10 @@ export default function Handlers() {
     (state: RootState) => state.gameStatus.gameStatus,
   );
 
-  const {winner, userData:winnerUser}=useSelector((state: RootState) => state.winner);
-  // userDatayı reducerdan alıp winnerUser değişkenine atıyor. 
+  const {winner, userData: winnerUser} = useSelector(
+    (state: RootState) => state.winner,
+  );
+  // userDatayı reducerdan alıp winnerUser değişkenine atıyor.
 
   const isVisible = useSelector((state: RootState) => state.modal.isVisible);
 
@@ -52,7 +53,7 @@ export default function Handlers() {
         return squares[a];
       }
     }
-    
+
     return null;
   };
 
