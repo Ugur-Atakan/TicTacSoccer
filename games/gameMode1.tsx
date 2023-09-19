@@ -9,6 +9,7 @@ import LogoCell from '../components/cells/logoCell';
 import GlobalStyles from '../utils/globalStyles';
 import ModalComponent from '../components/Modal';
 import GameStatusComponent from '../components/cells/gameStatusComponent';
+import Avatars from '../components/Avatars';
 
 function GameMode1(): React.JSX.Element {
 const handlers= Handlers();
@@ -18,7 +19,10 @@ const {winnerUser, currentPlayer}= handlers;
       <View style={GlobalStyles.f1}>
         <View style={GlobalStyles.f9}>
           <VStack fill center spacing={2}>
-          <GameStatusComponent  winnerUser={winnerUser} currentPlayer={currentPlayer}/>
+            <HStack w={'100%'} spacing={10} shouldWrapChildren style={{backgroundColor:'limegreen', justifyContent:'flex-end'}}>
+            <GameStatusComponent  winnerUser={winnerUser} currentPlayer={currentPlayer}/>
+            <Avatars />     
+            </HStack>
             <HStack spacing={2} shouldWrapChildren>
               <LogoCell />
               <TeamCell cellId={0} team={Teams[0]} />

@@ -20,6 +20,8 @@ const GameStatusComponent=({winnerUser,currentPlayer}:any)=>{
           )}
         </View>
     )
+        
+  
 }
 
 export default GameStatusComponent;

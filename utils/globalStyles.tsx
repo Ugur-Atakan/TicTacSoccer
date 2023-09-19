@@ -24,6 +24,7 @@ const GlobalStyles = StyleSheet.create({
   fs30bold: {
     fontSize: 30,
     fontWeight: 'bold',
+    color:'black'
   },
   fs40: {
     fontSize: 40,
