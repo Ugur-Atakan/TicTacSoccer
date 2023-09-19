@@ -14,7 +14,7 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId}) => {
   const soccerCells = Handlers().soccerCells;
   return (
     <TouchableOpacity onPress={() => handlers.handleSoccerCell(cellId)}>
-      <Flex w={80} h={80} style={GlobalStyles.cells}>
+      <Flex w={100} h={100} style={GlobalStyles.cells}>
         {soccerCells[cellId] && soccerCells[cellId] !== null ? (
           <Text style={GlobalStyles.fs56}>{soccerCells[cellId]}</Text>
         ) : (

@@ -20,7 +20,7 @@ const TeamCell: React.FC<TeamCellProps> = ({cellId, team}) => {
 
   return (
     <TouchableOpacity onPress={() => handlers.handleTeamCell(cellId)}>
-      <Flex w={80} h={80} style={GlobalStyles.cells}>
+      <Flex w={100} h={100} style={GlobalStyles.cells}>
         {teamCells[cellId] !== null ? (
           <Text style={GlobalStyles.fs30}>{teamCells[cellId]}</Text>
         ) : (

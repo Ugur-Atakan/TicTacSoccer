@@ -5,6 +5,7 @@ import Navigator from './utils/navigation';
 
 export default function App() {
   return (
+    
     <Provider store={store}>
       <Navigator />
     </Provider>

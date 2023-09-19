@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Modal, Pressable, Text, TextInput} from 'react-native';
 import {View} from 'react-native';
-import {CommonStates} from '../utils/commonStates';
 import GlobalStyles from '../utils/globalStyles';
 import {RootState} from '../utils/redux/stores/store';
 import {useDispatch, useSelector} from 'react-redux';
@@ -21,7 +20,7 @@ import {setCurrentPlayer} from '../utils/redux/reducers/gameReducers/currentPlay
 import {Flex, HStack} from 'react-native-flex-layout';
 
 const ModalComponent: React.FC = () => {
-  const {textInput, setTextInput} = CommonStates();
+  const [textInput, setTextInput] = React.useState<string>('');
   const isVisible = useSelector((state: RootState) => state.modal.isVisible);
   const type = useSelector((state: RootState) => state.modal.type);
   const selectedTeamCell = useSelector(

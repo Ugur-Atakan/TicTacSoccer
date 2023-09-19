@@ -16,9 +16,10 @@ export const winner = createSlice({
   initialState,
   reducers: {
     setWinnerPlayer: (state, action: PayloadAction<any>) => {
-      state.winner = true;
+      state.winner = !!action.payload;
       state.userData = action.payload;
     },
+  
   },
 });
 

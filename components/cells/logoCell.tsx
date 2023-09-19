@@ -6,7 +6,7 @@ import {Image, View} from 'react-native';
 const LogoCell = () => {
   return (
     <View>
-      <Flex w={80} h={80} style={GlobalStyles.cells}>
+      <Flex w={100} h={100} style={GlobalStyles.cells}>
         <Image
           source={{
             uri: 'https://www.pngmart.com/files/22/Soccer-Ball-PNG.png',
