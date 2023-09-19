@@ -18,18 +18,6 @@ export default function Handlers() {
     (state: RootState) => state.cells,
   );
 
-  // const selectedSoccerCell = useSelector(
-  //   (state: RootState) => state.cells.selectedSoccerCell,
-  // );
-
-  // const selectedTeamCell = useSelector(
-  //   (state: RootState) => state.cells.selectedTeamCell,
-  // );
-  // const soccerCells = useSelector(
-  //   (state: RootState) => state.cells.soccerCells,
-  // );
-  // const teamCells = useSelector((state: RootState) => state.cells.teamCells);
-
   const currentPlayer = useSelector(
     (state: RootState) => state.currentPlayer.currentPlayer,
   );
@@ -37,8 +25,6 @@ export default function Handlers() {
   const gameStatus = useSelector(
     (state: RootState) => state.gameStatus.gameStatus,
   );
-  // const winner = useSelector((state: RootState) => state.winner.winner);
-  // const winnerUser = useSelector((state: RootState) => state.winner.userData);
 
   const {winner, userData:winnerUser}=useSelector((state: RootState) => state.winner);
   // userDatayı reducerdan alıp winnerUser değişkenine atıyor. 

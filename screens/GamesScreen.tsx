@@ -8,12 +8,10 @@ function GamesScreen({navigation}: any): JSX.Element {
     <SafeAreaView style={{flex: 1}}>
       <VStack center shouldWrapChildren spacing={10} style={{paddingTop: 100}}>
         <Flex w={300} h={100} center style={{backgroundColor: 'lightgreen'}}>
-
           <TouchableOpacity onPress={() => navigation.navigate('GameMode1')}>
             <Text style={{alignSelf: 'center'}}>Game Mode 1</Text>
             <Text>Play Offline</Text>
           </TouchableOpacity>
-
         </Flex>
         <Flex w={300} h={100} center style={{backgroundColor: 'green'}}>
           <TouchableOpacity onPress={() => navigation.navigate('GameMode2')}>
