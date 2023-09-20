@@ -8,7 +8,7 @@ export class Users extends Realm.Object<Users> {
   profilePicture!: string;
 
   static schema = {
-    name: 'User',
+    name: 'Users',
     primaryKey: '_id',
     properties: {
       _id: 'uuid',

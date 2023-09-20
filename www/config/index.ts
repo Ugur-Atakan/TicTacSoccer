@@ -5,7 +5,7 @@ import {Users} from '../models/Users';
 // Create a configuration object
 const realmConfig: Realm.Configuration = {
   schema: [Profile, Users],
-  schemaVersion: 4,
+  schemaVersion: 5,
 };
 
 // Create a realm context
