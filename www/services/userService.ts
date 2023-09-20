@@ -5,11 +5,14 @@ import {Users} from '../models/Users';
 export class userService {
   realm = useRealm();
 
-  addProfile = (name: string) => {
+  addProfile = (user) => {
     this.realm.write(() => {
-      this.realm.create('Profile', {
-        username: name,
+      this.realm.create('User', {
         _id: new Realm.BSON.UUID(),
+        username: user.username,
+        password: user.password,
+        email: user.email,
+        profilePicture: user.profilePicture,
       });
     });
   };

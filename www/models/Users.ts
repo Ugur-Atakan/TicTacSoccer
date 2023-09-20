@@ -5,14 +5,14 @@ export class Users extends Realm.Object<Users> {
   username!: string;
   password!: string;
   email!: string;
-  profilePictyre!: string;
+  profilePicture!: string;
 
   static schema = {
     name: 'User',
     primaryKey: '_id',
     properties: {
       _id: 'uuid',
-      name: 'string',
+      username: 'string',
       password: 'string',
       email: 'string',
       profilePicture: 'string',
