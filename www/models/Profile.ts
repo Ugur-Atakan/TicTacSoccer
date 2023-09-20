@@ -1,5 +1,4 @@
 import Realm from 'realm';
-import React  from 'react';
 
 export class Profile extends Realm.Object<Profile> {
   _id!: Realm.BSON.UUID;

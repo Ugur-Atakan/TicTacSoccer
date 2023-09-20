@@ -1,31 +1,28 @@
-import React, {useState} from 'react';
 import Realm from 'realm';
-import { useRealm } from '../config';
-import { Profile } from '../models/Profile';
+import {useRealm} from '../config';
+import {Users} from '../models/Users';
 
-
-export default class RealmServices {
+export class userService {
   realm = useRealm();
 
   addProfile = (name: string) => {
     this.realm.write(() => {
       this.realm.create('Profile', {
-        name: name,
+        username: name,
         _id: new Realm.BSON.UUID(),
       });
     });
   };
 
-  changeProfileName = (profile: Profile, newName: string) => {
+  changeProfileName = (profile: Users, newName: string) => {
     this.realm.write(() => {
-      profile.name = newName;
+      profile.username = newName;
     });
   };
 
-  deleteProfile = (profile: Profile) => {
+  deleteProfile = (profile: Users) => {
     this.realm.write(() => {
       this.realm.delete(profile);
     });
   };
-
 }
