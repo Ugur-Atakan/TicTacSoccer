@@ -1,7 +1,7 @@
 import {Button} from '@rneui/base';
 import {Text} from '@rneui/themed';
 import {View, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useQuery} from '../../www/config';
 import {userService} from '../../www/services/userService';
 import GlobalStyles from '../../utils/globalStyles';
@@ -10,7 +10,6 @@ import {Users} from '../../www/models/Users';
 import {TextInput} from 'react-native';
 
 export default function RealmUserScreen() {
-  const [textInput, setTextInput] = useState('');
   const [tempUser, setTempUser] = useState({
     username: '',
     password: '',
