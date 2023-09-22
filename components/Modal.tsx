@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {Modal, Pressable, Text, TextInput} from 'react-native';
-import {View} from 'react-native';
+import { Modal, Pressable, ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import GlobalStyles from '../utils/globalStyles';
-import {RootState} from '../utils/redux/stores/store';
-import {useDispatch, useSelector} from 'react-redux';
+import { RootState } from '../utils/redux/stores/store';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   showModal,
   hideModal,
@@ -15,18 +15,21 @@ import {
   setSoccerCells,
   setTeamCells,
 } from '../utils/redux/reducers/gameReducers/cells';
-import {setWinnerPlayer} from '../utils/redux/reducers/gameReducers/winner';
-import {setCurrentPlayer} from '../utils/redux/reducers/gameReducers/currentPlayer';
-import {Flex, HStack} from 'react-native-flex-layout';
-import MyDropdown from './dropdown';
+import { setWinnerPlayer } from '../utils/redux/reducers/gameReducers/winner';
+import { setCurrentPlayer } from '../utils/redux/reducers/gameReducers/currentPlayer';
+import { Flex, HStack, VStack } from 'react-native-flex-layout';
+import Handlers from '../utils/handlers/index';
+import baseAPI from '../utils/http/base';
 
 const ModalComponent: React.FC = () => {
+  const handlers = Handlers();
+  const [input, setInput] = React.useState('');
+  const [data, setData] = React.useState([]);
   const dispatch = useDispatch();
-  const [textInput, setTextInput] = React.useState<string>('');
   const isVisible = useSelector((state: RootState) => state.modal.isVisible);
   const type = useSelector((state: RootState) => state.modal.type);
 
-  const {selectedSoccerCell, selectedTeamCell, soccerCells, teamCells} =
+  const { selectedSoccerCell, selectedTeamCell, soccerCells, teamCells } =
     useSelector((state: RootState) => state.cells);
   const currentPlayer = useSelector(
     (state: RootState) => state.currentPlayer.currentPlayer,
@@ -56,17 +59,18 @@ const ModalComponent: React.FC = () => {
 
     return null;
   };
+  
   const toggleModal = () => {
     isVisible ? dispatch(hideModal()) : dispatch(showModal(''));
-    setTextInput('');
-    console.log('Modal durumu değişti');
+    setData([]);
+    setInput('');
   };
 
-  const handleInputSubmit = (inputType: string) => {
+  const handleInputSubmit = (inputType: string, Player: any) => {
     if (inputType === 'soccer') {
       if (selectedSoccerCell !== null) {
         const newSoccerCells = [...soccerCells];
-        newSoccerCells[selectedSoccerCell] = textInput;
+        newSoccerCells[selectedSoccerCell] = Player;
         dispatch(setSoccerCells(newSoccerCells));
         const result = checkWinner(newSoccerCells);
         if (result) {
@@ -79,7 +83,8 @@ const ModalComponent: React.FC = () => {
             dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
           }
         }
-        setTextInput('');
+        setData([])
+        setInput('');
         dispatch(setSelectedSoccerCell(null));
         toggleModal();
       }
@@ -87,15 +92,32 @@ const ModalComponent: React.FC = () => {
     if (inputType === 'team') {
       if (selectedTeamCell !== null) {
         const newTeamCells = [...teamCells];
-        newTeamCells[selectedTeamCell] = textInput;
+        newTeamCells[selectedTeamCell] = Player;
         dispatch(setTeamCells(newTeamCells));
         dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
-        setTextInput('');
+        setData([])
+        setInput('');
         dispatch(setSelectedTeamCell(null));
         toggleModal();
       }
     }
   };
+  const teams = handlers.teamCells as any;
+
+  const fectData = () => {
+    const _teams = teams.map((t: any) => t.id).join(',')
+    const query = `player/search-players?teams=${_teams}&name=${input}`;
+    baseAPI.get(query).then(response => {
+      setData(response.data);
+    });
+  };
+
+  React.useEffect(() => {
+    if (input.length > 2 && teams) {
+      fectData();
+    }
+  }, [input, teams]);
+
   return (
     <View>
       <Modal
@@ -118,34 +140,47 @@ const ModalComponent: React.FC = () => {
             ) : (
               <Text>Takım Seç:</Text>
             )}
-            <MyDropdown />
-            <TextInput
-              value={textInput}
-              onChangeText={text => setTextInput(text)}
-              onSubmitEditing={() => {
-                handleInputSubmit(type);
-              }}
-              autoFocus={true}
-              placeholder="Metin girin..."
-            />
-            <HStack shouldWrapChildren spacing={3}>
-              <Flex>
-                <Pressable
-                  style={[GlobalStyles.button, GlobalStyles.buttonClose]}
-                  onPress={() => {
-                    handleInputSubmit(type);
-                  }}>
-                  <Text style={GlobalStyles.textStyle}>Onayla</Text>
-                </Pressable>
-              </Flex>
-              <Flex>
-                <Pressable
-                  style={[GlobalStyles.button, GlobalStyles.buttonClose]}
-                  onPress={() => toggleModal()}>
-                  <Text style={GlobalStyles.textStyle}>Kapat</Text>
-                </Pressable>
-              </Flex>
-            </HStack>
+
+            {/* Modaldaki SearchableDropdown */}
+            <View>
+              <View
+                style={{
+                  borderStyle: 'solid',
+                  borderWidth: 1,
+                  borderColor: 'lightgrey',
+                  marginBottom: 10,
+                }}>
+                <TextInput
+                  placeholder="Ara"
+                  onChangeText={text => setInput(text)}
+                  value={input}
+                />
+              </View>
+              <View style={{ width: 300, height: 300, minHeight: 100, maxHeight: 300 }}>
+                <ScrollView>
+                  <VStack spacing={3} style={{ borderWidth: 1, borderStyle: 'solid' }}>
+                    {data?.map((item: any) => {
+                      if (item.Player.name.includes(input)) {
+                        return (
+                          <Flex key={item.index}>
+                            <TouchableOpacity onPress={() => {
+                              handleInputSubmit(type, item.Player);
+                            }}
+                              style={{ backgroundColor: '#7FFF00', borderRadius: 10 }}>
+                              <Text
+                                key={item.index}
+                                style={{ color: 'black', fontWeight: '600', margin: 3 }}>
+                                {item.Player.name}
+                              </Text>
+                            </TouchableOpacity>
+                          </Flex>
+                        );
+                      }
+                    })}
+                  </VStack>
+                </ScrollView>
+              </View>
+            </View>
           </View>
         </View>
       </Modal>

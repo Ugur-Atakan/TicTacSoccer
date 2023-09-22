@@ -31,6 +31,8 @@ export default function SearchableDropdown() {
     }
   }, [input,teams]);
 
+  
+
   return (
     <View>
       <View
@@ -53,7 +55,9 @@ export default function SearchableDropdown() {
               if (item.Player.name.includes(input)) {
                 return (
                   <Flex key={item.index}>
-                    <TouchableOpacity
+                    <TouchableOpacity onPress={()=>{
+                      
+                    }}
                       style={{backgroundColor: '#7FFF00', borderRadius: 10}}>
                       <Text
                         key={item.index}

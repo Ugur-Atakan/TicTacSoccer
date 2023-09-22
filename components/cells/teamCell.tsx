@@ -23,7 +23,7 @@ const TeamCell: React.FC<TeamCellProps> = ({cellId, team}) => {
         {teamCells[cellId] !== null ? (
           <Text style={GlobalStyles.fs15}>{teamCells[cellId]?.name}</Text>
         ) : (
-          <Text style={GlobalStyles.fs20}>{teamCells[cellId]?.name}</Text>
+          <Text style={GlobalStyles.fs15}>{teamCells[cellId]?.name}</Text>
           // <TeamLogo team={team} />
         )}
       </Flex>

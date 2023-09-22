@@ -16,6 +16,10 @@ function GameMode1(): React.JSX.Element {
   const handlers = Handlers();
   const gamehandler=GameHandlers();
   const {winnerUser, currentPlayer} = handlers;
+  React.useEffect(()=>{
+    gamehandler.fetchGame();
+    handlers.startGame();
+  },[])
   return (
     <SafeAreaView style={GlobalStyles.f1}>
       <View style={GlobalStyles.f1}>
