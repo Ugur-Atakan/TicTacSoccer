@@ -18,6 +18,7 @@ import {
 import {setWinnerPlayer} from '../utils/redux/reducers/gameReducers/winner';
 import {setCurrentPlayer} from '../utils/redux/reducers/gameReducers/currentPlayer';
 import {Flex, HStack} from 'react-native-flex-layout';
+import MyDropdown from './dropdown';
 
 const ModalComponent: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,8 @@ const ModalComponent: React.FC = () => {
   const isVisible = useSelector((state: RootState) => state.modal.isVisible);
   const type = useSelector((state: RootState) => state.modal.type);
 
-  const {selectedSoccerCell,selectedTeamCell,soccerCells,teamCells}=useSelector(
-    (state: RootState) => state.cells
-  );
+  const {selectedSoccerCell, selectedTeamCell, soccerCells, teamCells} =
+    useSelector((state: RootState) => state.cells);
   const currentPlayer = useSelector(
     (state: RootState) => state.currentPlayer.currentPlayer,
   );
@@ -118,6 +118,7 @@ const ModalComponent: React.FC = () => {
             ) : (
               <Text>Takım Seç:</Text>
             )}
+            <MyDropdown />
             <TextInput
               value={textInput}
               onChangeText={text => setTextInput(text)}
