@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const GlobalStyles = StyleSheet.create({
   container: {
@@ -17,6 +17,12 @@ const GlobalStyles = StyleSheet.create({
   f9: {
     flex: 9,
   },
+  fs15: {
+    fontSize: 15,
+  },
+  fs10: {
+    fontSize: 10,
+  },
 
   fs30: {
     fontSize: 30,
@@ -24,7 +30,7 @@ const GlobalStyles = StyleSheet.create({
   fs30bold: {
     fontSize: 30,
     fontWeight: 'bold',
-    color:'black'
+    color: 'black'
   },
   fs40: {
     fontSize: 40,

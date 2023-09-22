@@ -10,9 +10,11 @@ import GlobalStyles from '../utils/globalStyles';
 import ModalComponent from '../components/Modal';
 import GameStatusComponent from '../components/cells/gameStatusComponent';
 import Avatars from '../components/Avatars';
+import GameHandlers from '../utils/handlers/game';
 
 function GameMode1(): React.JSX.Element {
   const handlers = Handlers();
+  const gamehandler=GameHandlers();
   const {winnerUser, currentPlayer} = handlers;
   return (
     <SafeAreaView style={GlobalStyles.f1}>
@@ -36,8 +38,8 @@ function GameMode1(): React.JSX.Element {
             <HStack spacing={2} shouldWrapChildren>
               <LogoCell />
               <TeamCell cellId={0} team={Teams[0]} />
-              <TeamCell team={Teams[1]} cellId={1} />
-              <TeamCell team={Teams[2]} cellId={2} />
+              <TeamCell  team={Teams[1]} cellId={1} />
+              <TeamCell  team={Teams[2]} cellId={2} />
             </HStack>
             <HStack spacing={2} shouldWrapChildren>
               <TeamCell team={Teams[3]} cellId={3} />
@@ -68,6 +70,7 @@ function GameMode1(): React.JSX.Element {
             <Button
               title="Oyunu Başlat"
               onPress={() => {
+                gamehandler.fetchGame();
                 handlers.startGame();
               }}
             />

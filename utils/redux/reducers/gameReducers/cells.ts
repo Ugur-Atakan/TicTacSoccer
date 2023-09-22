@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   soccerCells: Array(9).fill(null),
-  teamCells: Array(6).fill(null),
+  teamCells:Array(6).fill(null),
   selectedSoccerCell: null,
   selectedTeamCell: null,
 };
