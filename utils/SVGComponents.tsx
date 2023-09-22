@@ -27,17 +27,5 @@ const AddSVG = () => {
     </View>
   );
 };
-const FootBallSVG = () => {
-  return (
-    <View>
-      <Svg width={56} height={56} viewBox="0 0 24 24">
-        <Path
-          d="M12,8V5M8.41,10.65,5.34,9.84M9.84,15,7.89,18m6.27-3,1.95,3m-.61-7.33,3.16-.83M12,8,8.5,10.67,9.84,15h4.32l1.34-4.33Z"
-          fill="green"
-        />
-      </Svg>
-    </View>
-  );
-};
 
-export {SoccerSVG, AddSVG, FootBallSVG};
+export {SoccerSVG, AddSVG};

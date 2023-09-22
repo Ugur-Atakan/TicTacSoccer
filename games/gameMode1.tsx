@@ -12,16 +12,26 @@ import GameStatusComponent from '../components/cells/gameStatusComponent';
 import Avatars from '../components/Avatars';
 
 function GameMode1(): React.JSX.Element {
-const handlers= Handlers();
-const {winnerUser, currentPlayer}= handlers;
+  const handlers = Handlers();
+  const {winnerUser, currentPlayer} = handlers;
   return (
     <SafeAreaView style={GlobalStyles.f1}>
       <View style={GlobalStyles.f1}>
         <View style={GlobalStyles.f9}>
           <VStack fill center spacing={2}>
-            <HStack w={'100%'} spacing={10} shouldWrapChildren style={{backgroundColor:'limegreen', justifyContent:'flex-end'}}>
-            <GameStatusComponent  winnerUser={winnerUser} currentPlayer={currentPlayer}/>
-            <Avatars />     
+            <HStack
+              w={'100%'}
+              spacing={10}
+              shouldWrapChildren
+              style={{
+                backgroundColor: 'limegreen',
+                justifyContent: 'flex-end',
+              }}>
+              <GameStatusComponent
+                winnerUser={winnerUser}
+                currentPlayer={currentPlayer}
+              />
+              <Avatars />
             </HStack>
             <HStack spacing={2} shouldWrapChildren>
               <LogoCell />

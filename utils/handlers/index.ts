@@ -14,21 +14,8 @@ export default function Handlers() {
   const dispatch = useDispatch();
   /* eslint-disable @typescript-eslint/no-unused-vars */
 
-  const {selectedSoccerCell,selectedTeamCell,soccerCells, teamCells}=useSelector(
-    (state: RootState) => state.cells,
-  );
-
-  // const selectedSoccerCell = useSelector(
-  //   (state: RootState) => state.cells.selectedSoccerCell,
-  // );
-
-  // const selectedTeamCell = useSelector(
-  //   (state: RootState) => state.cells.selectedTeamCell,
-  // );
-  // const soccerCells = useSelector(
-  //   (state: RootState) => state.cells.soccerCells,
-  // );
-  // const teamCells = useSelector((state: RootState) => state.cells.teamCells);
+  const {selectedSoccerCell, selectedTeamCell, soccerCells, teamCells} =
+    useSelector((state: RootState) => state.cells);
 
   const currentPlayer = useSelector(
     (state: RootState) => state.currentPlayer.currentPlayer,
@@ -37,11 +24,11 @@ export default function Handlers() {
   const gameStatus = useSelector(
     (state: RootState) => state.gameStatus.gameStatus,
   );
-  // const winner = useSelector((state: RootState) => state.winner.winner);
-  // const winnerUser = useSelector((state: RootState) => state.winner.userData);
 
-  const {winner, userData:winnerUser}=useSelector((state: RootState) => state.winner);
-  // userDatayı reducerdan alıp winnerUser değişkenine atıyor. 
+  const {winner, userData: winnerUser} = useSelector(
+    (state: RootState) => state.winner,
+  );
+  // userDatayı reducerdan alıp winnerUser değişkenine atıyor.
 
   const isVisible = useSelector((state: RootState) => state.modal.isVisible);
 
@@ -66,7 +53,7 @@ export default function Handlers() {
         return squares[a];
       }
     }
-    
+
     return null;
   };
 
