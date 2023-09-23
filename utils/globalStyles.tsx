@@ -22,7 +22,7 @@ const GlobalStyles = StyleSheet.create({
     borderWidth: 0.5,
   },
   lightsoccercells: {
-    backgroundColor: '#319f4f',
+    backgroundColor: 'rgba(48, 138, 58, 0.9)',
     justifyContent: 'center',
     alignItems: 'center',
     borderStyle: 'solid',

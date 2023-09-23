@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, View} from 'react-native';
 import {Flex} from 'react-native-flex-layout';
 import GlobalStyles from '../../utils/globalStyles';
 import Handlers from '../../utils/handlers';
@@ -23,7 +23,7 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId, coordinats}) => {
         w={95}
         h={95}
         style={
-          cellId % 2 == 0
+          cellId % 2 === 0
             ? GlobalStyles.lightsoccercells
             : GlobalStyles.darksoccercells
         }>
@@ -35,10 +35,10 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId, coordinats}) => {
             </Text>
           </>
         ) : (
-          <>
+          <View style={{paddingTop: 15}}>
             <SoccerSVG />
-            <Text style={{fontSize: 30, fontWeight: 'bold'}}>+</Text>
-          </>
+            <Text style={{fontSize: 30, fontWeight: 'bold',alignSelf:'center'}}>+</Text>
+          </View>
         )}
       </Flex>
     </TouchableOpacity>
