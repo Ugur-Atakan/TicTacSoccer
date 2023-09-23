@@ -41,7 +41,7 @@ const Drawer = createDrawerNavigator();
 
 function Root() {
   return (
-    <Drawer.Navigator initialRouteName="GameMode">
+    <Drawer.Navigator>
       <Drawer.Screen name="WELCOME" component={WelcomeScreen} />
       <Drawer.Screen name="Game Mods" component={GamesScreen} />
       <Drawer.Screen name="Game Rules" component={GameRulesScreen} />

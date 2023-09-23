@@ -35,7 +35,7 @@ const LoginScreen = () => {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View style={styles.logoContainer}>
-        <Text style={styles.logo}>Your Logo</Text>
+        <Text style={styles.logo}>Our Logo</Text>
       </View>
       <View style={styles.inputContainer}>
         <TextInput
