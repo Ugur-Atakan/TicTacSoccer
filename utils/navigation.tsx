@@ -11,13 +11,15 @@ import GameModeScreen3 from '../screens/GameModes/GameModeScrren3';
 import RealmMainScreen from '../screens/Realm/RealmMainScreen';
 import RealmUserScreen from '../screens/Realm/User';
 import RealmProfileScreen from '../screens/Realm/Profile';
+import CountDownScreen from '../screens/countdown';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function Root() {
   return (
-    <Drawer.Navigator initialRouteName="Welcome">
+    <Drawer.Navigator initialRouteName="Countdown">
       <Drawer.Screen name="WELCOME" component={WelcomeScreen} />
+      <Drawer.Screen name="Countdown" component={CountDownScreen}/>
       <Drawer.Screen name="Game Mods" component={GamesScreen} />
       <Drawer.Screen name="Game Rules" component={GameRulesScreen} />
       <Drawer.Screen name="Realm Test" component={RealmMainScreen} />
@@ -46,6 +48,11 @@ function Navigator(): JSX.Element {
           name="GameMode3"
           component={GameModeScreen3}
           options={{headerShown: true}}
+        />
+        <Stack.Screen
+        name='CountDown'
+        component={CountDownScreen}
+        options={{headerShown: true}}
         />
         <Stack.Screen
           name="Users"
