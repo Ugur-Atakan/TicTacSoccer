@@ -6,8 +6,7 @@ import { View } from "react-native";
 export default function CurrentPlayer(){
     const {winnerUser,currentPlayer}=Handlers();
     return (
-      <View style={{backgroundColor:'#355E3B',alignItems:'center',padding:0}}>
-
+      <View>
 {        winnerUser === 'Berabere' ? (
           <Text style={GlobalStyles.fs30bold}>Berabere</Text>
         ) : winnerUser ? (
@@ -15,7 +14,7 @@ export default function CurrentPlayer(){
             Kazanan oyuncu {winnerUser}
           </Text>
         ) : (
-          <Text style={{fontSize:25,fontWeight:'bold',color:'white',paddingRight:5}}>
+          <Text style={{fontSize:25,fontWeight:'bold',color:'#000'}}>
             {currentPlayer} Oynuyor
           </Text>
         )}

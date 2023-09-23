@@ -14,7 +14,7 @@ const TeamCell: React.FC<TeamCellProps> = ({cellId}) => {
   const teamCells = Handlers().teamCells;
   return (
     <TouchableOpacity onPress={() => handlers.handleTeamCell(cellId)}>
-      <Flex w={100} h={100} style={GlobalStyles.teamcells}>
+      <Flex w={95} h={95} style={GlobalStyles.teamcells}>
         {teamCells[cellId] !== null ?
         (
         <>

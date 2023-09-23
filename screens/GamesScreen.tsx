@@ -12,11 +12,6 @@ function GamesScreen({navigation}: any): JSX.Element {
           <Text style={{alignSelf: 'center',fontSize:30}}>Game Mode 1</Text>
           </TouchableOpacity>
         </Flex>
-        <Flex w={300} h={100} center style={{backgroundColor: 'green'}}>
-          <TouchableOpacity onPress={() => navigation.navigate('GameMode2')}>
-            <Text style={{alignSelf: 'center',fontSize:30}}>Game Mode 2</Text>
-          </TouchableOpacity>
-        </Flex>
       </VStack>
     </SafeAreaView>
   );

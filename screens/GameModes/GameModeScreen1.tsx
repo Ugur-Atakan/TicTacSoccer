@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
-import GameMode1 from '../../games/gameMode1';
 import MainLayout from '../../layout';
 
 const GameModeScreen1 = () => {

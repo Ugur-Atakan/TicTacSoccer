@@ -7,18 +7,22 @@ import {SoccerSVG} from '../../utils/SVGComponents';
 
 interface SoccerCellProps {
   cellId: number;
+  coordinats:{
+    x:number
+    y:number
+  }
 }
 
-const SoccerCell: React.FC<SoccerCellProps> = ({cellId}) => {
+const SoccerCell: React.FC<SoccerCellProps> = ({cellId, coordinats}) => {
   const handlers = Handlers();
   const soccerCells = Handlers().soccerCells;
   return (
-    <TouchableOpacity onPress={() => handlers.handleSoccerCell(cellId)}>
-      <Flex w={100} h={100} style={cellId%2==0?GlobalStyles.lightsoccercells:GlobalStyles.darksoccercells}>
+    <TouchableOpacity onPress={() => handlers.handleSoccerCell(cellId,coordinats)}>
+      <Flex w={95} h={95} style={cellId%2==0?GlobalStyles.lightsoccercells:GlobalStyles.darksoccercells}>
         {soccerCells[cellId] && soccerCells[cellId] !== null ? (
           <>
           <SoccerSVG /> 
-          <Text style={GlobalStyles.fs15white}>{soccerCells[cellId]?.name}</Text>
+          <Text style={GlobalStyles.fs15white}>{soccerCells[cellId]?.data.name}</Text>
           </>
          
         ) : (

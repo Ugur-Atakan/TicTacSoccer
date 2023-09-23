@@ -9,18 +9,19 @@ import RealmMainScreen from '../screens/Realm/RealmMainScreen';
 import RealmUserScreen from '../screens/Realm/User';
 import RealmProfileScreen from '../screens/Realm/Profile';
 import MainLayout from '../layout';
-import GameModeScreen2 from '../screens/GameModes/GameModeScreen2';
 import GameModeScreen1 from '../screens/GameModes/GameModeScreen1';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function Root() {
   return (
-    <Drawer.Navigator initialRouteName="WELCOME">
+    <Drawer.Navigator initialRouteName="GameMode">
       <Drawer.Screen name="WELCOME" component={WelcomeScreen} />
       <Drawer.Screen name="Game Mods" component={GamesScreen} />
       <Drawer.Screen name="Game Rules" component={GameRulesScreen} />
       <Drawer.Screen name="Realm Test" component={RealmMainScreen} />
+      <Drawer.Screen name="GameMode" component={GameModeScreen1} />
+      
     </Drawer.Navigator>
   );
 }
@@ -32,14 +33,14 @@ function Navigator(): JSX.Element {
           headerShown: false,
         }}>
         <Stack.Screen name="Root" component={Root} />
-        <Stack.Screen
-          name="GameMode2"
-          component={GameModeScreen2}
-          options={{headerShown: true}}
-        />
           <Stack.Screen
           name="GameMode1"
           component={GameModeScreen1}
+          options={{headerShown: true}}
+        />
+          <Stack.Screen
+          name="MainLayout"
+          component={MainLayout}
           options={{headerShown: true}}
         />
         <Stack.Screen

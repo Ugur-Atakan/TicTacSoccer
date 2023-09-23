@@ -26,8 +26,15 @@ export default function Handlers() {
   );
   // userDatayı reducerdan alıp winnerUser değişkenine atıyor.
 
-  const checkWinner = (squares: Array<string | null>): string | null => {
-    const winningLines = [
+  interface Square {
+    iscorred: boolean;
+    data: {
+      playerid: number;
+    };
+  }
+
+  const checkWinner = (squares: Square[]): number | null => {
+    const winningLines: number[][] = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -39,12 +46,8 @@ export default function Handlers() {
     ];
     for (let i = 0; i < winningLines.length; i++) {
       const [a, b, c] = winningLines[i];
-      if (
-        squares[a] &&
-        squares[a] === squares[b] &&
-        squares[a] === squares[c]
-      ) {
-        return squares[a];
+       if (squares[a].iscorred && squares[b].iscorred && squares[c].iscorred) {
+        return squares[a].data.playerid;
       }
     }
 
@@ -52,11 +55,12 @@ export default function Handlers() {
   };
 
 
-  const handleSoccerCell = async (cellId: number) => {
+  const handleSoccerCell =async (cellId: number, coords: { x: number; y: number }) => {
     if (cellId !== null && !winner && gameStatus === true) {
+     
       try {
         dispatch(setSelectedSoccerCell(cellId));
-        dispatch(showModal('soccer'));
+        dispatch(showModal({ type:'soccer', coordinates:{x:coords.x,y:coords.y}}));
       } catch (error) {
         console.error('Bir hata oluştu:', error);
       }
