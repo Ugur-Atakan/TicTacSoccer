@@ -111,19 +111,18 @@ const ModalComponent: React.FC = () => {
   };
   const teams = handlers.teamCells as any;
 
-  const fectData = () => {
-    const _teams = teams.map((t: any) => t.id).join(',');
-    const query = `player/search-players?teams=${_teams}&name=${input}`;
-    baseAPI.get(query).then(response => {
-      setData(response.data);
-    });
-  };
-
   React.useEffect(() => {
+    const fectData = () => {
+      const _teams = teams.map((t: any) => t.id).join(',');
+      const query = `player/search-players?teams=${_teams}&name=${input}`;
+      baseAPI.get(query).then(response => {
+        setData(response.data);
+      });
+    };
     if (input.length > 2 && teams) {
       fectData();
     }
-  }, [input, teams]);
+  }, [input, teams, setData]);
 
   return (
     <View>
