@@ -4,7 +4,7 @@ import {Flex} from 'react-native-flex-layout';
 import GlobalStyles from '../../utils/globalStyles';
 import Handlers from '../../utils/handlers';
 import { Image } from 'react-native';
-
+import { idTransformer } from '../../utils/idTransformer';
 interface TeamCellProps {
   cellId: number;
 }
@@ -12,7 +12,6 @@ interface TeamCellProps {
 const TeamCell: React.FC<TeamCellProps> = ({cellId}) => {
   const handlers = Handlers();
   const teamCells = Handlers().teamCells;
-
   return (
     <TouchableOpacity onPress={() => handlers.handleTeamCell(cellId)}>
       <Flex w={100} h={100} style={GlobalStyles.teamcells}>
@@ -20,7 +19,7 @@ const TeamCell: React.FC<TeamCellProps> = ({cellId}) => {
         (
         <>
         <Image
-        source={{uri: `https://im.mackolik.com/img/logo/buyuk/${teamCells[cellId]?.id}.gif`}}
+        source={{uri: `https://im.mackolik.com/img/logo/buyuk/${idTransformer(teamCells[cellId]?.id)}.gif`}}
         style={{width: 55, height: 55}}
         />
         <Text style={GlobalStyles.fs15}>{teamCells[cellId]?.name}</Text>

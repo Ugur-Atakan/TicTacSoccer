@@ -2,19 +2,24 @@ import { Text } from "@rneui/themed";
 import React from "react";
 import GlobalStyles from "../../utils/globalStyles";
 import Handlers from "../../utils/handlers";
+import { View } from "react-native";
 export default function CurrentPlayer(){
     const {winnerUser,currentPlayer}=Handlers();
     return (
-        winnerUser === 'Berabere' ? (
-          <Text style={GlobalStyles.fs30bold}>Berabere Bitti</Text>
+      <View style={{backgroundColor:'#355E3B',alignItems:'center',padding:0}}>
+
+{        winnerUser === 'Berabere' ? (
+          <Text style={GlobalStyles.fs30bold}>Berabere</Text>
         ) : winnerUser ? (
           <Text style={GlobalStyles.fs30bold}>
             Kazanan oyuncu {winnerUser}
           </Text>
         ) : (
-          <Text style={GlobalStyles.fs30bold}>
-            Sıradaki oyuncu {currentPlayer}
+          <Text style={{fontSize:25,fontWeight:'bold',color:'white',paddingRight:5}}>
+            {currentPlayer} Oynuyor
           </Text>
-        )
+        )}
+
+        </View>
     )
 }

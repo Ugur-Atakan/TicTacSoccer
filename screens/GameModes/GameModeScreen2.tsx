@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import GameMode1 from '../../games/gameMode1';
 
-function GameModeScreen1(): JSX.Element {
+function GameModeScreen2(): JSX.Element {
   const [countdown, setCountdown] = useState(3);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ function GameModeScreen1(): JSX.Element {
       countdown > 0 ? <Text>{countdown}</Text> : <GameMode1 />
   );
 };
-export default GameModeScreen1;
+export default GameModeScreen2;

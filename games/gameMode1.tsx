@@ -1,7 +1,7 @@
 import React from 'react';
 import {VStack, HStack, Flex} from 'react-native-flex-layout';
 import {SafeAreaView, View, Text, Button} from 'react-native';
-import {Teams} from '../utils/fakeData';
+import {Teams} from '../utils/idTransformer';
 import Handlers from '../utils/handlers';
 import SoccerCell from '../components/cells/soccerCell';
 import TeamCell from '../components/cells/teamCell';
