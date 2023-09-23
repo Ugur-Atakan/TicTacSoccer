@@ -1,13 +1,9 @@
 import {RootState} from '../redux/stores/store';
 import {useDispatch, useSelector} from 'react-redux';
-import {gameStart, gameEnd} from '../redux/reducers/gameReducers/gameStatus';
-import {setCurrentPlayer} from '../redux/reducers/gameReducers/currentPlayer';
-import {setWinnerPlayer} from '../redux/reducers/gameReducers/winner';
 import {showModal} from '../redux/reducers/gameReducers/modalStatus';
 import {
   setSelectedSoccerCell,
   setSelectedTeamCell,
-  resetCells,
 } from '../redux/reducers/gameReducers/cells';
 
 export default function Handlers() {
@@ -29,8 +25,6 @@ export default function Handlers() {
     (state: RootState) => state.winner,
   );
   // userDatayı reducerdan alıp winnerUser değişkenine atıyor.
-
-  const isVisible = useSelector((state: RootState) => state.modal.isVisible);
 
   const checkWinner = (squares: Array<string | null>): string | null => {
     const winningLines = [
@@ -57,20 +51,6 @@ export default function Handlers() {
     return null;
   };
 
-  const startGame = () => {
-    dispatch(gameStart());
-  };
-
-  const endGame = () => {
-    dispatch(gameEnd());
-  };
-
-  const resetGame = () => {
-    dispatch(resetCells());
-    dispatch(setCurrentPlayer('P1'));
-    dispatch(setWinnerPlayer(null));
-    dispatch(gameEnd());
-  };
 
   const handleSoccerCell = async (cellId: number) => {
     if (cellId !== null && !winner && gameStatus === true) {
@@ -95,9 +75,6 @@ export default function Handlers() {
   };
 
   return {
-    startGame,
-    endGame,
-    resetGame,
     handleTeamCell,
     handleSoccerCell,
     winner,

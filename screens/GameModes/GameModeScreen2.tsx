@@ -1,6 +1,5 @@
 import { Text } from '@rneui/themed';
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
 
 import GameMode1 from '../../games/gameMode1';
 

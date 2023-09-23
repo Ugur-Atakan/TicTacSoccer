@@ -14,11 +14,18 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId}) => {
   const soccerCells = Handlers().soccerCells;
   return (
     <TouchableOpacity onPress={() => handlers.handleSoccerCell(cellId)}>
-      <Flex w={100} h={100} style={GlobalStyles.cells}>
+      <Flex w={100} h={100} style={cellId%2==0?GlobalStyles.lightsoccercells:GlobalStyles.darksoccercells}>
         {soccerCells[cellId] && soccerCells[cellId] !== null ? (
-          <Text style={GlobalStyles.fs15}>{soccerCells[cellId]?.name}</Text>
+          <>
+          <SoccerSVG /> 
+          <Text style={GlobalStyles.fs15white}>{soccerCells[cellId]?.name}</Text>
+          </>
+         
         ) : (
+          <>
           <SoccerSVG />
+          <Text style={{fontSize:30,fontWeight:'bold'}}>+</Text> 
+          </>
         )}
       </Flex>
     </TouchableOpacity>

@@ -19,7 +19,7 @@ function GameMode1(): React.JSX.Element {
   const {winnerUser, currentPlayer} = handlers;
   React.useEffect(()=>{
     gamehandler.fetchGame();
-    handlers.startGame();
+    gamehandler.startGame();
   },[])
   return (
     <SafeAreaView style={{flex:1,backgroundColor:'#1e0d30'}}>
@@ -42,24 +42,24 @@ function GameMode1(): React.JSX.Element {
             </HStack>
             <HStack spacing={spacing} shouldWrapChildren>
               <LogoCell />
-              <TeamCell cellId={0} team={Teams[0]} />
-              <TeamCell  team={Teams[1]} cellId={1} />
-              <TeamCell  team={Teams[2]} cellId={2} />
+              <TeamCell cellId={0} />
+              <TeamCell cellId={1} />
+              <TeamCell cellId={2} />
             </HStack>
             <HStack spacing={spacing} shouldWrapChildren>
-              <TeamCell team={Teams[3]} cellId={3} />
+              <TeamCell cellId={3} />
               <SoccerCell cellId={0} />
               <SoccerCell cellId={1} />
               <SoccerCell cellId={2} />
             </HStack>
             <HStack spacing={spacing} shouldWrapChildren>
-              <TeamCell team={Teams[4]} cellId={4} />
+              <TeamCell cellId={4} />
               <SoccerCell cellId={3} />
               <SoccerCell cellId={4} />
               <SoccerCell cellId={5} />
             </HStack>
             <HStack spacing={spacing} shouldWrapChildren>
-              <TeamCell team={Teams[5]} cellId={5} />
+              <TeamCell cellId={5} />
               <SoccerCell cellId={6} />
               <SoccerCell cellId={7} />
               <SoccerCell cellId={8} />
@@ -76,12 +76,12 @@ function GameMode1(): React.JSX.Element {
               title="Oyunu Başlat"
               onPress={() => {
                 gamehandler.fetchGame();
-                handlers.startGame();
+                gamehandler.startGame();
               }}
             />
           </Flex>
           <Flex w={100} h={100}>
-            <Button title="Sıfırla" onPress={handlers.resetGame} />
+            <Button title="Sıfırla" onPress={gamehandler.resetGame} />
           </Flex>
         </HStack>
         <View style={GlobalStyles.f1}>
