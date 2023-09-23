@@ -1,15 +1,41 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import WelcomeScreen from '../screens/WelcomeScreen';
 import GamesScreen from '../screens/GamesScreen';
 import GameRulesScreen from '../screens/GameRulesScreen';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import GameModeScreen1 from '../screens/GameModes/GameModeScreen1';
+import MainLayout from '../layout';
+
 import RealmMainScreen from '../screens/Realm/RealmMainScreen';
 import RealmUserScreen from '../screens/Realm/User';
 import RealmProfileScreen from '../screens/Realm/Profile';
-import MainLayout from '../layout';
-import GameModeScreen1 from '../screens/GameModes/GameModeScreen1';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './redux/stores/store';
+import { initialTokenLoad, loginSuccess } from './redux/reducers/userReducer';
+import LoginScreen from '../screens/Auth/Login';
+
+import { Text } from '@rneui/base';
+import { View, Image, StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+  },
+  logo: {
+    marginTop: 50,
+    height: 658,
+    resizeMode: 'cover',
+  },
+});
+
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -26,12 +52,40 @@ function Root() {
   );
 }
 function Navigator(): JSX.Element {
+  const { accessToken } = useSelector((state: RootState) => state.user);
+  const { isLoading } = useSelector((state: RootState) => state.auth);
+  console.log(isLoading);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        dispatch(initialTokenLoad({ accessToken: '' }));
+      }, 500);
+    }
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <View style={{ overflow: 'hidden' }}>
+        <Image
+          source={{
+            uri: 'https://www.cimnasgym.com/wp-content/uploads/2016/05/product-soccer-ball.jpg',
+          }}
+          style={styles.logo}
+        />
+      </View>
+    );
+  }
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
+        {accessToken ? (
+          <>
         <Stack.Screen name="Root" component={Root} />
           <Stack.Screen
           name="GameMode1"
@@ -53,6 +107,13 @@ function Navigator(): JSX.Element {
           component={RealmProfileScreen}
           options={{headerShown: true}}
         />
+        </>):
+        (
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} />
+          </>
+        )
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );
