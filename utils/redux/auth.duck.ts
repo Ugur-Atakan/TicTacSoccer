@@ -1,4 +1,4 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import {PayloadAction} from '@reduxjs/toolkit';
 import baseAPI from '../http/base';
 
 const TYPES = {
@@ -15,7 +15,7 @@ const initialState = {
 };
 
 const startRequest = () => {
-  return { type: TYPES.START_LOGIN };
+  return {type: TYPES.START_LOGIN};
 };
 
 const loginSuccess = (user: any) => {
@@ -35,7 +35,7 @@ const loginFail = (error: any) => {
 const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case TYPES.START_LOGIN:
-      return { isLoggedIn: false, isLoading: true, user: null, error: null };
+      return {isLoggedIn: false, isLoading: true, user: null, error: null};
     case TYPES.LOGIN_SUCCESS:
       return {
         isLoggedIn: true,
@@ -44,7 +44,7 @@ const authReducer = (state = initialState, action: any) => {
         error: null,
       };
     case TYPES.LOGIN_FAIL:
-      return { isLoggedIn: false, isLoading: false, user: null, error: null };
+      return {isLoggedIn: false, isLoading: false, user: null, error: null};
     default:
       return state;
   }
@@ -54,7 +54,7 @@ export const loginUser = (credentials: any) => {
   return (dispatch: any) => {
     dispatch(startRequest());
     baseAPI
-      .post('auth/login', { ...credentials })
+      .post('auth/login', {...credentials})
       .then(res => dispatch(loginSuccess(res.data.user)))
       .catch(() => loginFail('Something Went Wrong'));
   };

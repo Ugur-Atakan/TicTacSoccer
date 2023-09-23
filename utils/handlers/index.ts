@@ -46,7 +46,7 @@ export default function Handlers() {
     ];
     for (let i = 0; i < winningLines.length; i++) {
       const [a, b, c] = winningLines[i];
-       if (squares[a].iscorred && squares[b].iscorred && squares[c].iscorred) {
+      if (squares[a].iscorred && squares[b].iscorred && squares[c].iscorred) {
         return squares[a].data.playerid;
       }
     }
@@ -54,13 +54,16 @@ export default function Handlers() {
     return null;
   };
 
-
-  const handleSoccerCell =async (cellId: number, coords: { x: number; y: number }) => {
+  const handleSoccerCell = async (
+    cellId: number,
+    coords: {x: number; y: number},
+  ) => {
     if (cellId !== null && !winner && gameStatus === true) {
-     
       try {
         dispatch(setSelectedSoccerCell(cellId));
-        dispatch(showModal({ type:'soccer', coordinates:{x:coords.x,y:coords.y}}));
+        dispatch(
+          showModal({type: 'soccer', coordinates: {x: coords.x, y: coords.y}}),
+        );
       } catch (error) {
         console.error('Bir hata oluştu:', error);
       }

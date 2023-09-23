@@ -1,6 +1,6 @@
-import { applyMiddleware, configureStore } from '@reduxjs/toolkit';
+import {applyMiddleware, configureStore} from '@reduxjs/toolkit';
 import userReducer from '../reducers/userReducer';
-import { gameReducers } from '../reducers/gameReducers';
+import {gameReducers} from '../reducers/gameReducers';
 import thunk from 'redux-thunk';
 import authReducer from '../auth.duck';
 

@@ -19,7 +19,6 @@ export const winner = createSlice({
       state.winner = !!action.payload;
       state.userData = action.payload;
     },
-  
   },
 });
 

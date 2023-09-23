@@ -34,8 +34,10 @@ const ModalComponent: React.FC = () => {
   const [data, setData] = React.useState([]);
   const dispatch = useDispatch();
 
-  const {type, isVisible,coordinats}= useSelector((state:RootState)=> state.modal)
-  const coords=useSelector((state:RootState)=>state.modal.coordinats);
+  const {type, isVisible, coordinats} = useSelector(
+    (state: RootState) => state.modal,
+  );
+  const coords = useSelector((state: RootState) => state.modal.coordinats);
 
   const {selectedSoccerCell, selectedTeamCell, soccerCells, teamCells} =
     useSelector((state: RootState) => state.cells);
@@ -63,7 +65,7 @@ const ModalComponent: React.FC = () => {
     ];
     for (let i = 0; i < winningLines.length; i++) {
       const [a, b, c] = winningLines[i];
-       if (squares[a].iscorred && squares[b].iscorred && squares[c].iscorred) {
+      if (squares[a].iscorred && squares[b].iscorred && squares[c].iscorred) {
         return squares[a].data.playerid;
       }
     }
@@ -77,59 +79,57 @@ const ModalComponent: React.FC = () => {
     setInput('');
   };
 
-  const isCorrect= async (playerId: number)=>{
-  const query=`player/check-player?teams=${teamCells[coordinats.x]?.id},${teamCells[coordinats.y]?.id}&player=${playerId}`
-  console.log('http://185.95.165.218:5001/api/'+query)
-   const res= baseAPI.get(query)
-    .then(
-      response =>{
-        if(response.data == true){
-          return true;
-        }
-        else{
-          return false;
-        }
+  const isCorrect = async (playerId: number) => {
+    const query = `player/check-player?teams=${teamCells[coordinats.x]?.id},${
+      teamCells[coordinats.y]?.id
+    }&player=${playerId}`;
+    console.log('http://185.95.165.218:5001/api/' + query);
+    const res = baseAPI.get(query).then(response => {
+      if (response.data == true) {
+        return true;
+      } else {
+        return false;
       }
-    )
-return res;
-  }
+    });
+    return res;
+  };
 
   const handleInputSubmit = async (inputType: string, Player: any) => {
-      const check= await isCorrect(Player.id)
-      if (selectedSoccerCell !== null) {
-        if(check==true)
-        {
-          const newSoccerCells = [...soccerCells];
-          newSoccerCells[selectedSoccerCell] = {
-            isCorret:true,
-            data:Player,
-          }
-          dispatch(setSoccerCells(newSoccerCells));
-          const result = checkWinner(newSoccerCells);
-          if (result) {
-            dispatch(setWinnerPlayer(currentPlayer));
+    const check = await isCorrect(Player.id);
+    if (selectedSoccerCell !== null) {
+      if (check == true) {
+        const newSoccerCells = [...soccerCells];
+        newSoccerCells[selectedSoccerCell] = {
+          isCorret: true,
+          data: Player,
+        };
+        dispatch(setSoccerCells(newSoccerCells));
+        const result = checkWinner(newSoccerCells);
+        if (result) {
+          dispatch(setWinnerPlayer(currentPlayer));
+        } else {
+          if (newSoccerCells.every(square => square !== null)) {
+            // Eğer bütün kutular dolu ve kimse kazanmamışsa, oyun berabere biter.
+            dispatch(setWinnerPlayer('Berabere'));
           } else {
-            if (newSoccerCells.every(square => square !== null)) {
-              // Eğer bütün kutular dolu ve kimse kazanmamışsa, oyun berabere biter.
-              dispatch(setWinnerPlayer('Berabere'));
-            } else {
-              dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
-            }
+            dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
           }
-          setData([]);
-          setInput('');
-          dispatch(setSelectedSoccerCell(null));
-          toggleModal();
-        } else{
-          console.log('Oyuncu iki takımda birden oynamış değil ve sıra diğer oyuncuya geçti');
-          dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
-          setData([]);
-            setInput('');
-            dispatch(setSelectedSoccerCell(null));
-            toggleModal();
         }
-
-      } 
+        setData([]);
+        setInput('');
+        dispatch(setSelectedSoccerCell(null));
+        toggleModal();
+      } else {
+        console.log(
+          'Oyuncu iki takımda birden oynamış değil ve sıra diğer oyuncuya geçti',
+        );
+        dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
+        setData([]);
+        setInput('');
+        dispatch(setSelectedSoccerCell(null));
+        toggleModal();
+      }
+    }
   };
   const teams = handlers.teamCells as any;
 
@@ -195,7 +195,7 @@ return res;
                   <VStack
                     spacing={3}
                     style={{borderWidth: 1, borderStyle: 'solid'}}>
-                    {data?.map((item: any,key: any) => {
+                    {data?.map((item: any, key: any) => {
                       if (item.Player.name.includes(input)) {
                         return (
                           <Flex key={key}>

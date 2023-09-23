@@ -11,14 +11,14 @@ import {Flex, VStack} from 'react-native-flex-layout';
 import Handlers from '../../utils/handlers';
 
 export default function SearchableDropdown() {
-  const handlers=Handlers();
+  const handlers = Handlers();
   const [input, setInput] = useState('');
   const [data, setData] = useState([]);
 
-  const teams=handlers.teamCells as any;
+  const teams = handlers.teamCells as any;
 
   const fectData = () => {
-    const _teams = teams.map((t: any) => t.id).join(',')
+    const _teams = teams.map((t: any) => t.id).join(',');
     const query = `http://185.95.165.218:5001/api/player/search-players?teams=${_teams}&name=${input}`;
     axios.get(query).then(response => {
       setData(response.data);
@@ -29,9 +29,7 @@ export default function SearchableDropdown() {
     if (input.length > 2 && teams) {
       fectData();
     }
-  }, [input,teams]);
-
-  
+  }, [input, teams]);
 
   return (
     <View>
@@ -55,9 +53,8 @@ export default function SearchableDropdown() {
               if (item.Player.name.includes(input)) {
                 return (
                   <Flex key={item.index}>
-                    <TouchableOpacity onPress={()=>{
-                      
-                    }}
+                    <TouchableOpacity
+                      onPress={() => {}}
                       style={{backgroundColor: '#7FFF00', borderRadius: 10}}>
                       <Text
                         key={item.index}

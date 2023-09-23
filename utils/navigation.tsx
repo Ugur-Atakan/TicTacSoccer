@@ -13,13 +13,12 @@ import RealmMainScreen from '../screens/Realm/RealmMainScreen';
 import RealmUserScreen from '../screens/Realm/User';
 import RealmProfileScreen from '../screens/Realm/Profile';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './redux/stores/store';
-import { initialTokenLoad, loginSuccess } from './redux/reducers/userReducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from './redux/stores/store';
+import {initialTokenLoad, loginSuccess} from './redux/reducers/userReducer';
 import LoginScreen from '../screens/Auth/Login';
 
-import { Text } from '@rneui/base';
-import { View, Image, StyleSheet } from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -47,26 +46,25 @@ function Root() {
       <Drawer.Screen name="Game Rules" component={GameRulesScreen} />
       <Drawer.Screen name="Realm Test" component={RealmMainScreen} />
       <Drawer.Screen name="GameMode" component={GameModeScreen1} />
-      
     </Drawer.Navigator>
   );
 }
 function Navigator(): JSX.Element {
-  const { accessToken } = useSelector((state: RootState) => state.user);
-  const { isLoading } = useSelector((state: RootState) => state.auth);
+  const {accessToken} = useSelector((state: RootState) => state.user);
+  const {isLoading} = useSelector((state: RootState) => state.auth);
   console.log(isLoading);
   const dispatch = useDispatch();
   React.useEffect(() => {
     if (isLoading) {
       setTimeout(() => {
-        dispatch(initialTokenLoad({ accessToken: '' }));
+        dispatch(initialTokenLoad({accessToken: ''}));
       }, 500);
     }
   }, [isLoading]);
 
   if (isLoading) {
     return (
-      <View style={{ overflow: 'hidden' }}>
+      <View style={{overflow: 'hidden'}}>
         <Image
           source={{
             uri: 'https://www.cimnasgym.com/wp-content/uploads/2016/05/product-soccer-ball.jpg',
@@ -77,7 +75,6 @@ function Navigator(): JSX.Element {
     );
   }
 
-
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -86,34 +83,33 @@ function Navigator(): JSX.Element {
         }}>
         {accessToken ? (
           <>
-        <Stack.Screen name="Root" component={Root} />
-          <Stack.Screen
-          name="GameMode1"
-          component={GameModeScreen1}
-          options={{headerShown: true}}
-        />
-          <Stack.Screen
-          name="MainLayout"
-          component={MainLayout}
-          options={{headerShown: true}}
-        />
-        <Stack.Screen
-          name="Users"
-          component={RealmUserScreen}
-          options={{headerShown: true}}
-        />
-        <Stack.Screen
-          name="Profiles"
-          component={RealmProfileScreen}
-          options={{headerShown: true}}
-        />
-        </>):
-        (
+            <Stack.Screen name="Root" component={Root} />
+            <Stack.Screen
+              name="GameMode1"
+              component={GameModeScreen1}
+              options={{headerShown: true}}
+            />
+            <Stack.Screen
+              name="MainLayout"
+              component={MainLayout}
+              options={{headerShown: true}}
+            />
+            <Stack.Screen
+              name="Users"
+              component={RealmUserScreen}
+              options={{headerShown: true}}
+            />
+            <Stack.Screen
+              name="Profiles"
+              component={RealmProfileScreen}
+              options={{headerShown: true}}
+            />
+          </>
+        ) : (
           <>
             <Stack.Screen name="Login" component={LoginScreen} />
           </>
-        )
-        }
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

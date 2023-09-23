@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Flex} from 'react-native-flex-layout';
 import GlobalStyles from '../../utils/globalStyles';
 import {Image, View} from 'react-native';
-import { Text } from '@rneui/themed';
+import {Text} from '@rneui/themed';
 
 const LogoCell = () => {
   return (
