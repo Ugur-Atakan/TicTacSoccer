@@ -33,8 +33,9 @@ const ModalComponent: React.FC = () => {
   const [input, setInput] = React.useState('');
   const [data, setData] = React.useState([]);
   const dispatch = useDispatch();
-  const isVisible = useSelector((state: RootState) => state.modal.isVisible);
-  const type = useSelector((state: RootState) => state.modal.type);
+
+  const {type, isVisible,coordinats}= useSelector((state:RootState)=> state.modal)
+  const coords=useSelector((state:RootState)=>state.modal.coordinats);
 
   const {selectedSoccerCell, selectedTeamCell, soccerCells, teamCells} =
     useSelector((state: RootState) => state.cells);
@@ -42,8 +43,15 @@ const ModalComponent: React.FC = () => {
     (state: RootState) => state.currentPlayer.currentPlayer,
   );
 
-  const checkWinner = (squares: Array<string | null>): string | null => {
-    const winningLines = [
+  interface Square {
+    iscorred: boolean;
+    data: {
+      playerid: number;
+    };
+  }
+
+  const checkWinner = (squares: Square[]): number | null => {
+    const winningLines: number[][] = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -55,12 +63,8 @@ const ModalComponent: React.FC = () => {
     ];
     for (let i = 0; i < winningLines.length; i++) {
       const [a, b, c] = winningLines[i];
-      if (
-        squares[a] &&
-        squares[a] === squares[b] &&
-        squares[a] === squares[c]
-      ) {
-        return squares[a];
+       if (squares[a].iscorred && squares[b].iscorred && squares[c].iscorred) {
+        return squares[a].data.playerid;
       }
     }
 
@@ -73,57 +77,74 @@ const ModalComponent: React.FC = () => {
     setInput('');
   };
 
-  const handleInputSubmit = (inputType: string, Player: any) => {
-    if (inputType === 'soccer') {
-      if (selectedSoccerCell !== null) {
-        const newSoccerCells = [...soccerCells];
-        newSoccerCells[selectedSoccerCell] = Player;
-        dispatch(setSoccerCells(newSoccerCells));
-        const result = checkWinner(newSoccerCells);
-        if (result) {
-          dispatch(setWinnerPlayer(currentPlayer));
-        } else {
-          if (newSoccerCells.every(square => square !== null)) {
-            // Eğer bütün kutular dolu ve kimse kazanmamışsa, oyun berabere biter.
-            dispatch(setWinnerPlayer('Berabere'));
-          } else {
-            dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
-          }
+  const isCorrect= async (playerId: number)=>{
+  const query=`player/check-player?teams=${teamCells[coordinats.x]?.id},${teamCells[coordinats.y]?.id}&player=${playerId}`
+  console.log('http://185.95.165.218:5001/api/'+query)
+   const res= baseAPI.get(query)
+    .then(
+      response =>{
+        if(response.data == true){
+          return true;
         }
-        setData([]);
-        setInput('');
-        dispatch(setSelectedSoccerCell(null));
-        toggleModal();
+        else{
+          return false;
+        }
       }
-    }
-    if (inputType === 'team') {
-      if (selectedTeamCell !== null) {
-        const newTeamCells = [...teamCells];
-        newTeamCells[selectedTeamCell] = Player;
-        dispatch(setTeamCells(newTeamCells));
-        dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
-        setData([]);
-        setInput('');
-        dispatch(setSelectedTeamCell(null));
-        toggleModal();
-      }
-    }
+    )
+return res;
+  }
+
+  const handleInputSubmit = async (inputType: string, Player: any) => {
+      const check= await isCorrect(Player.id)
+      if (selectedSoccerCell !== null) {
+        if(check==true)
+        {
+          const newSoccerCells = [...soccerCells];
+          newSoccerCells[selectedSoccerCell] = {
+            isCorret:true,
+            data:Player,
+          }
+          dispatch(setSoccerCells(newSoccerCells));
+          const result = checkWinner(newSoccerCells);
+          if (result) {
+            dispatch(setWinnerPlayer(currentPlayer));
+          } else {
+            if (newSoccerCells.every(square => square !== null)) {
+              // Eğer bütün kutular dolu ve kimse kazanmamışsa, oyun berabere biter.
+              dispatch(setWinnerPlayer('Berabere'));
+            } else {
+              dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
+            }
+          }
+          setData([]);
+          setInput('');
+          dispatch(setSelectedSoccerCell(null));
+          toggleModal();
+        } else{
+          console.log('Oyuncu iki takımda birden oynamış değil ve sıra diğer oyuncuya geçti');
+          dispatch(setCurrentPlayer(currentPlayer === 'P1' ? 'P2' : 'P1'));
+          setData([]);
+            setInput('');
+            dispatch(setSelectedSoccerCell(null));
+            toggleModal();
+        }
+
+      } 
   };
   const teams = handlers.teamCells as any;
 
-  const fectData = () => {
-    const _teams = teams.map((t: any) => t.id).join(',');
-    const query = `player/search-players?teams=${_teams}&name=${input}`;
-    baseAPI.get(query).then(response => {
-      setData(response.data);
-    });
-  };
-
   React.useEffect(() => {
+    const fectData = () => {
+      const _teams = teams.map((t: any) => t.id).join(',');
+      const query = `player/search-players?teams=${_teams}&name=${input}`;
+      baseAPI.get(query).then(response => {
+        setData(response.data);
+      });
+    };
     if (input.length > 2 && teams) {
       fectData();
     }
-  }, [input, teams]);
+  }, [input, teams, setData]);
 
   return (
     <View>
@@ -174,10 +195,10 @@ const ModalComponent: React.FC = () => {
                   <VStack
                     spacing={3}
                     style={{borderWidth: 1, borderStyle: 'solid'}}>
-                    {data?.map((item: any) => {
+                    {data?.map((item: any,key: any) => {
                       if (item.Player.name.includes(input)) {
                         return (
-                          <Flex key={item.index}>
+                          <Flex key={key}>
                             <TouchableOpacity
                               onPress={() => {
                                 handleInputSubmit(type, item.Player);
@@ -187,7 +208,6 @@ const ModalComponent: React.FC = () => {
                                 borderRadius: 10,
                               }}>
                               <Text
-                                key={item.index}
                                 style={{
                                   color: 'black',
                                   fontWeight: '600',
