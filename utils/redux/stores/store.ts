@@ -1,6 +1,8 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { applyMiddleware, configureStore } from '@reduxjs/toolkit';
 import userReducer from '../reducers/userReducer';
-import {gameReducers} from '../reducers/gameReducers';
+import { gameReducers } from '../reducers/gameReducers';
+import thunk from 'redux-thunk';
+import authReducer from '../auth.duck';
 
 export const store = configureStore({
   reducer: {
@@ -10,7 +12,9 @@ export const store = configureStore({
     currentPlayer: gameReducers.currentPlayer,
     winner: gameReducers.winnerPlayer,
     modal: gameReducers.modalStatus,
+    auth: authReducer,
   },
+  middleware: [thunk],
 });
 
 export type RootState = ReturnType<typeof store.getState>;
