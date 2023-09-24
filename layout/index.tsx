@@ -4,18 +4,19 @@ import StatusBar from '../components/UIComponents/status';
 import BottomButtons from '../components/UIComponents/buttons';
 import BaseGame from '../game/index';
 import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 export default function MainLayout() {
   const image = {
     uri: 'https://e1.pxfuel.com/desktop-wallpaper/812/237/desktop-wallpaper-55-soccer-field-soccer-pitch.jpg',
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaProvider style={{flex:1}}>
       <ImageBackground source={image} resizeMode="cover">
         <View
           style={{
             flex: 0.5,
-            paddingHorizontal: 20,
+            paddingHorizontal: 1,
             marginTop: 16,
             marginBottom: 36,
             backgroundColor: 'rgba(255,255,255,0.2)',
@@ -25,10 +26,10 @@ export default function MainLayout() {
           <GameHeader />
         </View>
         <View
-          style={{flex: 0.7, justifyContent: 'center', paddingHorizontal: 5}}>
+          style={{flex: 0.7, justifyContent: 'center', marginHorizontal:15}}>
           <StatusBar />
         </View>
-        <View style={{flex: 3.5, backgroundColor: '#013220'}}>
+        <View style={{flex: 3.5, backgroundColor: '#013220',justifyContent:'center',alignItems:'center'}}>
           <BaseGame />
         </View>
         <View style={{flex: 0.5}}>
@@ -41,11 +42,11 @@ export default function MainLayout() {
             alignItems: 'center',
             backgroundColor: 'rgba(255,255,255,0.3)',
           }}>
-          <Text style={{color: 'white', fontSize: 30, fontWeight: 900}}>
+          <Text>
             ADS/Sponsor Area
           </Text>
         </View>
       </ImageBackground>
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }

@@ -11,13 +11,12 @@ import baseAPI from '../../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
 import { play, nextPlayer } from '../../../utils/redux/reducers/gameReducers/gameBoard';
-import useModal from '../../../utils/hooks/useModal';
 interface SelectSoccerInputProps {
     cellID: number;
+    closeModal:any;
 }
 
-export default function SelecetSoccerInput({ cellID }: SelectSoccerInputProps) {
-const {closeModal}=useModal();
+export default function SelecetSoccerInput({ cellID, closeModal }: SelectSoccerInputProps) {
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
     const [data, setData] = useState([]);
@@ -91,16 +90,14 @@ const {closeModal}=useModal();
             console.log('Oyuncu iki takımda birden oynamış doğru döndü yani en azından Fatih öyle diyor')
             console.error('yeni cells durumu',cells);
 // Burasından emin değilim.
-            setData([]);
-            setInput('');
+
         } else {
             console.warn('Oyuncu iki takımda birden oynamış değil ve sıra diğer oyuncuya geçti')
             dispatch(nextPlayer());
-            console.log(currentPlayer)
-            setData([]);
-            setInput('');
-            closeModal();
         }
+        closeModal();
+        setData([]);
+        setInput('');
     };
 
     return (

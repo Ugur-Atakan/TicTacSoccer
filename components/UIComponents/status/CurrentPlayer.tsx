@@ -11,7 +11,9 @@ export default function CurrentPlayer() {
       {winnerUserData === 'Berabere' ? (
         <Text style={GlobalStyles.fs30bold}>Berabere</Text>
       ) : winnerUserData ? (
-        <Text style={GlobalStyles.fs30bold}>Kazanan oyuncu {JSON.stringify(winnerUserData)}</Text>
+        <View style={{width:170,justifyContent:'center',alignItems:'center'}}>
+<Text style={GlobalStyles.fs30bold}>Kazanan{JSON.stringify(winnerUserData)}</Text>
+        </View>
       ) : (
         <Text style={{fontSize: 25, fontWeight: 'bold', color: '#000'}}>
           {currentPlayer.id} Oynuyor

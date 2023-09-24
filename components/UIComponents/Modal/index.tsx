@@ -27,7 +27,7 @@ export default function ModalComponent({isShowing,closeModal}:any){
               </Pressable>
             </View>
               <Text>Oyuncu Seç:</Text>
-              <SelecetSoccerInput cellID={id} />
+              <SelecetSoccerInput closeModal={closeModal} cellID={id} />
           </View>
         </View>
       </Modal>

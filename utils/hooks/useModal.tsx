@@ -7,11 +7,9 @@ const useModal = () => {
     const openModal = (id:number) => {
         setId(id);
         setIsShowing(true);
-        console.log(isShowing);
     };
 
     const closeModal = () => {
-        console.log("close");
         setIsShowing(false);
     };
 

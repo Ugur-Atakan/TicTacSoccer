@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'space-around',
     width: 170,
-    zIndex: 1,
+  
   },
 
   playerContainer: {

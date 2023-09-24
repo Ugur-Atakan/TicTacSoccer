@@ -19,7 +19,7 @@ export default function Game(): React.JSX.Element {
   return (
     <VStack
       spacing={spacing}
-      style={{ borderColor: 'green', paddingTop: 7, paddingLeft: 9 }}>
+      style={{ borderColor: 'green', paddingTop: 0, paddingLeft: 0 }}>
       <HStack spacing={spacing} shouldWrapChildren>
         <LogoCell />
         <TeamCell cellId={0} />
