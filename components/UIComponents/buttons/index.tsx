@@ -1,9 +1,10 @@
 import { Button } from "@rneui/themed";
 import { Flex, HStack } from "react-native-flex-layout";
-import GameHandlers from "../../utils/handlers/game";
+import GameHandlers from "../../../utils/handlers/game";
+import { startGame } from "../../../utils/redux/reducers/gameReducers/gameStatus.duck";
 
 export default function BottomButtons() {
-    const {startGame,resetGame}=GameHandlers();
+    const {resetGame}=GameHandlers();
     return (
         <HStack center style={{flexDirection:'row',justifyContent:'space-between',padding:10}}>
             <Flex h={100}>
@@ -18,7 +19,7 @@ export default function BottomButtons() {
                 borderRadius: 20,
               }}
               onPress={() => {
-                startGame();
+                startGame;
             }}
             />
             </Flex>

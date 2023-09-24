@@ -1,7 +1,7 @@
 import {View, SafeAreaView, Text, ImageBackground} from 'react-native';
-import GameHeader from '../components/GameHeader';
-import StatusBar from '../components/status';
-import BottomButtons from '../components/buttons';
+import GameHeader from '../components/UIComponents/header/GameHeader';
+import StatusBar from '../components/UIComponents/status';
+import BottomButtons from '../components/UIComponents/buttons';
 import BaseGame from '../game/index';
 import React from 'react';
 export default function MainLayout() {

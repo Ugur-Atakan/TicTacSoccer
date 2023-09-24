@@ -44,6 +44,5 @@ export const userReducer = createSlice({
   },
 });
 
-export const {loginSuccess, logoutSuccess, initialTokenLoad} =
-  userReducer.actions;
+export const {loginSuccess, logoutSuccess, initialTokenLoad} = userReducer.actions;
 export default userReducer.reducer;

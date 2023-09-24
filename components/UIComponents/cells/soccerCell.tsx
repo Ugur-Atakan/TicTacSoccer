@@ -1,24 +1,22 @@
 import React from 'react';
 import {TouchableOpacity, Text, View} from 'react-native';
 import {Flex} from 'react-native-flex-layout';
-import GlobalStyles from '../../utils/globalStyles';
-import Handlers from '../../utils/handlers';
-import {SoccerSVG} from '../../utils/SVGComponents';
+import GlobalStyles from '../../../utils/globalStyles';
+import {SoccerSVG} from '../../../utils/SVGComponents';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../utils/redux/stores/store';
 
 interface SoccerCellProps {
   cellId: number;
-  coordinats: {
-    x: number;
-    y: number;
-  };
+  openModal: any;
 }
-
-const SoccerCell: React.FC<SoccerCellProps> = ({cellId, coordinats}) => {
-  const handlers = Handlers();
-  const soccerCells = Handlers().soccerCells;
+const SoccerCell: React.FC<SoccerCellProps> = ({cellId,openModal}) => {
+const soccerCells=useSelector((state:RootState)=>state.gameBoard.cells);
   return (
     <TouchableOpacity
-      onPress={() => handlers.handleSoccerCell(cellId, coordinats)}>
+      onPress={() => {
+      openModal(cellId);
+      }}>
       <Flex
         w={95}
         h={95}

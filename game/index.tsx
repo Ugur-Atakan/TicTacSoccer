@@ -1,23 +1,25 @@
-import React, {useEffect} from 'react';
-import {VStack, HStack} from 'react-native-flex-layout';
-import SoccerCell from '../components/cells/soccerCell';
-import TeamCell from '../components/cells/teamCell';
-import LogoCell from '../components/cells/logoCell';
-import ModalComponent from '../components/Modal';
+import React, { useEffect, useState } from 'react';
+import { VStack, HStack } from 'react-native-flex-layout';
+import SoccerCell from '../components/UIComponents/cells/soccerCell';
+import TeamCell from '../components/UIComponents/cells/teamCell';
+import LogoCell from '../components/UIComponents/cells/logoCell';
 import GameHandlers from '../utils/handlers/game';
-
+import ModalComponent from '../components/UIComponents/Modal';
+import useModal from '../utils/hooks/useModal';
 export default function Game(): React.JSX.Element {
+  const { openModal, isShowing, closeModal } = useModal();
   const gamehandler = GameHandlers();
   const spacing = 0;
 
   useEffect(() => {
-    gamehandler.startGame();
+    gamehandler.fetchGame();
   }, []);
+
 
   return (
     <VStack
       spacing={spacing}
-      style={{borderColor: 'green', paddingTop: 7, paddingLeft: 9}}>
+      style={{ borderColor: 'green', paddingTop: 7, paddingLeft: 9 }}>
       <HStack spacing={spacing} shouldWrapChildren>
         <LogoCell />
         <TeamCell cellId={0} />
@@ -26,23 +28,23 @@ export default function Game(): React.JSX.Element {
       </HStack>
       <HStack spacing={spacing} shouldWrapChildren>
         <TeamCell cellId={3} />
-        <SoccerCell cellId={0} coordinats={{x: 0, y: 3}} />
-        <SoccerCell cellId={1} coordinats={{x: 1, y: 3}} />
-        <SoccerCell cellId={2} coordinats={{x: 2, y: 3}} />
+        <SoccerCell cellId={0} openModal={openModal} />
+        <SoccerCell cellId={1} openModal={openModal} />
+        <SoccerCell cellId={2} openModal={openModal} />
       </HStack>
       <HStack spacing={spacing} shouldWrapChildren>
         <TeamCell cellId={4} />
-        <SoccerCell cellId={3} coordinats={{x: 0, y: 4}} />
-        <SoccerCell cellId={4} coordinats={{x: 1, y: 4}} />
-        <SoccerCell cellId={5} coordinats={{x: 2, y: 4}} />
+        <SoccerCell cellId={3} openModal={openModal} />
+        <SoccerCell cellId={4} openModal={openModal} />
+        <SoccerCell cellId={5} openModal={openModal} />
       </HStack>
       <HStack spacing={spacing} shouldWrapChildren>
         <TeamCell cellId={5} />
-        <SoccerCell cellId={6} coordinats={{x: 0, y: 5}} />
-        <SoccerCell cellId={7} coordinats={{x: 1, y: 5}} />
-        <SoccerCell cellId={8} coordinats={{x: 2, y: 5}} />
+        <SoccerCell cellId={6} openModal={openModal} />
+        <SoccerCell cellId={7} openModal={openModal} />
+        <SoccerCell cellId={8} openModal={openModal} />
       </HStack>
-      <ModalComponent />
+      <ModalComponent isShowing={isShowing} closeModal={closeModal} />
     </VStack>
   );
 }

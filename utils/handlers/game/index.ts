@@ -1,15 +1,12 @@
 import {useDispatch} from 'react-redux';
-import {setTeamCells} from '../../redux/reducers/gameReducers/cells';
-import {gameStart, gameEnd} from '../../redux/reducers/gameReducers/gameStatus';
-import {setCurrentPlayer} from '../../redux/reducers/gameReducers/currentPlayer';
-import {setWinnerPlayer} from '../../redux/reducers/gameReducers/winner';
-import {resetCells} from '../../redux/reducers/gameReducers/cells';
+import {setTeamCells} from '../../redux/reducers/gameReducers/teamCells';
 import baseAPI from '../../http/base';
+import { startGame } from '../../redux/reducers/gameReducers/gameStatus.duck';
 
 export default function GameHandlers() {
   const dispatch = useDispatch();
 
-  const fetchGame = () => {
+  const fetchGame = async () => {
     baseAPI
       .get('game')
       .then(response => {
@@ -20,26 +17,10 @@ export default function GameHandlers() {
       });
   };
 
-  const startGame = () => {
-    fetchGame();
-    dispatch(gameStart());
-  };
-
-  const endGame = () => {
-    dispatch(gameEnd());
-  };
-
-  const resetGame = () => {
-    dispatch(resetCells());
-    dispatch(setCurrentPlayer('P1'));
-    dispatch(setWinnerPlayer(null));
-    dispatch(gameEnd());
-  };
-
+  const handleStartGame = () => {
+    dispatch(startGame());
+  }
   return {
-    startGame,
-    endGame,
-    resetGame,
     fetchGame,
   };
 }

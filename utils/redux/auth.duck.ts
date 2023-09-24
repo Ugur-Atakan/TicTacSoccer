@@ -36,13 +36,15 @@ const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case TYPES.START_LOGIN:
       return {isLoggedIn: false, isLoading: true, user: null, error: null};
-    case TYPES.LOGIN_SUCCESS:
+   
+      case TYPES.LOGIN_SUCCESS:
       return {
         isLoggedIn: true,
         isLoading: false,
         user: action.payload.user,
         error: null,
       };
+      
     case TYPES.LOGIN_FAIL:
       return {isLoggedIn: false, isLoading: false, user: null, error: null};
     default:
@@ -53,8 +55,7 @@ const authReducer = (state = initialState, action: any) => {
 export const loginUser = (credentials: any) => {
   return (dispatch: any) => {
     dispatch(startRequest());
-    baseAPI
-      .post('auth/login', {...credentials})
+    baseAPI.post('auth/login', {...credentials})
       .then(res => dispatch(loginSuccess(res.data.user)))
       .catch(() => loginFail('Something Went Wrong'));
   };
