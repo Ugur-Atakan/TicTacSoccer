@@ -7,9 +7,7 @@ import {
 } from 'react-native';
 import GlobalStyles from '../../../utils/globalStyles';
 import SelecetSoccerInput from '../selectSoccer';
-import useModal from '../../../utils/hooks/useModal';
 export default function ModalComponent({isShowing,closeModal}:any){
-  const id=useModal().id;
   return (
     <View>
       <Modal
@@ -27,7 +25,7 @@ export default function ModalComponent({isShowing,closeModal}:any){
               </Pressable>
             </View>
               <Text>Oyuncu Seç:</Text>
-              <SelecetSoccerInput closeModal={closeModal} cellID={id} />
+              <SelecetSoccerInput closeModal={closeModal} />
           </View>
         </View>
       </Modal>

@@ -1,20 +1,23 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface Square {
-  iscorred: boolean;
+  isCorrect: boolean;
   data: {
     playerid: number;
   };
 }
 
-const initialState = {
+const initialState: any = {
+  selectedCellId:-1,
   currentPlayer: {
     id: 1
   },
-  winnerUserData: {
-  },
+  winnerUserData: null,
 
-  cells: Array(9).fill(null),
+  cells: Array(9).fill(
+    {
+      isCorrect:false
+    }),
 };
 
 const gameBoardSlice = createSlice({
@@ -22,22 +25,21 @@ const gameBoardSlice = createSlice({
   initialState,
 
   reducers: {
+    selectCellID: (state,action) => {
+      state.selectedCellId = action.payload;
+    },
     play: (state, action) => {
-      if (state.winnerUserData !== null) {
-        return;
-      }
+      console.log(action.payload);
       const index = action.payload.index;
-      if (state.cells[index] === null) {
-        const newState = { ...state };
-        newState.cells[index] = action.payload.soccer;
-
-        if (checkWinner(newState.cells)) {
-          newState.winnerUserData = newState.currentPlayer;
+      if (!state.cells[index].data) {
+        state.cells[index] = action.payload.soccer;
+        if (checkWinner(state.cells)) {
+          state.winnerUserData = state.currentPlayer;
         } else {
-          newState.currentPlayer.id = newState.currentPlayer.id === 1 ? 2 : 1;
+          state.currentPlayer.id = state.currentPlayer.id === 1 ? 2 : 1;
         }
-        return newState;
       }
+      return state;
     },
     nextPlayer: (state) => {
       state.currentPlayer.id = state.currentPlayer.id === 1 ? 2 : 1;
@@ -65,7 +67,7 @@ const checkWinner = (squares: Square[]): boolean => {
   ];
   for (let i = 0; i < winningLines.length; i++) {
     const [a, b, c] = winningLines[i];
-    if (squares[a].iscorred && squares[b].iscorred && squares[c].iscorred) {
+    if (squares[a].isCorrect && squares[b].isCorrect && squares[c].isCorrect) {
       return true;
     }
   }
@@ -74,6 +76,6 @@ const checkWinner = (squares: Square[]): boolean => {
 };
 
 
-export const { play, reset, nextPlayer, setWinnerPlayer } = gameBoardSlice.actions;
+export const { play, reset, nextPlayer, setWinnerPlayer, selectCellID } = gameBoardSlice.actions;
 
 export default gameBoardSlice.reducer;

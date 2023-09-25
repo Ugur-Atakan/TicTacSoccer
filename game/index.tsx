@@ -3,18 +3,11 @@ import { VStack, HStack } from 'react-native-flex-layout';
 import SoccerCell from '../components/UIComponents/cells/soccerCell';
 import TeamCell from '../components/UIComponents/cells/teamCell';
 import LogoCell from '../components/UIComponents/cells/logoCell';
-import GameHandlers from '../utils/handlers/game';
 import ModalComponent from '../components/UIComponents/Modal';
 import useModal from '../utils/hooks/useModal';
 export default function Game(): React.JSX.Element {
   const { openModal, isShowing, closeModal } = useModal();
-  const gamehandler = GameHandlers();
   const spacing = 0;
-
-  useEffect(() => {
-    gamehandler.fetchGame();
-  }, []);
-
 
   return (
     <VStack

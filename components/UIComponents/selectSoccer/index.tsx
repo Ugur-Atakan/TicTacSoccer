@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     ScrollView,
     Text,
@@ -11,31 +11,55 @@ import baseAPI from '../../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
 import { play, nextPlayer } from '../../../utils/redux/reducers/gameReducers/gameBoard';
+
 interface SelectSoccerInputProps {
-    cellID: number;
-    closeModal:any;
+    closeModal: any;
 }
 
-export default function SelecetSoccerInput({ cellID, closeModal }: SelectSoccerInputProps) {
+export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProps) {
+
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
     const [data, setData] = useState([]);
     const teamCells = useSelector((state: RootState) => state.teamCells.teamCells);
-    const {cells,currentPlayer}=useSelector((state:RootState)=>state.gameBoard);
+    const { selectedCellId } = useSelector((state: RootState) => state.gameBoard);
 
-  useEffect(() => {
-      const fectData = () => {
-        const _teams = teamCells.map((t: any) => t.id).join(',');
-        const query = `player/search-players?teams=${_teams}&name=${input}`;
-        baseAPI.get(query).then(response => {
-          setData(response.data);
-        });
-      };
-      if (input.length > 2 && teamCells) {
-        fectData();
-      }
+    useEffect(() => {
+        const fectData = () => {
+            const _teams = teamCells.map((t: any) => t.id).join(',');
+            const query = `player/search-players?teams=${_teams}&name=${input}`;
+            baseAPI.get(query).then(response => {
+                setData(response.data);
+            });
+        };
+        if (input.length > 2 && teamCells) {
+            fectData();
+        }
     }, [input, teamCells, setData]);
 
+
+
+    const SoccerRow = ({ onPress, Player }: any ) => {
+        return (
+            <View>
+                <TouchableOpacity
+                    onPress={onPress}
+                    style={{
+                        backgroundColor: '#7FFF00',
+                        borderRadius: 10,
+                    }}>
+                    <Text
+                        style={{
+                            color: 'black',
+                            fontWeight: '600',
+                            margin: 3,
+                        }}>
+                        {Player.name}
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
     const _finCoords = (cellID: number) => {
         switch (cellID) {
             case 0:
@@ -62,7 +86,7 @@ export default function SelecetSoccerInput({ cellID, closeModal }: SelectSoccerI
     }
 
     const _isCorrect = async (soccerID: number) => {
-        const query = `player/check-player?teams=${teamCells[_finCoords(cellID).x]?.id},${teamCells[_finCoords(cellID).y]?.id}&player=${soccerID}`;
+        const query = `player/check-player?teams=${teamCells[_finCoords(selectedCellId).x]?.id},${teamCells[_finCoords(selectedCellId).y]?.id}&player=${soccerID}`;
         console.warn('QUERY was', query)
         const res = baseAPI.get(query).then(response => {
             if (response.data == true) {
@@ -80,16 +104,15 @@ export default function SelecetSoccerInput({ cellID, closeModal }: SelectSoccerI
         if (check == true) {
             dispatch(
                 play({
-                  index: cellID, // Burada 'cellID' değişkeni, oynanacak hücrenin indeksini temsil etmelidir.
-                  soccer: {
-                    isCorrect: true,
-                    data: Soccer, // 'Player' değişkeni, oyuncu verilerini içermelidir.
-                  },
+                    index: selectedCellId, // Burada 'cellID' değişkeni, oynanacak hücrenin indeksini temsil etmelidir.
+                    soccer: {
+                        isCorrect: true,
+                        data: Soccer, // 'Player' değişkeni, oyuncu verilerini içermelidir.
+                    },
                 })
-              );
+            );
             console.log('Oyuncu iki takımda birden oynamış doğru döndü yani en azından Fatih öyle diyor')
-            console.error('yeni cells durumu',cells);
-// Burasından emin değilim.
+            // Burasından emin değilim.
 
         } else {
             console.warn('Oyuncu iki takımda birden oynamış değil ve sıra diğer oyuncuya geçti')
@@ -126,28 +149,27 @@ export default function SelecetSoccerInput({ cellID, closeModal }: SelectSoccerI
                     <VStack
                         spacing={3}
                         style={{ borderWidth: 1, borderStyle: 'solid' }}>
-                        {data?.map((item: any, key: any) => {
+                        {data?.map((item: any) => {
                             if (item.Player.name.includes(input)) {
                                 return (
-                                    <Flex key={key}>
-                                        <TouchableOpacity
-                                            onPress={() => {
-                                                handleInputSubmit(item.Player);
-                                            }}
+
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            handleInputSubmit(item.Player);
+                                        }}
+                                        style={{
+                                            backgroundColor: '#7FFF00',
+                                            borderRadius: 10,
+                                        }}>
+                                        <Text
                                             style={{
-                                                backgroundColor: '#7FFF00',
-                                                borderRadius: 10,
+                                                color: 'black',
+                                                fontWeight: '600',
+                                                margin: 3,
                                             }}>
-                                            <Text
-                                                style={{
-                                                    color: 'black',
-                                                    fontWeight: '600',
-                                                    margin: 3,
-                                                }}>
-                                                {item.Player.name}
-                                            </Text>
-                                        </TouchableOpacity>
-                                    </Flex>
+                                            {item.Player.name}
+                                        </Text>
+                                    </TouchableOpacity>
                                 )
                             }
                             else {

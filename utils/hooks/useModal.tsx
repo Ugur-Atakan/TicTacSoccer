@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { selectCellID } from "../redux/reducers/gameReducers/gameBoard";
 const useModal = () => {
+    const dispatch = useDispatch();
     const [isShowing, setIsShowing] = useState(false);
-    const [id,setId]=useState<number>(0);
 
     const openModal = (id:number) => {
-        setId(id);
+        dispatch(selectCellID(id));
         setIsShowing(true);
     };
 
@@ -14,7 +15,6 @@ const useModal = () => {
     };
 
     return {
-        id,
         isShowing,
         openModal,
         closeModal,

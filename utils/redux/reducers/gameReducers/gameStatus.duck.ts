@@ -1,5 +1,5 @@
 import baseAPI from '../../../http/base';
-import { setTeamCells } from './teamCells';
+import { resetCells, setTeamCells } from './teamCells';
 
 interface GameState {
   gameStatus: boolean;
@@ -53,7 +53,8 @@ const gameFinished= () =>{
 
   export const finishGame = () => {
     return (dispatch: any) => {
-      dispatch(gameFinished());
+      dispatch(gameFinished())
+dispatch(resetCells());
     };
   };
 

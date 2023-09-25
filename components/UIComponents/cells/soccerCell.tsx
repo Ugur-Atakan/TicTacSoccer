@@ -29,7 +29,7 @@ const soccerCells=useSelector((state:RootState)=>state.gameBoard.cells);
           <>
             <SoccerSVG />
             <Text style={GlobalStyles.fs15white}>
-              {soccerCells[cellId]?.data.name}
+              {soccerCells[cellId]?.data?.name ??'+'}
             </Text>
           </>
         ) : (
