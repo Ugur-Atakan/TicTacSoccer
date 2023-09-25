@@ -39,7 +39,7 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
 
 
 
-    const SoccerRow = ({ onPress, Player }: any ) => {
+    const SoccerRow = ({ onPress, Player }: any) => {
         return (
             <View>
                 <TouchableOpacity
@@ -172,10 +172,6 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
                                     </TouchableOpacity>
                                 )
                             }
-                            else {
-                                return <Text>Aramaya devam edin.</Text>
-                            }
-
                         })}
                     </VStack>
                 </ScrollView>
