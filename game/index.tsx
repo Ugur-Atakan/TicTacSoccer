@@ -8,6 +8,10 @@ import useModal from '../utils/hooks/useModal';
 export default function Game(): React.JSX.Element {
   const { openModal, isShowing, closeModal } = useModal();
   const spacing = 0;
+  
+useEffect(()=>{
+  console.log('Game component mounted')
+},[])
 
   return (
     <VStack

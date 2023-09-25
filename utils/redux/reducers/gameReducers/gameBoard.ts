@@ -29,7 +29,7 @@ const gameBoardSlice = createSlice({
       state.selectedCellId = action.payload;
     },
     play: (state, action) => {
-      console.log(action.payload);
+     
       const index = action.payload.index;
       if (!state.cells[index].data) {
         state.cells[index] = action.payload.soccer;
@@ -72,7 +72,6 @@ const checkWinner = (squares: Square[]): boolean => {
       return true;
     }
   }
-
   return false;
 };
 

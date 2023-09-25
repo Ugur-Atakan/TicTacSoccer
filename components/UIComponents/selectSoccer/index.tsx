@@ -67,7 +67,6 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
 
     const _isCorrect = async (soccerID: number) => {
         const query = `player/check-player?teams=${teamCells[_finCoords(selectedCellId).x]?.id},${teamCells[_finCoords(selectedCellId).y]?.id}&player=${soccerID}`;
-        console.warn('QUERY was', query)
         const res = baseAPI.get(query).then(response => {
             if (response.data == true) {
                 return true;
@@ -95,7 +94,7 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
             // Burasından emin değilim.
 
         } else {
-            console.warn('Oyuncu iki takımda birden oynamış değil ve sıra diğer oyuncuya geçti')
+            console.log('Oyuncu iki takımda birden oynamış değil ve sıra diğer oyuncuya geçti')
             dispatch(nextPlayer());
         }
         closeModal();

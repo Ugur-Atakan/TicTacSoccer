@@ -52,7 +52,7 @@ function Root() {
 function Navigator(): JSX.Element {
   const {accessToken} = useSelector((state: RootState) => state.user);
   const {isLoading} = useSelector((state: RootState) => state.auth);
-  console.log(isLoading);
+
   const dispatch = useDispatch();
   React.useEffect(() => {
     if (isLoading) {
