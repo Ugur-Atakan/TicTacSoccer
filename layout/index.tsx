@@ -4,14 +4,14 @@ import StatusBar from '../components/UIComponents/status';
 import BottomButtons from '../components/UIComponents/buttons';
 import BaseGame from '../game/index';
 import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 export default function MainLayout() {
   const image = {
     uri: 'https://e1.pxfuel.com/desktop-wallpaper/812/237/desktop-wallpaper-55-soccer-field-soccer-pitch.jpg',
   };
 
   return (
-    <SafeAreaProvider style={{flex:1}}>
+    <SafeAreaView style={{flex:1}}>
       <ImageBackground source={image} resizeMode="cover">
         <View
           style={{
@@ -26,7 +26,7 @@ export default function MainLayout() {
           <GameHeader />
         </View>
         <View
-          style={{flex: 0.7, justifyContent: 'center', marginHorizontal:15}}>
+          style={{flex: 0.7, justifyContent: 'center', marginHorizontal:5}}>
           <StatusBar />
         </View>
         <View style={{flex: 3.5, backgroundColor: '#013220',justifyContent:'center',alignItems:'center'}}>
@@ -47,6 +47,6 @@ export default function MainLayout() {
           </Text>
         </View>
       </ImageBackground>
-    </SafeAreaProvider>
+    </SafeAreaView>
   );
 }

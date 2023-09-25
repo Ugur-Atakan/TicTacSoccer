@@ -26,7 +26,6 @@ export default function BottomButtons() {
             <Flex h={100}>
             <Button
               title="Oyunu Sıfırla"
-             
               titleStyle={{ fontWeight: '700' }}
               buttonStyle={{
                 backgroundColor: 'rgba(118, 142, 101, 1)',

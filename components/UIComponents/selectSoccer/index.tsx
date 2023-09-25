@@ -35,31 +35,11 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
         if (input.length > 2 && teamCells) {
             fectData();
         }
-    }, [input, teamCells, setData]);
+    }, [input, teamCells]);
 
 
 
-    const SoccerRow = ({ onPress, Player }: any) => {
-        return (
-            <View>
-                <TouchableOpacity
-                    onPress={onPress}
-                    style={{
-                        backgroundColor: '#7FFF00',
-                        borderRadius: 10,
-                    }}>
-                    <Text
-                        style={{
-                            color: 'black',
-                            fontWeight: '600',
-                            margin: 3,
-                        }}>
-                        {Player.name}
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
+ 
     const _finCoords = (cellID: number) => {
         switch (cellID) {
             case 0:
@@ -152,11 +132,9 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
                         {data?.map((item: any) => {
                             if (item.Player.name.includes(input)) {
                                 return (
-
+                                    <View key={item.index}>
                                     <TouchableOpacity
-                                        onPress={() => {
-                                            handleInputSubmit(item.Player);
-                                        }}
+                                        onPress={()=> handleInputSubmit(item.Player)}
                                         style={{
                                             backgroundColor: '#7FFF00',
                                             borderRadius: 10,
@@ -170,6 +148,7 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
                                             {item.Player.name}
                                         </Text>
                                     </TouchableOpacity>
+                                </View>
                                 )
                             }
                         })}

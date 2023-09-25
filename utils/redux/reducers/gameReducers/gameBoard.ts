@@ -34,6 +34,7 @@ const gameBoardSlice = createSlice({
       if (!state.cells[index].data) {
         state.cells[index] = action.payload.soccer;
         if (checkWinner(state.cells)) {
+          console.log('kazanan oyuncu var ve o kişi ',state.currentPlayer.id)
           state.winnerUserData = state.currentPlayer;
         } else {
           state.currentPlayer.id = state.currentPlayer.id === 1 ? 2 : 1;
