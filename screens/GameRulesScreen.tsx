@@ -1,6 +1,7 @@
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView, Text} from 'react-native';
 import {VStack} from 'react-native-flex-layout';
+import React from 'react';
 
 function GameRulesScreen() {
   return (

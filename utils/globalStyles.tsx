@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const GlobalStyles = StyleSheet.create({
   container: {
@@ -10,26 +10,23 @@ const GlobalStyles = StyleSheet.create({
     backgroundColor: '#23823e',
     justifyContent: 'center',
     alignItems: 'center',
-    borderStyle:'solid',
-    borderWidth:0.5,
-
+    borderStyle: 'solid',
+    borderWidth: 0.5,
   },
 
   darksoccercells: {
     backgroundColor: '#34a853',
     justifyContent: 'center',
     alignItems: 'center',
-    borderStyle:'solid',
-    borderWidth:0.5,
-   
+    borderStyle: 'solid',
+    borderWidth: 0.5,
   },
   lightsoccercells: {
-    backgroundColor: '#319f4f',
+    backgroundColor: 'rgba(48, 138, 58, 0.9)',
     justifyContent: 'center',
     alignItems: 'center',
-    borderStyle:'solid',
-    borderWidth:0.5,
-
+    borderStyle: 'solid',
+    borderWidth: 0.5,
   },
 
   f1: {
@@ -43,7 +40,7 @@ const GlobalStyles = StyleSheet.create({
   },
   fs15white: {
     fontSize: 15,
-    color:'white',
+    color: 'white',
   },
   fs10: {
     fontSize: 10,
@@ -55,7 +52,7 @@ const GlobalStyles = StyleSheet.create({
   fs30bold: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: 'black'
+    color: 'black',
   },
   fs40: {
     fontSize: 40,

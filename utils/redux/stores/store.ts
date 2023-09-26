@@ -1,17 +1,17 @@
-import { applyMiddleware, configureStore } from '@reduxjs/toolkit';
+import {applyMiddleware, configureStore} from '@reduxjs/toolkit';
 import userReducer from '../reducers/userReducer';
-import { gameReducers } from '../reducers/gameReducers';
 import thunk from 'redux-thunk';
 import authReducer from '../auth.duck';
+import gameStatusReducer from '../reducers/gameReducers/gameStatus.duck';
+import gameBoard from '../reducers/gameReducers/gameBoard';
+import teamCellsSlice from '../reducers/gameReducers/teamCells';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    cells: gameReducers.cellsState,
-    gameStatus: gameReducers.gameStatus,
-    currentPlayer: gameReducers.currentPlayer,
-    winner: gameReducers.winnerPlayer,
-    modal: gameReducers.modalStatus,
+    gameStatus: gameStatusReducer,
+    gameBoard:gameBoard,
+    teamCells:teamCellsSlice,
     auth: authReducer,
   },
   middleware: [thunk],

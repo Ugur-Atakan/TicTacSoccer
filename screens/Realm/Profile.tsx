@@ -12,12 +12,11 @@ export default function RealmProfileScreen() {
   const profiles = useQuery(Profile);
 
   const addProfile = (name: string) => {
-    console.log(name);
+   
     pService.addProfile(name);
     setTextInput('');
   };
   const removeProfile = (p: any) => {
-    console.log('remove');
     pService.deleteProfile(p);
   };
   return (
