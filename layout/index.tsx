@@ -5,7 +5,6 @@ import BottomButtons from '../components/UIComponents/buttons';
 import BaseGame from '../game/index';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import AdMobTest from '../admobs/test';
 
 export default function MainLayout() {
   const image = {
