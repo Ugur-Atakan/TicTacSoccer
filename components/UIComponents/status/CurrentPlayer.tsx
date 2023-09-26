@@ -8,12 +8,13 @@ export default function CurrentPlayer() {
   const {winnerUserData, currentPlayer} =useSelector((state:RootState)=>state.gameBoard);
   return (
     <View style={{
-      backgroundColor: 'lightgray',
+      backgroundColor: 'rgba(255,255,255,0.9)',
       borderRadius: 20,
       height: 40,
-      paddingHorizontal:15,
+      paddingHorizontal:50,
       justifyContent: 'center',
       alignItems: 'center',
+      
     }}>
       {winnerUserData === 'Berabere' ? (
         <Text style={GlobalStyles.fs30bold}>Oyun Berabere Bitti</Text>

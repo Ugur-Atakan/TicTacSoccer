@@ -1,4 +1,4 @@
-import {View, SafeAreaView, Text, ImageBackground, StyleSheet} from 'react-native';
+import {View,Text, ImageBackground} from 'react-native';
 import GameHeader from '../components/UIComponents/header/GameHeader';
 import StatusBar from '../components/UIComponents/status';
 import BottomButtons from '../components/UIComponents/buttons';
@@ -51,10 +51,3 @@ export default function MainLayout() {
     </SafeAreaProvider>
   );
 }
-
-const Style= StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:'#013220',
-    },
-})
