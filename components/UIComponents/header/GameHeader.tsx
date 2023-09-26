@@ -1,4 +1,4 @@
-import {Text} from '@rneui/themed';
+import {Text} from 'react-native-paper';
 import React from 'react';
 export default function GameHeader() {
   return (

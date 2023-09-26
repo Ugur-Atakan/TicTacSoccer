@@ -6,7 +6,7 @@ import {
     View,
     TouchableOpacity,
 } from 'react-native';
-import { Flex, VStack } from 'react-native-flex-layout';
+import { VStack } from 'react-native-flex-layout';
 import baseAPI from '../../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';

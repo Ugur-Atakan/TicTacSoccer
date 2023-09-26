@@ -16,7 +16,7 @@ useEffect(()=>{
   return (
     <VStack
       spacing={spacing}
-      style={{ borderColor: 'green', paddingTop: 0, paddingLeft: 0 }}>
+      style={{ borderColor: 'green', borderWidth:5, paddingTop: 0, paddingLeft: 0 }}>
       <HStack spacing={spacing} shouldWrapChildren>
         <LogoCell />
         <TeamCell cellId={0} />

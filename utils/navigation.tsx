@@ -6,12 +6,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import GamesScreen from '../screens/GamesScreen';
 import GameRulesScreen from '../screens/GameRulesScreen';
-import GameModeScreen1 from '../screens/GameModes/GameModeScreen1';
 import MainLayout from '../layout';
 
-import RealmMainScreen from '../screens/Realm/RealmMainScreen';
-import RealmUserScreen from '../screens/Realm/User';
-import RealmProfileScreen from '../screens/Realm/Profile';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from './redux/stores/store';
@@ -41,11 +37,9 @@ const Drawer = createDrawerNavigator();
 function Root() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="WELCOME" component={WelcomeScreen} />
-      <Drawer.Screen name="Game Mods" component={GamesScreen} />
-      <Drawer.Screen name="Game Rules" component={GameRulesScreen} />
-      <Drawer.Screen name="Realm Test" component={RealmMainScreen} />
-      <Drawer.Screen name="GameMode" component={GameModeScreen1} />
+      <Drawer.Screen name="HOŞGELDİNİZ" options={{headerTitle:'Tiki Taka Soccer', headerTitleStyle:{color:'#000'}}} component={WelcomeScreen} />
+      <Drawer.Screen name="Oyun Modları" component={GamesScreen} />
+      <Drawer.Screen name="Oyun Kuralları" component={GameRulesScreen} />
     </Drawer.Navigator>
   );
 }
@@ -80,34 +74,25 @@ function Navigator(): JSX.Element {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          title:'Tiki Taka Soccer'
         }}>
         {accessToken ? (
           <>
-            <Stack.Screen name="Root" component={Root} />
+            <Stack.Screen name="Ana Ekran" component={Root} />
             <Stack.Screen
-              name="GameMode1"
-              component={GameModeScreen1}
-              options={{headerShown: true}}
+              name="Temel Oyun"
+              component={MainLayout}
+              options={{headerShown: true,title:'Tiki Taka Soccer'}}
             />
             <Stack.Screen
               name="MainLayout"
               component={MainLayout}
-              options={{headerShown: true}}
-            />
-            <Stack.Screen
-              name="Users"
-              component={RealmUserScreen}
-              options={{headerShown: true}}
-            />
-            <Stack.Screen
-              name="Profiles"
-              component={RealmProfileScreen}
-              options={{headerShown: true}}
+              options={{headerShown: true,title:'Tiki Taka Soccer'}}
             />
           </>
         ) : (
           <>
-            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Giriş Yap" component={LoginScreen} />
           </>
         )}
       </Stack.Navigator>

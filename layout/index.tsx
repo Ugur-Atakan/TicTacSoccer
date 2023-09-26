@@ -1,9 +1,10 @@
-import {View, SafeAreaView, Text, ImageBackground} from 'react-native';
+import {View, SafeAreaView, Text, ImageBackground, StyleSheet} from 'react-native';
 import GameHeader from '../components/UIComponents/header/GameHeader';
 import StatusBar from '../components/UIComponents/status';
 import BottomButtons from '../components/UIComponents/buttons';
 import BaseGame from '../game/index';
 import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function MainLayout() {
   const image = {
@@ -11,8 +12,8 @@ export default function MainLayout() {
   };
 
   return (
-    <SafeAreaView style={{flex:1}}>
-      <ImageBackground source={image} resizeMode="cover">
+    <SafeAreaProvider style={{flex:1}}>
+    <ImageBackground source={image}  style={{height: null, overflow: "hidden", flex: 1}}>
         <View
           style={{
             flex: 0.5,
@@ -29,7 +30,7 @@ export default function MainLayout() {
           style={{flex: 0.7, justifyContent: 'center', marginHorizontal:5}}>
           <StatusBar />
         </View>
-        <View style={{flex: 3.5, backgroundColor: '#013220',justifyContent:'center',alignItems:'center'}}>
+        <View style={{flex: 4,justifyContent:'center',alignItems:'center'}}>
           <BaseGame />
         </View>
         <View style={{flex: 0.5}}>
@@ -46,7 +47,14 @@ export default function MainLayout() {
             ADS/Sponsor Area
           </Text>
         </View>
-      </ImageBackground>
-    </SafeAreaView>
+        </ImageBackground>
+    </SafeAreaProvider>
   );
 }
+
+const Style= StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:'#013220',
+    },
+})

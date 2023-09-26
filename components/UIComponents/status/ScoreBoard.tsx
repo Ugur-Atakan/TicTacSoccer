@@ -1,4 +1,4 @@
-import {Text} from '@rneui/themed';
+import {Text} from 'react-native-paper';
 import {StyleSheet, View} from 'react-native';
 import {HStack} from 'react-native-flex-layout';
 
