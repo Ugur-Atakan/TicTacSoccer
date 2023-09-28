@@ -5,6 +5,8 @@ import BottomButtons from '../components/UIComponents/buttons';
 import BaseGame from '../game/index';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {height, width} from '../utils/globalStyles';
+import {Text} from 'react-native-paper';
 
 export default function MainLayout() {
   return (
@@ -21,7 +23,9 @@ export default function MainLayout() {
       <View style={Styles.bottomButtons}>
         <BottomButtons />
       </View>
-      <View style={Styles.footer} />
+      <View style={Styles.footer}>
+        <Text>FOOTER</Text>
+      </View>
     </SafeAreaProvider>
   );
 }
@@ -31,37 +35,32 @@ const Styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#303F9F',
   },
-  imageBg: {height: null, overflow: 'hidden', flex: 1},
-
   header: {
-    flex: 0.2,
-    paddingHorizontal: 1,
-    marginTop: 1,
-    marginBottom: 0,
+    flex: 0.25,
     backgroundColor: 'rgba(255,255,255,0.2)',
     justifyContent: 'center',
-    shadowColor: 'red',
   },
   gameStatus: {
-    flex: 0.1,
-    marginTop: 25,
+    marginTop: 15,
     justifyContent: 'flex-end',
     alignItems: 'stretch',
-    marginLeft: 6,
+    marginLeft: 0,
   },
   game: {
-    flex: 2.0,
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   bottomButtons: {
-    flex: 0.5,
-  },
-  footer: {
     flex: 0.3,
     justifyContent: 'center',
-    alignItems: 'center',
+
+  },
+  footer: {
+    flex: 0.5,
     backgroundColor: 'rgba(255,255,255,0.3)',
+    maxHeight: height * 0.1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

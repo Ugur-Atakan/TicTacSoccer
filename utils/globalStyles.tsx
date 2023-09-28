@@ -1,4 +1,8 @@
 import {StyleSheet} from 'react-native';
+import { Dimensions } from 'react-native';
+
+const {width, height} = Dimensions.get('window');
+const cellSize = width*0.244;
 
 const GlobalStyles = StyleSheet.create({
   container: {
@@ -129,3 +133,5 @@ const GlobalStyles = StyleSheet.create({
 });
 
 export default GlobalStyles;
+
+export {cellSize, width, height};

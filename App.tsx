@@ -12,6 +12,7 @@ const theme = {
   },
 };
 export default function App() {
+
   return (
     <Provider store={store}>
       <PaperProvider theme={theme}>

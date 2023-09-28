@@ -9,16 +9,15 @@ export default function CurrentPlayer() {
     (state: RootState) => state.gameBoard,
   );
   return (
-    <View style={{
+    <View
+      style={{
         backgroundColor: '#448AFF',
         borderRadius: 20,
         height: 40,
         paddingHorizontal: 5,
-        marginHorizontal: 25,
         justifyContent: 'space-between',
         alignItems: 'space-between',
       }}>
-        
       {winnerUserData === 'Berabere' ? (
         <Text style={GlobalStyles.fs30bold}>Oyun Berabere Bitti</Text>
       ) : winnerUserData ? (

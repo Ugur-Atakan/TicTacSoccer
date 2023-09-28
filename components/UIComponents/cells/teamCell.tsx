@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
 import {Flex} from 'react-native-flex-layout';
-import GlobalStyles from '../../../utils/globalStyles';
+import GlobalStyles, { cellSize } from '../../../utils/globalStyles';
 import {Image} from 'react-native';
 import {idTransformer} from '../../../utils/idTransformer';
 import {useSelector} from 'react-redux';
@@ -16,7 +16,7 @@ const TeamCell: React.FC<TeamCellProps> = ({cellId}) => {
   );
   return (
     <TouchableOpacity>
-      <Flex w={80} h={80} style={GlobalStyles.teamcells}>
+      <Flex w={cellSize} h={cellSize} style={GlobalStyles.teamcells}>
         {teamCells[cellId] !== null ? (
           <>
             <Image
