@@ -9,11 +9,10 @@ export const teamCellsSlice = createSlice({
   name: 'teamCells',
   initialState,
   reducers: {
-    
     setTeamCells: (state, action) => {
       state.teamCells = action.payload;
     },
-    
+
     setSelectedTeamCell: (state, action) => {
       state.selectedTeamCell = action.payload;
     },
@@ -21,9 +20,6 @@ export const teamCellsSlice = createSlice({
   },
 });
 
-export const {
-  setTeamCells,
-  setSelectedTeamCell,
-  resetCells,
-} = teamCellsSlice.actions;
+export const {setTeamCells, setSelectedTeamCell, resetCells} =
+  teamCellsSlice.actions;
 export default teamCellsSlice.reducer;

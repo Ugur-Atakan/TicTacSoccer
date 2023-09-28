@@ -1,16 +1,17 @@
 import baseAPI from '../../../http/base';
-import { resetCells, setTeamCells } from './teamCells';
+import { reset } from './gameBoard';
+import {resetCells, setTeamCells} from './teamCells';
 
 interface GameState {
   gameStatus: boolean;
-  isLoading:boolean;
+  isLoading: boolean;
 }
 
 const TYPES = {
-    GAME_FETCHING: 'GAME_FETCHING',
-    GAME_STARTED: 'GAME_STARTED',
-    GAME_FINISHED: 'GAME_FINISHED',
-  };
+  GAME_FETCHING: 'GAME_FETCHING',
+  GAME_STARTED: 'GAME_STARTED',
+  GAME_FINISHED: 'GAME_FINISHED',
+};
 
 const initialState: GameState = {
   gameStatus: false,
@@ -18,44 +19,46 @@ const initialState: GameState = {
 };
 
 const fetching = () => {
-    return {type: TYPES.GAME_FETCHING};
-  };
-  
-const gameStarted=()=>{
-    return {type: TYPES.GAME_STARTED}
-}
-const gameFinished= () =>{
-    return {type: TYPES.GAME_FINISHED}
-}
+  return {type: TYPES.GAME_FETCHING};
+};
 
-  const gameStatusReducer = (state = initialState, action: any) => {
-    switch (action.type) {
-      case TYPES.GAME_FETCHING:
-        return {gameStatus: false, isLoading: true};
-      case TYPES.GAME_STARTED:
-        return {gameStatus: true, isLoading: false}
-      case TYPES.GAME_FINISHED:
-        return {gameStatus: false, isLoading: false}
-      default:
-        return state;
-    }
-  };
-  
-  export const startGame = () => {
-    return (dispatch: any) => {
-      dispatch(fetching());
-      baseAPI.get('game')
-        .then(res => dispatch(setTeamCells(res.data)))
-        .then(dispatch(gameStarted))
-        .catch(() => console.error('Something Went Wrong'));
-    };
-  };
+const gameStarted = () => {
+  return {type: TYPES.GAME_STARTED};
+};
+const gameFinished = () => {
+  return {type: TYPES.GAME_FINISHED};
+};
 
-  export const finishGame = () => {
-    return (dispatch: any) => {
-      dispatch(gameFinished())
-dispatch(resetCells());
-    };
+const gameStatusReducer = (state = initialState, action: any) => {
+  switch (action.type) {
+    case TYPES.GAME_FETCHING:
+      return {gameStatus: false, isLoading: true};
+    case TYPES.GAME_STARTED:
+      return {gameStatus: true, isLoading: false};
+    case TYPES.GAME_FINISHED:
+      return {gameStatus: false, isLoading: false};
+    default:
+      return state;
+  }
+};
+
+export const startGame = () => {
+  return (dispatch: any) => {
+    dispatch(fetching());
+    baseAPI
+      .get('game')
+      .then(res => dispatch(setTeamCells(res.data)))
+      .then(dispatch(gameStarted))
+      .catch(() => console.error('Something Went Wrong'));
   };
+};
+
+export const finishGame = () => {
+  return (dispatch: any) => {
+    dispatch(gameFinished());
+    dispatch(reset());
+    dispatch(resetCells());
+  };
+};
 
 export default gameStatusReducer;
