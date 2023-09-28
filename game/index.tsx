@@ -1,22 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { VStack, HStack } from 'react-native-flex-layout';
+import React, {useEffect, useState} from 'react';
+import {VStack, HStack} from 'react-native-flex-layout';
 import SoccerCell from '../components/UIComponents/cells/soccerCell';
 import TeamCell from '../components/UIComponents/cells/teamCell';
 import LogoCell from '../components/UIComponents/cells/logoCell';
 import ModalComponent from '../components/UIComponents/Modal';
 import useModal from '../utils/hooks/useModal';
 export default function Game(): React.JSX.Element {
-  const { openModal, isShowing, closeModal } = useModal();
+  const {openModal, isShowing, closeModal} = useModal();
   const spacing = 0;
-  
-useEffect(()=>{
-  console.log('Game component mounted')
-},[])
+
+  useEffect(() => {
+    console.log('Game component mounted');
+  }, []);
 
   return (
     <VStack
       spacing={spacing}
-      style={{ borderColor: 'green', borderWidth:5, paddingTop: 0, paddingLeft: 0 }}>
+      style={{
+        borderColor: '#303F9F',
+        borderWidth: 5,
+        paddingTop: 0,
+        paddingLeft: 0,
+      }}>
       <HStack spacing={spacing} shouldWrapChildren>
         <LogoCell />
         <TeamCell cellId={0} />

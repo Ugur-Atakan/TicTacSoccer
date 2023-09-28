@@ -18,8 +18,8 @@ const soccerCells=useSelector((state:RootState)=>state.gameBoard.cells);
       openModal(cellId);
       }}>
       <Flex
-        w={95}
-        h={95}
+        w={80}
+        h={80}
         style={
           cellId % 2 === 0
             ? GlobalStyles.lightsoccercells

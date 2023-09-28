@@ -4,17 +4,19 @@ import {Flex} from 'react-native-flex-layout';
 import GlobalStyles from '../../../utils/globalStyles';
 import {Image} from 'react-native';
 import {idTransformer} from '../../../utils/idTransformer';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../utils/redux/stores/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../utils/redux/stores/store';
 interface TeamCellProps {
   cellId: number;
 }
 
 const TeamCell: React.FC<TeamCellProps> = ({cellId}) => {
-  const teamCells = useSelector((state: RootState) => state.teamCells.teamCells);
+  const teamCells = useSelector(
+    (state: RootState) => state.teamCells.teamCells,
+  );
   return (
     <TouchableOpacity>
-      <Flex w={95} h={95} style={GlobalStyles.teamcells}>
+      <Flex w={80} h={80} style={GlobalStyles.teamcells}>
         {teamCells[cellId] !== null ? (
           <>
             <Image

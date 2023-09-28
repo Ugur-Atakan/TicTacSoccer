@@ -7,14 +7,14 @@ import {Text} from 'react-native-paper';
 const LogoCell = () => {
   return (
     <View>
-      <Flex w={95} h={95} style={GlobalStyles.teamcells}>
+      <Flex w={80} h={80} style={GlobalStyles.teamcells}>
         <Image
           source={{
             uri: 'https://www.pngmart.com/files/22/Soccer-Ball-PNG.png',
           }}
           style={{width: 55, height: 55}}
         />
-        <Text>Tiki Taka</Text>
+        <Text style={{color:'white'}}>Tiki Taka</Text>
       </Flex>
     </View>
   );

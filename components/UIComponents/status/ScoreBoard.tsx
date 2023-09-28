@@ -1,38 +1,20 @@
 import {Text} from 'react-native-paper';
 import {StyleSheet, View} from 'react-native';
-import {HStack} from 'react-native-flex-layout';
 
 export default function ScoreBoard({player1Score, player2Score}: any) {
   return (
-    // <View style={{ backgroundColor: 'darkslategrey', height:40,
-    // borderRadius:20,
-    // justifyContent:'center',alignItems:'center'}}>
-    //     <HStack spacing={3}>
-    //         <Text style={{ color: 'red', fontSize: 20, backgroundColor: 'white' }}> </Text>
-    //         <Text style={{ color: 'white', fontSize: 20 }}> P 1</Text>
-    //         <View style={{backgroundColor:'#50C878',paddingHorizontal:6}}>
-    //         <Text style={{ fontWeight:'900', fontSize: 22}}> {player1Score}-{player2Score} </Text>
-    //         </View>
-    //         <Text style={{ color: 'white', fontSize: 20 }}> P 2</Text>
-    //         <Text style={{fontSize: 30, backgroundColor: 'blue', borderRadius:0}}> </Text>
-    //     </HStack>
-    //     <View style={{backgroundColor:'red',borderRadius:20,height:50}}></View>
-    // </View>
     <View style={styles.container}>
       <View style={styles.playerContainer}>
-        <View style={[styles.playerBadge, {backgroundColor: 'blue'}]}>
-          <Text style={styles.playerText}>P1</Text>
-        </View>
+        <View style={[styles.playerBadge, {backgroundColor: '#8BC34A'}]} />
         <Text style={styles.scoreText}>{player1Score}</Text>
       </View>
+
       <View style={styles.scoreSeparator}>
         <Text style={styles.scoreSeparatorText}>-</Text>
       </View>
       <View style={styles.playerContainer}>
         <Text style={styles.scoreText}>{player2Score}</Text>
-        <View style={[styles.playerBadge, {backgroundColor: 'red'}]}>
-          <Text style={styles.playerText}>P2</Text>
-        </View>
+        <View style={[styles.playerBadge, {backgroundColor: '#FF4081'}]} />
       </View>
     </View>
   );
@@ -42,11 +24,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'lightgray',
-    borderRadius: 20,
+    borderRadius: 10,
     justifyContent: 'space-around',
-    width: 170,
-  
+    backgroundColor: '#448AFF',
+    width: 125,
   },
 
   playerContainer: {
@@ -73,7 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginHorizontal: 10,
     fontWeight: 'bold',
-    color: '#000',
+    color: '#fff',
   },
   scoreSeparator: {
     paddingHorizontal: 5,

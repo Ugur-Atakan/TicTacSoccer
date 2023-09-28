@@ -1,17 +1,15 @@
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {ImageBackground, ScrollView, Text} from 'react-native';
+import {ScrollView, Text} from 'react-native';
 import {VStack} from 'react-native-flex-layout';
 import React from 'react';
-import { View } from 'react-native';
-
+import {View} from 'react-native';
 
 function GameRulesScreen() {
   return (
     <SafeAreaView style={{flex: 1}}>
-    
       <ScrollView>
         <VStack style={{paddingRight: 10, paddingLeft: 5}}>
-<View style={{paddingBottom:50}}></View>
+          <View style={{paddingBottom: 50}} />
           <Text>
             1. Tic Tac Toe, 3x3 bir kare tahtada oynanır. Bu tahtada toplam 9
             hücre bulunur.
