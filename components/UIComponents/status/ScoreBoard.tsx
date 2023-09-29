@@ -9,7 +9,6 @@ export default function ScoreBoard({player1Score, player2Score}: any) {
         <View style={[styles.playerBadge, {backgroundColor: '#4CAF50'}]} />
         <Text style={styles.scoreText}>{player1Score}</Text>
       </View>
-
       <View style={styles.scoreSeparator}>
         <Text style={styles.scoreSeparatorText}>-</Text>
       </View>
