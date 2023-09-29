@@ -6,9 +6,12 @@ import {
   startGame,
 } from '../../../utils/redux/reducers/gameReducers/gameStatus.duck';
 import {useDispatch, useSelector} from 'react-redux';
+import SoundButton from './SoundButton';
+import useSoundPlayer from '../../../utils/soundPlayer';
 export default function BottomButtons() {
   const gameStatus = useSelector((state: any) => state.gameStatus.gameStatus);
   const dispatch = useDispatch();
+  const {playSound} = useSoundPlayer();
 
   return (
     <HStack
@@ -21,6 +24,7 @@ export default function BottomButtons() {
  mode="contained"
  buttonColor="#448AFF"
  onPress={() => {
+  playSound();
    dispatch(startGame() as any);
  }}>
 Oyunu Yenile
@@ -54,7 +58,6 @@ Oyunu Başlat
         Oyunu Bitir
       </Button>
 }
-      
     </HStack>
   );
 } 
