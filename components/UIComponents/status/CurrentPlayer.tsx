@@ -1,7 +1,7 @@
 import {Button, Text} from 'react-native-paper';
 import React from 'react';
 import GlobalStyles from '../../../utils/globalStyles';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {RootState} from '../../../utils/redux/stores/store';
 import {useSelector} from 'react-redux';
 export default function CurrentPlayer() {
@@ -9,18 +9,11 @@ export default function CurrentPlayer() {
     (state: RootState) => state.gameBoard,
   );
   return (
-    <View
-      style={{
-        backgroundColor: '#448AFF',
-        borderRadius: 20,
-        height: 40,
-        paddingHorizontal: 5,
-        justifyContent: 'space-between',
-        alignItems: 'space-between',
-      }}>
+    <View>
       {winnerUserData === 'Berabere' ? (
         <Text style={GlobalStyles.fs30bold}>Oyun Berabere Bitti</Text>
       ) : winnerUserData ? (
+        
         <View
           style={{width: 170, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={GlobalStyles.fs30bold}>
@@ -28,10 +21,23 @@ export default function CurrentPlayer() {
           </Text>
         </View>
       ) : (
-        <Button buttonColor="#448AFF" mode="contained">
-          Oyuncu 1
-        </Button>
+        <View style={{backgroundColor:'#448AFF'}}>
+    <Text>Oyuncu {currentPlayer.id}</Text>
+        </View>
+      
       )}
     </View>
   );
 }
+
+
+const style=StyleSheet.create({
+  currentplayer:{
+    backgroundColor: '#448AFF',
+    borderRadius: 20,
+    height: 40,
+    paddingHorizontal: 5,
+    justifyContent: 'space-between',
+    alignItems:'stretch',
+  }
+})

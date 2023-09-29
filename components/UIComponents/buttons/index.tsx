@@ -5,8 +5,9 @@ import {
   finishGame,
   startGame,
 } from '../../../utils/redux/reducers/gameReducers/gameStatus.duck';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 export default function BottomButtons() {
+  const gameStatus = useSelector((state: any) => state.gameStatus.gameStatus);
   const dispatch = useDispatch();
 
   return (
@@ -15,23 +16,45 @@ export default function BottomButtons() {
         justifyContent: 'space-around',
       }}
       shouldWrapChildren>
-      <Button
-        mode="contained"
-        buttonColor="#448AFF"
-        onPress={() => {
-          dispatch(startGame() as any);
-        }}>
-        Oyunu Yenile
-      </Button>
-
-      <Button
+        {gameStatus==true?
+ <Button
+ mode="contained"
+ buttonColor="#448AFF"
+ onPress={() => {
+   dispatch(startGame() as any);
+ }}>
+Oyunu Yenile
+</Button>:
+ <Button
+ mode="contained"
+ buttonColor="#448AFF"
+ onPress={() => {
+   dispatch(startGame() as any);
+ }}>
+Oyunu Başlat
+</Button>
+        }
+     
+{gameStatus==true?
+  <Button
         buttonColor="#448AFF"
         mode="contained"
         onPress={() => {
           dispatch(finishGame() as any);
         }}>
-        Oyunu Sıfırla
+        Oyunu Bitir
+      </Button>:
+      <Button
+      disabled
+        buttonColor="#448AFF"
+        mode="contained"
+        onPress={() => {
+          dispatch(finishGame() as any);
+        }}>
+        Oyunu Bitir
       </Button>
+}
+      
     </HStack>
   );
-}
+} 

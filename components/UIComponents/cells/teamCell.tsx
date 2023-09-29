@@ -1,11 +1,12 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableWithoutFeedback,Text} from 'react-native';
 import {Flex} from 'react-native-flex-layout';
 import GlobalStyles, { cellSize } from '../../../utils/globalStyles';
 import {Image} from 'react-native';
 import {idTransformer} from '../../../utils/idTransformer';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../utils/redux/stores/store';
+import {shortNameGenerator} from '../../../utils/idTransformer';
 interface TeamCellProps {
   cellId: number;
 }
@@ -15,7 +16,7 @@ const TeamCell: React.FC<TeamCellProps> = ({cellId}) => {
     (state: RootState) => state.teamCells.teamCells,
   );
   return (
-    <TouchableOpacity>
+    <TouchableWithoutFeedback>
       <Flex w={cellSize} h={cellSize} style={GlobalStyles.teamcells}>
         {teamCells[cellId] !== null ? (
           <>
@@ -27,13 +28,14 @@ const TeamCell: React.FC<TeamCellProps> = ({cellId}) => {
               }}
               style={{width: 55, height: 55}}
             />
-            <Text style={GlobalStyles.fs15}>{teamCells[cellId]?.name}</Text>
+            <Text style={GlobalStyles.fs15}>
+              {shortNameGenerator(teamCells[cellId]?.id)}</Text>
           </>
         ) : (
           <Text style={GlobalStyles.fs30}>{teamCells[cellId]?.name}</Text>
         )}
       </Flex>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   );
 };
 

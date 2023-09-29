@@ -11,21 +11,14 @@ const GlobalStyles = StyleSheet.create({
     alignItems: 'center',
   },
   teamcells: {
-    backgroundColor: '#3F51B5',
+    backgroundColor: '#384bb5',
     justifyContent: 'center',
     alignItems: 'center',
     borderStyle: 'solid',
     borderWidth: 0.5,
   },
 
-  darksoccercells: {
-    backgroundColor: '#3F51B5',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderStyle: 'solid',
-    borderWidth: 0.5,
-  },
-  lightsoccercells: {
+  soccercells: {
     backgroundColor: '#3F51B5',
     justifyContent: 'center',
     alignItems: 'center',
@@ -130,6 +123,13 @@ const GlobalStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  border:{
+    borderColor:'red',
+    borderTopWidth:2,
+    borderBottomWidth:2,
+    borderRightWidth:2,
+    borderLeftWidth:2,
+  }
 });
 
 export default GlobalStyles;

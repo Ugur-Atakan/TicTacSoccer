@@ -1,5 +1,5 @@
 import baseAPI from '../../../http/base';
-import { reset } from './gameBoard';
+import {reset} from './gameBoard';
 import {resetCells, setTeamCells} from './teamCells';
 
 interface GameState {
@@ -22,14 +22,15 @@ const fetching = () => {
   return {type: TYPES.GAME_FETCHING};
 };
 
-const gameStarted = () => {
+const started = () => {
   return {type: TYPES.GAME_STARTED};
 };
-const gameFinished = () => {
+const finished = () => {
   return {type: TYPES.GAME_FINISHED};
 };
 
 const gameStatusReducer = (state = initialState, action: any) => {
+  console.log(action);
   switch (action.type) {
     case TYPES.GAME_FETCHING:
       return {gameStatus: false, isLoading: true};
@@ -48,17 +49,17 @@ export const startGame = () => {
     baseAPI
       .get('game')
       .then(res => dispatch(setTeamCells(res.data)))
-      .then(dispatch(gameStarted))
+      .then(dispatch(started()))
       .catch(() => console.error('Something Went Wrong'));
   };
 };
 
 export const finishGame = () => {
   return (dispatch: any) => {
-    dispatch(gameFinished());
+    dispatch(finished());
     dispatch(reset());
     dispatch(resetCells());
   };
 };
-
+export {gameStatusReducer};
 export default gameStatusReducer;
