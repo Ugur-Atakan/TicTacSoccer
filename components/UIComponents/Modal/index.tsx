@@ -5,7 +5,8 @@ import {
   Text,
   Pressable
 } from 'react-native';
-import GlobalStyles from '../../../utils/globalStyles';
+import {modalStyles} from '../../../style';
+
 import SelecetSoccerInput from '../selectSoccer';
 export default function ModalComponent({isShowing,closeModal}:any){
   return (
@@ -16,12 +17,12 @@ export default function ModalComponent({isShowing,closeModal}:any){
         transparent={true}
         onRequestClose={closeModal}
         >
-        <View style={GlobalStyles.centeredView}>
-          <View style={GlobalStyles.modalView}>
-          <View style={GlobalStyles.modalExit}>
+        <View style={modalStyles.centeredView}>
+          <View style={modalStyles.modalView}>
+          <View style={modalStyles.modalExit}>
               <Pressable
                 onPress={closeModal}>
-                <Text style={GlobalStyles.modalExitText}>X</Text>
+                <Text style={modalStyles.modalExitText}>X</Text>
               </Pressable>
             </View>
               <Text>Oyuncu Seç:</Text>

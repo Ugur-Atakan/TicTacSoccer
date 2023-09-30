@@ -11,6 +11,7 @@ import baseAPI from '../../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
 import { play, nextPlayer } from '../../../utils/redux/reducers/gameReducers/gameBoard';
+import {selectSoccerInputStyles} from '../../../style';
 
 interface SelectSoccerInputProps {
     closeModal: any;
@@ -105,12 +106,7 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
     return (
         <View>
             <View
-                style={{
-                    borderStyle: 'solid',
-                    borderWidth: 1,
-                    borderColor: 'lightgrey',
-                    marginBottom: 10,
-                }}>
+                style={selectSoccerInputStyles.textInput}>
                 <TextInput
                     placeholder="Ara"
                     onChangeText={text => setInput(text)}
@@ -118,12 +114,7 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
                 />
             </View>
             <View
-                style={{
-                    width: 300,
-                    height: 300,
-                    minHeight: 100,
-                    maxHeight: 300,
-                }}>
+                style={selectSoccerInputStyles.soccerList}>
                 <ScrollView>
                     <VStack
                         spacing={3}

@@ -1,21 +1,48 @@
-import {View, StyleSheet} from 'react-native';
-import GameHeader from '../components/UIComponents/header/GameHeader';
-import StatusBar from '../components/UIComponents/status';
-import BottomButtons from '../components/UIComponents/buttons';
-import BaseGame from '../game/index';
-import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {height, width} from '../utils/globalStyles';
+import React,{useRef,useState,useEffect} from 'react';
+import {AppState,View} from 'react-native';
 import {Text} from 'react-native-paper';
 import Sound from 'react-native-sound';
 import {useSelector} from 'react-redux';
+
+import BaseGame from '../game/index';
+import GameHeader from '../components/UIComponents/header/GameHeader';
+import StatusBar from '../components/UIComponents/status';
+import BottomButtons from '../components/UIComponents/buttons';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {globalStlyes} from '../style';
 import { RootState } from '../utils/redux/stores/store';
 
 export default function MainLayout() {
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
   const gameStatus = useSelector((state: RootState) => state.gameStatus.gameStatus);
 
-  React.useEffect(() => {
-    if(gameStatus==true)
+
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        console.log('App has come to the foreground!');
+      }
+
+      appState.current = nextAppState;
+      setAppStateVisible(appState.current);
+      console.log('AppState', appState.current);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
+  console.log(appStateVisible);
+  
+  useEffect(() => {
+    if(gameStatus==true&& appStateVisible=='active')
     {
       const backgroundMusic = new Sound('bgsound.m4a', Sound.MAIN_BUNDLE, error => {
         if (error) {
@@ -30,60 +57,27 @@ export default function MainLayout() {
         backgroundMusic.setVolume(0.0001); 
       };
     }
-  }, [gameStatus]);
+  }, [gameStatus,appStateVisible]);
+
 
   return (
-    <SafeAreaProvider style={Styles.container}>
-      <View style={Styles.header}>
+    <SafeAreaProvider style={globalStlyes.container}>
+      <View style={globalStlyes.header}>
         <GameHeader />
       </View>
-      <View style={Styles.gameStatus}>
+      <View style={globalStlyes.gameStatus}>
         <StatusBar />
       </View>
-      <View style={Styles.game}>
+      <View style={globalStlyes.game}>
         <BaseGame />
       </View>
-      <View style={Styles.bottomButtons}>
+      <View style={globalStlyes.bottomButtons}>
         <BottomButtons />
       </View>
-      <View style={Styles.footer}>
+      <View style={globalStlyes.footer}>
         <Text>FOOTER</Text>
       </View>
     </SafeAreaProvider>
   );
 }
 
-const Styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#303F9F',
-  },
-  header: {
-    flex: 0.25,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    justifyContent: 'center',
-  },
-  gameStatus: {
-    marginTop: 15,
-    justifyContent: 'flex-end',
-    alignItems: 'stretch',
-    marginLeft: 0,
-  },
-  game: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  bottomButtons: {
-    flex: 0.3,
-    justifyContent: 'center',
-
-  },
-  footer: {
-    flex: 0.5,
-    backgroundColor: 'rgba(255,255,255,0.3)',
-    maxHeight: height * 0.1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

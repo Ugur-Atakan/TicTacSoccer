@@ -1,10 +1,10 @@
 import React from 'react';
 import {TouchableOpacity, Text, View} from 'react-native';
 import {Flex} from 'react-native-flex-layout';
-import GlobalStyles, { cellSize } from '../../../utils/globalStyles';
 import {SoccerSVG} from '../../../utils/SVGComponents';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../utils/redux/stores/store';
+import { cellSize, cellStyles, textStyles } from '../../../style';
 interface SoccerCellProps {
   cellId: number;
   openModal: any;
@@ -23,11 +23,11 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId, openModal}) => {
       <Flex
         w={cellSize}
         h={cellSize}
-        style={GlobalStyles.soccercells}>
+        style={cellStyles.soccercells}>
         {soccerCells[cellId] && soccerCells[cellId] !== null ? (
           <>
             <SoccerSVG />
-            <Text style={GlobalStyles.fs15white}>
+            <Text style={textStyles.fs15white}>
               {soccerCells[cellId]?.data?.name ?? '+'}
             </Text>
           </>
@@ -35,7 +35,7 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId, openModal}) => {
           <View style={{paddingTop: 15}}>
             <SoccerSVG />
             <Text
-              style={{fontSize: 50, fontWeight: 'bold', alignSelf: 'center'}}>
+              style={ [textStyles.fs50bold,{alignSelf: 'center'}]}>
               +
             </Text>
           </View>

@@ -6,7 +6,6 @@ import {
   startGame,
 } from '../../../utils/redux/reducers/gameReducers/gameStatus.duck';
 import {useDispatch, useSelector} from 'react-redux';
-import SoundButton from './SoundButton';
 import useSoundPlayer from '../../../utils/soundPlayer';
 export default function BottomButtons() {
   const gameStatus = useSelector((state: any) => state.gameStatus.gameStatus);
