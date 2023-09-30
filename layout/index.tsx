@@ -11,6 +11,7 @@ import BottomButtons from '../components/UIComponents/buttons';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {globalStlyes} from '../style';
 import { RootState } from '../utils/redux/stores/store';
+import SliderComponent from '../components/UIComponents/slider/index';
 
 export default function MainLayout() {
   const appState = useRef(AppState.currentState);
@@ -51,20 +52,24 @@ export default function MainLayout() {
           backgroundMusic.play();
         }
       });
+      console.log(backgroundMusic.isPlaying());
+
       return () => {
         backgroundMusic.stop();
         backgroundMusic.release();
-        backgroundMusic.setVolume(0.0001); 
+        backgroundMusic.setVolume(0.0001);
+        backgroundMusic.isPlaying();
       };
     }
   }, [gameStatus,appStateVisible]);
-
 
   return (
     <SafeAreaProvider style={globalStlyes.container}>
       <View style={globalStlyes.header}>
         <GameHeader />
       </View>
+      <SliderComponent />
+    
       <View style={globalStlyes.gameStatus}>
         <StatusBar />
       </View>
