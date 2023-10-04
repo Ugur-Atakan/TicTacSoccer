@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { AppState, View } from 'react-native';
-import { Text } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
 import BaseGame from '../game/index';
@@ -12,6 +11,7 @@ import { globalStlyes } from '../style';
 import { RootState } from '../utils/redux/stores/store';
 import SliderComponent from '../components/UIComponents/slider/index';
 import SoundPlayer from 'react-native-sound-player';
+import BannerADS from '../components/UIComponents/Banner';
 
 export default function MainLayout() {
   const appState = useRef(AppState.currentState);
@@ -73,7 +73,7 @@ export default function MainLayout() {
         <BottomButtons />
       </View>
       <View style={globalStlyes.footer}>
-        <Text>FOOTER</Text>
+        <BannerADS />
       </View>
     </SafeAreaProvider>
   );

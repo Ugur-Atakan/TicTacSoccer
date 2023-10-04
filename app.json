@@ -1,4 +1,7 @@
 {
   "name": "TicTacSoccer",
-  "displayName": "TicTacSoccer"
+  "displayName": "TicTacSoccer",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-4358409932945737~3995884123"
+  }
 }
