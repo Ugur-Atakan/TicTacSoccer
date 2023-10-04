@@ -38,8 +38,6 @@ export default function MainLayout() {
     };
   }, []);
 
-  console.log(appStateVisible);
-
   useEffect(() => {
     if (gameStatus === true && appStateVisible == 'active') {
       try {

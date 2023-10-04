@@ -1,14 +1,7 @@
 import { View } from "react-native";
 import { IconButton } from "react-native-paper";
-import { useDispatch } from 'react-redux';
-
 import Range from "./Range";
-import { setVolume } from "../../../utils/redux/reducers/gameReducers/soundVolume";
-
 export default function SliderComponent() {
-    const dispatch = useDispatch();
-
-    let musical = true;
     return (
         <View style={{ justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center' }}>
             <View style={{ justifyContent: 'space-around', flexDirection: 'row' }}>

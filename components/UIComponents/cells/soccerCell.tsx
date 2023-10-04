@@ -18,7 +18,7 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId, openModal}) => {
       onPress={() => {
         gameStatus==true?
         openModal(cellId):
-      ( console.log(gameStatus))
+      ({})
       }}>
       <Flex
         w={cellSize}

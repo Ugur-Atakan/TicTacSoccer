@@ -30,7 +30,6 @@ const finished = () => {
 };
 
 const gameStatusReducer = (state = initialState, action: any) => {
-  console.log(action);
   switch (action.type) {
     case TYPES.GAME_FETCHING:
       return {gameStatus: false, isLoading: true};
