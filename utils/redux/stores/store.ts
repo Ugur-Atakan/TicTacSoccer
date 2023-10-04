@@ -5,6 +5,7 @@ import authReducer from '../auth.duck';
 import gameStatusReducer from '../reducers/gameReducers/gameStatus.duck';
 import gameBoard from '../reducers/gameReducers/gameBoard';
 import teamCellsSlice from '../reducers/gameReducers/teamCells';
+import soundVolumeSlice from '../reducers/gameReducers/soundVolume';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     gameBoard:gameBoard,
     teamCells:teamCellsSlice,
     auth: authReducer,
+    soundVolume: soundVolumeSlice,
   },
   middleware: [thunk],
 });

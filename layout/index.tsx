@@ -1,25 +1,23 @@
-import React,{useRef,useState,useEffect} from 'react';
-import {AppState,View} from 'react-native';
-import {Text} from 'react-native-paper';
-import Sound from 'react-native-sound';
-import {useSelector} from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { AppState, View } from 'react-native';
+import { Text } from 'react-native-paper';
+import { useSelector } from 'react-redux';
 
 import BaseGame from '../game/index';
 import GameHeader from '../components/UIComponents/header/GameHeader';
 import StatusBar from '../components/UIComponents/status';
 import BottomButtons from '../components/UIComponents/buttons';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {globalStlyes} from '../style';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { globalStlyes } from '../style';
 import { RootState } from '../utils/redux/stores/store';
 import SliderComponent from '../components/UIComponents/slider/index';
+import SoundPlayer from 'react-native-sound-player';
 
 export default function MainLayout() {
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
-
   const gameStatus = useSelector((state: RootState) => state.gameStatus.gameStatus);
-
-
+  const soundVolume = useSelector((state: RootState) => state.soundVolume.soundVolume);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
@@ -41,27 +39,24 @@ export default function MainLayout() {
   }, []);
 
   console.log(appStateVisible);
-  
-  useEffect(() => {
-    if(gameStatus==true&& appStateVisible=='active')
-    {
-      const backgroundMusic = new Sound('bgsound.m4a', Sound.MAIN_BUNDLE, error => {
-        if (error) {
-          console.log('Ses yüklenemedi', error);
-        } else {
-          backgroundMusic.play();
-        }
-      });
-      console.log(backgroundMusic.isPlaying());
 
-      return () => {
-        backgroundMusic.stop();
-        backgroundMusic.release();
-        backgroundMusic.setVolume(0.0001);
-        backgroundMusic.isPlaying();
-      };
+  useEffect(() => {
+    if (gameStatus === true && appStateVisible == 'active') {
+      try {
+        SoundPlayer.setVolume(soundVolume);
+        SoundPlayer.playSoundFile('bgsound', 'm4a')
+
+      } catch (e) {
+        console.log(`cannot play the sound file`, e)
+      }
+    } else {
+      try {
+        SoundPlayer.stop();
+      } catch (e) {
+        console.log(`cannot stop the sound file`, e)
+      }
     }
-  }, [gameStatus,appStateVisible]);
+  }, [gameStatus, appStateVisible, soundVolume]);
 
   return (
     <SafeAreaProvider style={globalStlyes.container}>
@@ -69,7 +64,7 @@ export default function MainLayout() {
         <GameHeader />
       </View>
       <SliderComponent />
-    
+
       <View style={globalStlyes.gameStatus}>
         <StatusBar />
       </View>

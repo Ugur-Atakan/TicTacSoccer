@@ -1,7 +1,13 @@
 import { View } from "react-native";
 import { IconButton } from "react-native-paper";
+import { useDispatch } from 'react-redux';
+
 import Range from "./Range";
+import { setVolume } from "../../../utils/redux/reducers/gameReducers/soundVolume";
+
 export default function SliderComponent() {
+    const dispatch = useDispatch();
+
     let musical = true;
     return (
         <View style={{ justifyContent: 'space-around', flexDirection: 'row', alignItems: 'center' }}>
@@ -11,7 +17,6 @@ export default function SliderComponent() {
                     iconColor={'#fff'}
                     disabled={true}
                     size={30}
-                    onPress={() => console.log('Pressed')}
                 />
                 <Range />
                 <IconButton
@@ -19,28 +24,7 @@ export default function SliderComponent() {
                     iconColor={'#fff'}
                     disabled={true}
                     size={30}
-                    onPress={() => console.log('Pressed')}
                 />
-            </View>
-            <View>
-                {
-                    musical == true ?
-                        (<IconButton
-                            icon="volume-mute"
-                            iconColor={'#fff'}
-                            size={30}
-                            onPress={() => console.log('Pressed')}
-                        />) :
-                        (
-                            <IconButton
-                                icon="volume-high"
-                                iconColor={'#fff'}
-                                size={30}
-                                onPress={() => console.log('Pressed')}
-                            />
-                        )
-
-                }
             </View>
         </View>
     )
