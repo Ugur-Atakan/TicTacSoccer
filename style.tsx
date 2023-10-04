@@ -25,12 +25,12 @@ const globalStlyes = StyleSheet.create({
     },
   
     bottomButtons: {
-      flex: 0.3,
+      flex: 0.6,
       justifyContent: 'center',
   
     },
     footer: {
-      flex: 0.5,
+      flex: 0.2,
       backgroundColor: 'rgba(255,255,255,0.3)',
       maxHeight: height * 0.1,
       justifyContent: 'center',
