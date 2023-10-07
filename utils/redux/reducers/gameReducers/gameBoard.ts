@@ -1,7 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+
 interface Square {
   isCorrect: boolean;
+  knowingPlayer: number;
   data: {
     playerid: number;
   };
@@ -16,14 +18,14 @@ const initialState: any = {
 
   cells: Array(9).fill(
     {
-      isCorrect:false
+      isCorrect:false,
+      knowingPlayer: null,
     }),
 };
 
 const gameBoardSlice = createSlice({
   name: 'board',
   initialState,
-
   reducers: {
     selectCellID: (state,action) => {
       state.selectedCellId = action.payload;
@@ -33,8 +35,10 @@ const gameBoardSlice = createSlice({
       const index = action.payload.index;
       if (!state.cells[index].data) {
         state.cells[index] = action.payload.soccer;
+        state.cells[index].knowingPlayer = state.currentPlayer.id;
         if (checkWinner(state.cells)) {
-          console.log('kazanan oyuncu var ve o kişi ',state.currentPlayer.id)
+          console.log('cells',state.cells);
+          console.log('kazanan oyuncu ',state.currentPlayer.id);
           state.winnerUserData = state.currentPlayer;
         } else {
           state.currentPlayer.id = state.currentPlayer.id === 1 ? 2 : 1;

@@ -112,6 +112,7 @@ const textStyles=StyleSheet.create({
         color: '#fff',
       },
       fs15white: {
+        alignSelf: 'center',
         fontSize: 15,
         color: 'white',
       },

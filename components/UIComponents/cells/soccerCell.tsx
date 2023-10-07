@@ -25,15 +25,25 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId, openModal}) => {
         h={cellSize}
         style={cellStyles.soccercells}>
         {soccerCells[cellId] && soccerCells[cellId] !== null ? (
+         
           <>
-            <SoccerSVG />
+         
+            {
+              soccerCells[cellId]?.knowingPlayer ==1 ?
+              <SoccerSVG color="#4CAF50"/>:
+              soccerCells[cellId]?.knowingPlayer ==2 ?
+              <SoccerSVG color="#FF4081"/>:
+              <SoccerSVG color="#448AFF"/>
+            }
+          
             <Text style={textStyles.fs15white}>
               {soccerCells[cellId]?.data?.name ?? '+'}
             </Text>
-          </>
+            </>
+      
         ) : (
           <View style={{paddingTop: 15}}>
-            <SoccerSVG />
+            <SoccerSVG color="#448AFF"/>
             <Text
               style={ [textStyles.fs50bold,{alignSelf: 'center'}]}>
               +
