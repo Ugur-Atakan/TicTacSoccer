@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {ViewStyles} from '../../../style';
 
 export default function ScoreBoard({player1Score, player2Score}: any) {
+  
   return (
     <View style={ViewStyles.container}>
       <View style={ViewStyles.playerContainer}>

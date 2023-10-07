@@ -111,11 +111,23 @@ const textStyles=StyleSheet.create({
         fontSize: 15,
         color: '#fff',
       },
+
       fs15white: {
         alignSelf: 'center',
         fontSize: 15,
         color: 'white',
       },
+      fs15green: {
+        alignSelf: 'center',
+        fontSize: 15,
+        color: '#4CAF50',
+      },
+      fs15red: {
+        alignSelf: 'center',
+        fontSize: 15,
+        color: '#FF4081',
+      },
+
       fs10: {
         fontSize: 10,
       },

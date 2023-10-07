@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, View} from 'react-native';
+import {View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Flex, VStack} from 'react-native-flex-layout';
 import {Button, Text} from 'react-native-paper';
@@ -9,14 +9,11 @@ function WelcomeScreen({navigation}: any): JSX.Element {
     uri: 'https://e1.pxfuel.com/desktop-wallpaper/812/237/desktop-wallpaper-55-soccer-field-soccer-pitch.jpg',
   };
   return (
-    <SafeAreaProvider style={{flex: 1}}>
-      <ImageBackground
-        source={image}
-        style={{height: null, overflow: 'hidden', flex: 1}}>
+    <SafeAreaProvider style={{flex: 1,backgroundColor:'#303F9F'}}>
         <View
           style={{flex: 3.5, alignItems: 'center', justifyContent: 'center'}}>
-          <Text variant="displayMedium" style={{color: 'white'}}>
-            Tic Tac Toe Soccer'a hoş geldiniz
+          <Text variant="displayMedium" style={{color: '#fff'}}>
+          3 5 2'ye hoş geldiniz
           </Text>
         </View>
 
@@ -30,11 +27,12 @@ function WelcomeScreen({navigation}: any): JSX.Element {
               w={300}
               h={100}
               center
-              style={{backgroundColor: 'lightgreen', borderRadius: 50}}>
+              style={{backgroundColor: '#303F9F', borderRadius: 50}}>
               <Button
                 mode="contained"
                 icon="soccer"
                 style={{
+                  backgroundColor:'#536DFE',
                   width: 300,
                   height: 100,
                   justifyContent: 'center',
@@ -48,11 +46,10 @@ function WelcomeScreen({navigation}: any): JSX.Element {
           </VStack>
         </View>
         <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-          <Text variant="titleLarge" style={{color: 'white'}}>
+          <Text variant="titleLarge" style={{color: '#fff'}}>
             Oyun kuralarını görmek için soldaki menüyü kullanabilirsiniz
           </Text>
         </View>
-      </ImageBackground>
     </SafeAreaProvider>
   );
 }

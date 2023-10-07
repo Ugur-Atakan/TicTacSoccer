@@ -1,78 +1,65 @@
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {ScrollView, Text} from 'react-native';
-import {VStack} from 'react-native-flex-layout';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native';
+import { VStack } from 'react-native-flex-layout';
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
+import { Text } from 'react-native-paper';
 
 function GameRulesScreen() {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#303F9F' }}>
       <ScrollView>
-        <VStack style={{paddingRight: 10, paddingLeft: 5}}>
-          <View style={{paddingBottom: 50}} />
-          <Text>
-            1. Tic Tac Toe, 3x3 bir kare tahtada oynanır. Bu tahtada toplam 9
-            hücre bulunur.
-          </Text>
-          <Text>2. Oyun iki oyuncu arasında oynanır.</Text>
-          <Text>
-            3. İki oyuncu vardır ve genellikle biri "X" ve diğeri "O" olarak
-            temsil edilir.
-          </Text>
-          <Text>
+        <VStack style={{ paddingRight: 10, paddingLeft: 5 }}>
+          <View style={{ paddingBottom: 50 }} />
+          <Text style={{ color: '#FFFFFF' }}>
+            1. 3 5 2 , 4x4 bir kare tahtada oynanır. Bu tahtada toplam 16
+            hücre bulunur. Bu hücrelerden 6 tanesi futbol takımlarına 9 tanesi ise oyuncuların doldurması için futbolculara aittir. kalan 1 tanesi de bizim logomuz :)
+            {' \n '}
+            {' \n '}
+            2. Oyun iki oyuncu arasında oynanır.
+            {' \n '}
+            3. İki oyuncu vardır ve 1. oyuncu Yeşil 2. oyuncu ise Kırmızı renkle temsil edilir.
+            {' \n '}
             4. Oyunculardan biri "X" ile başlar, diğer oyuncu "O" ile yanıt
             verir.
-          </Text>
-          <Text>
-            5. Oyuncular, sırayla bir hücreye kendi sembollerini ("X" veya "O")
-            koymak için hamle yaparlar.
-          </Text>
-          <Text>
-            6. Bir oyuncu hamlesini yaptıktan sonra sıra diğer oyuncuya geçer.
-          </Text>
-          <Text>
-            7. Oyuncuların amacı, oyun tahtasında bir hizalama yaparak
-            kazanmaktır.
-          </Text>
-          <Text>
-            8. Bir oyuncu, aynı sembollerle üçünü yatay, dikey veya çapraz
+            {' \n '}
+            5. Oyuncuların amacı sırayla bir hücreye kendi o satırın ve sutunun başındaki takımların her ikisinde de oynamış bir oyuncuyu koymak için hamle yapmaktır.
+            {' \n '}
+            6. Bir oyuncu, aynı sembollerle üçünü yatay, dikey veya çapraz
             olarak birleştirdiğinde, o oyuncu oyunu kazanır.
-          </Text>
-          <Text>
-            9. Kazanan oyuncu, kazandığı hizalamanın üzerine çizer veya
+            {' \n '}
+            7. Kazanan oyuncu, kazandığı hizalamanın üzerine çizer veya
             sembolünü yerleştirir.
-          </Text>
-          <Text>
-            10. Eğer tahta tamamen dolar ve herhangi bir oyuncu kazanmazsa, oyun
+            {' \n '}
+            8. Eğer tahta tamamen dolar ve herhangi bir oyuncu kazanmazsa, oyun
             berabere (draw) sona erer.
-          </Text>
-          <Text>11. Kazanma durumları şunlardır:</Text>
-          <Text>
+            {' \n '}
+            9. Kazanma durumları şunlardır
+            {' \n '}
             {' '}
             - Yatayda kazanma: Üst, orta ve alt satırlarda aynı semboller.
-          </Text>
-          <Text>
+            {' \n '}
             {' '}
             - Dikeyde kazanma: Sol, orta ve sağ sütunlarda aynı semboller.
-          </Text>
-          <Text>
+            {' \n '}
             {' '}
             - Çaprazda kazanma: Sol üst köşeden sağ alt köşeye veya sağ üst
             köşeden sol alt köşeye doğru aynı semboller.
-          </Text>
-          <Text>
-            12. Oyun kazanana kadar veya tahta dolana kadar devam eder.
-          </Text>
-          <Text>
-            13. Kazananı belirledikten sonra veya berabere sonuçlandığında,
+            {' \n '}
+            10. Oyun kazanana kadar veya tahta dolana kadar devam eder.
+            {' \n '}
+            11. Kazananı belirledikten sonra veya berabere sonuçlandığında,
             oyuncular oyunu sona erdirir ve gerektiğinde yeni bir oyun
             başlatabilir.
           </Text>
+
           <Text
             style={{
               fontSize: 26,
               textAlign: 'left',
               paddingTop: 10,
+              color: 'white',
+              alignSelf: 'center'
             }}>
             Bol Şans
           </Text>

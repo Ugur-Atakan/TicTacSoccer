@@ -9,8 +9,7 @@ interface Square {
 }
 
 const initialState: any = {
-  p1Score: 0,
-  p2Score: 0,
+scores:[0,0],
   selectedCellId: -1,
   selectedTeamCell: -1,
   currentPlayer: { id: 1 },
@@ -36,6 +35,7 @@ const gameBoardReducer = createSlice({
 
         if (checkWinner(state.soccerCells)) {
           state.winnerUserData = state.currentPlayer;
+          state.scores[state.currentPlayer.id-1] += 1;
         } else {
           state.currentPlayer.id = state.currentPlayer.id === 1 ? 2 : 1;
         }
