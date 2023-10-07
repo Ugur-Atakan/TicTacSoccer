@@ -13,7 +13,7 @@ interface TeamCellProps {
 
 const TeamCell: React.FC<TeamCellProps> = ({cellId}) => {
   const teamCells = useSelector(
-    (state: RootState) => state.teamCells.teamCells,
+    (state: RootState) => state.gameBoard.teamCells,
   );
   return (
     <TouchableWithoutFeedback>

@@ -2,27 +2,27 @@ import React, { useState, useEffect } from 'react'
 import {
     ScrollView,
     Text,
-    TextInput,
     View,
     TouchableOpacity,
 } from 'react-native';
+import { Searchbar } from 'react-native-paper';
 import { VStack } from 'react-native-flex-layout';
 import baseAPI from '../../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
 import { play, nextPlayer } from '../../../utils/redux/reducers/gameReducers/gameBoard';
-import {selectSoccerInputStyles} from '../../../style';
+import { selectSoccerInputStyles } from '../../../style';
 
 interface SelectSoccerInputProps {
     closeModal: any;
 }
 
-export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProps) {
+export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps) {
 
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
     const [data, setData] = useState([]);
-    const teamCells = useSelector((state: RootState) => state.teamCells.teamCells);
+    const teamCells = useSelector((state: RootState) => state.gameBoard.teamCells);
     const { selectedCellId } = useSelector((state: RootState) => state.gameBoard);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
 
 
 
- 
+
     const _finCoords = (cellID: number) => {
         switch (cellID) {
             case 0:
@@ -77,11 +77,12 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
         });
         return res;
     };
-    ;
 
     const handleInputSubmit = async (Soccer: any) => {
         const check = await _isCorrect(Soccer.id);
         if (check == true) {
+            console.log('soccer',Soccer);
+            console.log('selected cell id',selectedCellId)
             dispatch(
                 play({
                     index: selectedCellId, // Burada 'cellID' değişkeni, oynanacak hücrenin indeksini temsil etmelidir.
@@ -104,13 +105,15 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
     };
 
     return (
-        <View>
+        <View style={{ backgroundColor: '#C5CAE9' }}>
             <View
                 style={selectSoccerInputStyles.textInput}>
-                <TextInput
+                <Searchbar
                     placeholder="Ara"
                     onChangeText={text => setInput(text)}
                     value={input}
+                    style={{ backgroundColor: '#BDBDBD' }}
+                    inputStyle={{ color: '#212121' }}
                 />
             </View>
             <View
@@ -119,26 +122,29 @@ export default function SelecetSoccerInput({ closeModal }: SelectSoccerInputProp
                     <VStack
                         spacing={3}
                         style={{ borderWidth: 1, borderStyle: 'solid' }}>
-                        {data?.map((item: any) => {
+                        {data?.map((item: any, index) => {
                             if (item.Player.name.includes(input)) {
                                 return (
-                                    <View key={item.index}>
-                                    <TouchableOpacity
-                                        onPress={()=> handleInputSubmit(item.Player)}
-                                        style={{
-                                            backgroundColor: '#7FFF00',
-                                            borderRadius: 10,
-                                        }}>
-                                        <Text
+                                    <View key={index}>
+                                        <TouchableOpacity
+                                            onPress={() => handleInputSubmit(item.Player)}
                                             style={{
-                                                color: 'black',
-                                                fontWeight: '600',
-                                                margin: 3,
+                                                backgroundColor: '#9fa8da',
+                                                borderRadius: 10,
+                                                height: 40,
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
                                             }}>
-                                            {item.Player.name}
-                                        </Text>
-                                    </TouchableOpacity>
-                                </View>
+                                            <Text
+                                                style={{
+                                                    color: '#212121',
+                                                    fontWeight: '600',
+                                                    margin: 3,
+                                                }}>
+                                                {item.Player.name}
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 )
                             }
                         })}

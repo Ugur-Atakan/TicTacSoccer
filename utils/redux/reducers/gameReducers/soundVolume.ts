@@ -4,7 +4,7 @@ const initialState = {
  soundVolume:0.05,
 };
 
-export const soundVolumeSlice = createSlice({
+export const soundVolume = createSlice({
   name: 'soundvolume',
   initialState,
   reducers: {
@@ -15,5 +15,5 @@ export const soundVolumeSlice = createSlice({
   },
 });
 
-export const {setVolume,resetVolume} = soundVolumeSlice.actions;
-export default soundVolumeSlice.reducer;
+export const {setVolume,resetVolume} = soundVolume.actions;
+export default soundVolume.reducer;

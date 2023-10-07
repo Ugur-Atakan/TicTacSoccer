@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {VStack, HStack} from 'react-native-flex-layout';
 import SoccerCell from '../components/UIComponents/cells/soccerCell';
 import TeamCell from '../components/UIComponents/cells/teamCell';

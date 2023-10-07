@@ -1,6 +1,6 @@
 import {Text} from 'react-native-paper';
 import React from 'react';
-import {height, width} from '../../../style';
+import {width} from '../../../style';
 export default function GameHeader() {
   return (
     <Text

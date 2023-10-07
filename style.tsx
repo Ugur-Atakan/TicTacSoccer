@@ -159,8 +159,9 @@ const selectSoccerInputStyles=StyleSheet.create({
 textInput:{
     borderStyle: 'solid',
     borderWidth: 1,
-    borderColor: 'lightgrey',
+    borderColor: '#BDBDBD',
     marginBottom: 10,
+    borderRadius:50,
 },
    soccerList:{
     width: 300,
@@ -215,7 +216,7 @@ const modalStyles=StyleSheet.create({
       },
       modalView: {
         margin: 20,
-        backgroundColor: 'white',
+        backgroundColor: '#C5CAE9',
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
@@ -234,7 +235,7 @@ const modalStyles=StyleSheet.create({
         top: 0, // İstediğiniz yüksekliği ayarlayabilirsiniz
         right: 0, // İstediğiniz sağ boşluğu ayarlayabilirsiniz
         borderStyle: 'solid',
-        backgroundColor: 'lightgray',
+        backgroundColor: '#BDBDBD',
         width: 30,
         height: 30,
         borderRadius: 50,

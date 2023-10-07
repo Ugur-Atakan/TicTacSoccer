@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Flex} from 'react-native-flex-layout';
 import {Image, View} from 'react-native';
 import {Text} from 'react-native-paper';
-import {width,height,cellSize,cellStyles,imageStyles } from '../../../style';
+import {cellSize,cellStyles,imageStyles } from '../../../style';
 
 const LogoCell = () => {
   return (

@@ -10,7 +10,7 @@ interface SoccerCellProps {
   openModal: any;
 }
 const SoccerCell: React.FC<SoccerCellProps> = ({cellId, openModal}) => {
-  const soccerCells = useSelector((state: RootState) => state.gameBoard.cells);
+  const soccerCells = useSelector((state: RootState) => state.gameBoard.soccerCells);
   const gameStatus= useSelector((state: RootState) => state.gameStatus.gameStatus);
 
   return (
