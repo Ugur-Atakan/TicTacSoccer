@@ -14,8 +14,7 @@ export default function CurrentPlayer() {
     <View>
       {winnerUserData === 'Berabere' ? (
         <Text style={textStyles.fs30bold}>Oyun Berabere Bitti</Text>
-      ) : winnerUserData ? (
-        
+      ) : winnerUserData?.id==!null ? (
         <View
           style={{width: 170, justifyContent: 'center', alignItems: 'center'}}>
           <Text style={textStyles.fs30bold}>
