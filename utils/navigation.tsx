@@ -8,14 +8,12 @@ import GamesScreen from '../screens/GamesScreen';
 import GameRulesScreen from '../screens/GameRulesScreen';
 import MainLayout from '../layout';
 
-
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from './redux/stores/store';
 import {initialTokenLoad, loginSuccess} from './redux/reducers/userReducer';
 import LoginScreen from '../screens/Auth/Login';
 
-import {View, Image, StyleSheet, Touchable, TouchableOpacity} from 'react-native';
-import { Text } from 'react-native-paper';
+import {View, Image, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,6 +42,7 @@ function Root() {
     </Drawer.Navigator>
   );
 }
+
 function Navigator(): JSX.Element {
   const {accessToken} = useSelector((state: RootState) => state.user);
   const {isLoading} = useSelector((state: RootState) => state.auth);
@@ -74,7 +73,7 @@ function Navigator(): JSX.Element {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: true,
+          headerShown: false,
           title:'Tiki Taka Soccer',
         }}>
         {accessToken ? (
@@ -83,21 +82,13 @@ function Navigator(): JSX.Element {
             <Stack.Screen
               name="Temel Oyun"
               component={MainLayout}
-              options={{headerShown: true,title:'Tiki Taka Soccer'}}
+              options={{headerShown: true,title:'3 5 2'}}
             />
-
             <Stack.Screen
               name="MainLayout"
               component={MainLayout}
-              options={({ navigation }) => ({
-                headerLeft: () => (
-                  <TouchableOpacity onPress={() => navigation.replace('Ana Ekran')}>
-                    <Text style={{color:'#000', marginLeft:10}}>Geri</Text>
-                  </TouchableOpacity>
-                ),
-              })}
+              options={{headerShown: true,title:'3 5 2'}}
             />
-
           </>
         ) : (
           <>
