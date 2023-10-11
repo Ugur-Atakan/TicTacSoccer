@@ -156,6 +156,11 @@ const textStyles=StyleSheet.create({
       fs60: {
         fontSize: 60,
       },
+      fs60whiteBold: {
+        fontSize: 60,
+        fontWeight: 'bold',
+        color: 'white',
+      }
 })
 
 const imageStyles=StyleSheet.create({
@@ -263,6 +268,16 @@ const modalStyles=StyleSheet.create({
         marginBottom: 15,
         textAlign: 'center',
       },
+
+      PlayersBackGround:{
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 150,
+        height: 150,
+        marginHorizontal: 10 
+      },
+
 })
 
 export {

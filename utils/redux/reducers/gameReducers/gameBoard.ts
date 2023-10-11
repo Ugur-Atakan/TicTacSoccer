@@ -16,7 +16,8 @@ interface Square {
 }
 
 const initialState: any = {
-scores:[0,0],
+  round: 1,
+  scores: [0, 0],
   selectedCellId: -1,
   selectedTeamCell: -1,
   currentPlayer: { id: 1 },
@@ -29,7 +30,6 @@ scores:[0,0],
     }),
 };
 
-
 const gameBoardReducer = createSlice({
   name: 'board',
   initialState,
@@ -39,16 +39,14 @@ const gameBoardReducer = createSlice({
       if (!state.soccerCells[index].data) {
         state.soccerCells[index] = action.payload.soccer;
         state.soccerCells[index].knowingPlayer = state.currentPlayer.id;
-        console.log("SoccerCells Son durumu ",state.soccerCells)
         if (checkWinner(state.soccerCells)) {
-          try{
-            console.log("kazanan oyuncu",state.winnerUserData.id);
+          try {
             state.winnerUserData = state.currentPlayer;
-            state.scores[state.currentPlayer.id-1] += 1;
-          }  catch (error) {
+            console.log("kazanan oyuncu", state.winnerUserData.id);
+            state.scores[state.currentPlayer.id - 1] += 1;
+          } catch (error) {
             console.error(error);
           }
-          
         } else {
           state.currentPlayer.id = state.currentPlayer.id === 1 ? 2 : 1;
         }
@@ -72,13 +70,27 @@ const gameBoardReducer = createSlice({
       state.currentPlayer.id = state.currentPlayer.id === 1 ? 2 : 1;
     },
 
+    goNextRound: (state) => {
+      state.round = state.round + 1;
+      state.scores= [0, 0],
+      state.selectedCellId= -1,
+      state.selectedTeamCell= -1,
+      state.currentPlayer= { id: 1 },
+      state.winnerUserData= { id: null },
+      state.teamCells= Array(6).fill(null),
+      state.soccerCells=Array(9).fill(
+        {
+          isCorrect: false,
+          knowingPlayer: null,
+        })
+    },
+
     setWinnerPlayer: (state, action: PayloadAction<any>) => {
       state.winnerUserData = action.payload;
 
     },
 
     reset: () => initialState,
-
   },
 });
 
@@ -88,7 +100,6 @@ const checkWinner = (Data: Square[]): boolean => {
     [0, 3, 6], [1, 4, 7], [2, 5, 8], // Dikey kazanma kombinasyonları
     [0, 4, 8], [2, 4, 6]             // Çapraz kazanma kombinasyonları
   ];
-
   for (const pattern of winPatterns) {
     const [a, b, c] = pattern;
     if (Data[a] && Data[b] && Data[c]) {
@@ -104,34 +115,14 @@ const checkWinner = (Data: Square[]): boolean => {
     }
   }
 
-// Hiçbir oyuncu kazanmadıysa ve tahta dolu ise berabere.
-//   if (Object.values(Data).every(cell => cell)) {
-//     return "Berabere!";
-//   }
+  // Hiçbir oyuncu kazanmadıysa ve tahta dolu ise berabere.
+  //   if (Object.values(Data).every(cell => cell)) {
+  //     return "Berabere!";
+  //   }
   // Henüz kazanan yok.
   return false;
 }
 
-// const checkWinner = (squares: Square[]): boolean => {
-//   const winningLines: number[][] = [
-//     [0, 1, 2],
-//     [3, 4, 5],
-//     [6, 7, 8],
-//     [0, 3, 6],
-//     [1, 4, 7],
-//     [2, 5, 8],
-//     [0, 4, 8],
-//     [2, 4, 6],
-//   ];
-//   for (let i = 0; i < winningLines.length; i++) {
-//     const [a, b, c] = winningLines[i];
-//     if ((squares[a].knowingPlayer == squares[b].knowingPlayer )&& (squares[b].knowingPlayer == squares[c].knowingPlayer)) {
-//       return true;
-//     }
-//   }
-//   return false;
-// };
-
-export const { play, reset, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, setSelectedTeamCell } = gameBoardReducer.actions;
+export const { play, reset, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, setSelectedTeamCell,goNextRound } = gameBoardReducer.actions;
 
 export default gameBoardReducer.reducer;

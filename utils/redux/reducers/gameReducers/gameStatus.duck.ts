@@ -1,5 +1,5 @@
 import baseAPI from '../../../http/base';
-import {reset, setTeamCells} from './gameBoard';
+import {goNextRound, reset, setTeamCells} from './gameBoard';
 
 interface GameState {
   gameStatus: boolean;
@@ -59,6 +59,15 @@ export const finishGame = () => {
   };
 };
 
-
+export const nextRound = () => {
+  return (dispatch: any) => {
+    dispatch(goNextRound());
+    baseAPI
+      .get('game')
+      .then(res => dispatch(setTeamCells(res.data)))
+      .then(dispatch(started()))
+      .catch(() => console.error('Something Went Wrong'));
+  };
+}
 export {gameStatusReducer};
 export default gameStatusReducer;

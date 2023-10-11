@@ -11,17 +11,6 @@ export default function CurrentPlayer() {
     (state: RootState) => state.gameBoard,
   );
   return (
-    <View>
-      {winnerUserData === 'Berabere' ? (
-        <Text style={textStyles.fs30bold}>Oyun Berabere Bitti</Text>
-      ) : winnerUserData?.id==!null ? (
-        <View
-          style={{width: 170, justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={textStyles.fs30bold}>
-            Kazanan Oyuncu {winnerUserData?.id}
-          </Text>
-        </View>
-      ) : (
         <View style={{backgroundColor:'#448AFF',
         width: width * 0.3,
         height: width * 0.1,
@@ -32,8 +21,7 @@ export default function CurrentPlayer() {
         }}>
     <Text style={{color:'white',fontWeight:'bold',fontSize:width*0.04,paddingRight:10}}>Oyuncu</Text>
     <Circle />
-        </View>
-      )}
+       
     </View>
   );
 }

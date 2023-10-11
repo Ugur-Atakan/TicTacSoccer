@@ -74,7 +74,7 @@ function Navigator(): JSX.Element {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          title:'Tiki Taka Soccer'
+          title:'Tiki Taka Soccer',
         }}>
         {accessToken ? (
           <>
@@ -88,6 +88,7 @@ function Navigator(): JSX.Element {
               name="MainLayout"
               component={MainLayout}
               options={{headerShown: true,title:'Tiki Taka Soccer'}}
+             
             />
           </>
         ) : (

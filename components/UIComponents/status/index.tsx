@@ -4,19 +4,16 @@ import {View} from 'react-native';
 import ScoreBoard from './ScoreBoard';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
-import WinnerUser from './WinnerPlayer';
-
+import { Text } from 'react-native-paper';
+import { width } from '../../../style';
 export default function StatusBar() {
-  
-  const Scores=useSelector((state:RootState)=>state.gameBoard.scores);
 
-  const p1Score=Scores[0];
-  const p2Score=Scores[1];
+  const Round = useSelector((state:RootState)=>state.gameBoard.round);
 
   return (
     <View>
-    <View>
-       <WinnerUser/>
+      <View style={{backgroundColor:'rgba(255,255,255,0.1)'}}>
+        <Text style={{color:'white',fontWeight:'bold',fontSize:width*0.07,textAlign:'center'}}>Round {Round}</Text>
     </View>
     <View
       style={{
@@ -26,7 +23,7 @@ export default function StatusBar() {
         paddingVertical: 5,
       }}>
        
-      <ScoreBoard player2Score={p1Score} player1Score={p2Score} />
+      <ScoreBoard />
       <CurrentPlayer />
     </View>
     </View>
