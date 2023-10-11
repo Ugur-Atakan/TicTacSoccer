@@ -39,7 +39,7 @@ function WelcomeScreen({navigation}: any): JSX.Element {
                   alignItems: 'center',
                 }}
                 labelStyle={{fontSize: 30, lineHeight: 30}}
-                onPress={() => navigation.navigate('Temel Oyun')}>
+                onPress={() => navigation.navigate('MainLayout')}>
                 Oyunu Başlat
               </Button>
             </Flex>

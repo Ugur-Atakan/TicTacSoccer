@@ -14,7 +14,8 @@ import {RootState} from './redux/stores/store';
 import {initialTokenLoad, loginSuccess} from './redux/reducers/userReducer';
 import LoginScreen from '../screens/Auth/Login';
 
-import {View, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet, Touchable, TouchableOpacity} from 'react-native';
+import { Text } from 'react-native-paper';
 
 const styles = StyleSheet.create({
   container: {
@@ -73,7 +74,7 @@ function Navigator(): JSX.Element {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
           title:'Tiki Taka Soccer',
         }}>
         {accessToken ? (
@@ -84,12 +85,19 @@ function Navigator(): JSX.Element {
               component={MainLayout}
               options={{headerShown: true,title:'Tiki Taka Soccer'}}
             />
+
             <Stack.Screen
               name="MainLayout"
               component={MainLayout}
-              options={{headerShown: true,title:'Tiki Taka Soccer'}}
-             
+              options={({ navigation }) => ({
+                headerLeft: () => (
+                  <TouchableOpacity onPress={() => navigation.replace('Ana Ekran')}>
+                    <Text style={{color:'#000', marginLeft:10}}>Geri</Text>
+                  </TouchableOpacity>
+                ),
+              })}
             />
+
           </>
         ) : (
           <>
