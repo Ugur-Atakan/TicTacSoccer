@@ -37,7 +37,7 @@ Alert.alert('Bu Mod Henüz Yayınlanmadı', 'Geliştirici Ekibimiz çalışmalar
             h={100}
             center
             style={{backgroundColor: '#536DFE', borderRadius: 30}}>
-            <TouchableOpacity onPress={cokYakinda}>
+            <TouchableOpacity onPress={()=> navigation.navigate('OnlineGame')}>
               <Text style={{alignSelf: 'center', fontSize: 30, color: 'white'}}>
               Çevrimiçi Oyun Modu
               </Text>

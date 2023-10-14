@@ -20,3 +20,7 @@ export default function App() {
     </Provider>
   );
 }
+
+
+// navigation.navigate('Root', { screen: 'Profile' });
+

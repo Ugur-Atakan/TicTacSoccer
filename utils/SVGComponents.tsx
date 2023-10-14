@@ -15,6 +15,8 @@ const SoccerSVG = ({color}) => {
   );
 };
 
+
+
 const LogoSVG = () => {
   return (
     <View>

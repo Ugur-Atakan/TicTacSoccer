@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,13 +7,16 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Image,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
-import {loginSuccess} from '../../utils/redux/reducers/userReducer';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '../../utils/redux/reducers/userReducer';
+import { Checkbox, IconButton } from 'react-native-paper';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [checked, setChecked] = React.useState(false);
 
   const dispatch = useDispatch();
 
@@ -53,9 +56,76 @@ const LoginScreen = () => {
           value={password}
           secureTextEntry
         />
+       <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
+      <Checkbox
+      status={checked ? 'checked' : 'unchecked'}
+      color='#007BFF'
+      onPress={() => {
+        setChecked(!checked);
+      }}
+    />
+  <Text>Remember Me</Text>
+        </View>
+       <View>
+          <Text
+          style={{alignSelf:'flex-end',padding:10}}
+          onPress={() => navigation.navigate("ForgotPassword")}
+          >Forgot Password?</Text>
+       </View>
+        </View>
+  
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
+      </View>
+      <View>
+        <Text style={{alignSelf:'center',fontSize:30,padding:20}}> OR</Text>
+        <Text style={{alignSelf:'center',paddingBottom:10}}>Login with these apps</Text>
+        <View
+          style={{
+            backgroundColor: '#fff',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+          }}
+        >
+
+          {Platform.OS === 'ios' ?
+            <>
+              <IconButton
+                icon="apple"
+                size={50}
+                onPress={() => console.log("twitter")}
+              />
+              <IconButton
+                icon="google"
+                size={50}
+                onPress={() => console.log("google")}
+              />
+            </>
+            :
+            <IconButton
+              icon="google"
+              size={50}
+              onPress={() => console.log("google")}
+            />
+          }
+
+          <IconButton
+            icon="facebook"
+            size={50}
+            onPress={() => console.log("facebook")}
+          />
+        </View>
+      </View>
+      <View>
+        <Text
+          style={{ color: '#007BFF', padding: 10, margin: 10 }}
+          onPress={() => navigation.navigate("Register")}
+        >
+          Are you not registered? You can register from press here
+        </Text>
       </View>
     </KeyboardAvoidingView>
   );

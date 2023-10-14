@@ -23,26 +23,8 @@ function WelcomeScreen({navigation}: any): JSX.Element {
             shouldWrapChildren
             spacing={10}
             style={{paddingTop: 100}}>
-            <Flex
-              w={300}
-              h={100}
-              center
-              style={{backgroundColor: '#303F9F', borderRadius: 50}}>
-              <Button
-                mode="contained"
-                icon="soccer"
-                style={{
-                  backgroundColor:'#536DFE',
-                  width: 300,
-                  height: 100,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-                labelStyle={{fontSize: 30, lineHeight: 30}}
-                onPress={() => navigation.navigate('MainLayout')}>
-                Oyunu Başlat
-              </Button>
-            </Flex>
+            <Text style={{fontSize:30,color:'white'}}> Ya 3 ya 5'ini bilir Kazanırsın</Text>
+            <Text style={{fontSize:30,color:'white'}}> Yada 2 bilir kaybedersin</Text>
           </VStack>
         </View>
         <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>

@@ -1,19 +1,24 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import WelcomeScreen from '../screens/WelcomeScreen';
 import GamesScreen from '../screens/GamesScreen';
 import GameRulesScreen from '../screens/GameRulesScreen';
 import MainLayout from '../layout';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from './redux/stores/store';
-import {initialTokenLoad, loginSuccess} from './redux/reducers/userReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './redux/stores/store';
+import { initialTokenLoad, loginSuccess, logoutSuccess } from './redux/reducers/userReducer';
 import LoginScreen from '../screens/Auth/Login';
 
-import {View, Image, StyleSheet} from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
+import OnlineGameManagement from '../screens/OnlineGame';
+import CreateRoomScreen from '../screens/OnlineGame/CreateRoom';
+import Register from '../screens/Auth/Register';
+import ResetPassword from '../screens/Auth/ResetPassword';
+import LogoutScreen from '../screens/Auth/Logout';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,29 +41,30 @@ const Drawer = createDrawerNavigator();
 function Root() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="HOŞGELDİNİZ" options={{headerTitle:'Tiki Taka Soccer', headerTitleStyle:{color:'#000'}}} component={WelcomeScreen} />
+      <Drawer.Screen name="HOŞGELDİNİZ" options={{ headerTitle: '3 5 2 Game', headerTitleStyle: { color: '#000' } }} component={WelcomeScreen} />
       <Drawer.Screen name="Oyun Modları" component={GamesScreen} />
       <Drawer.Screen name="Oyun Kuralları" component={GameRulesScreen} />
+      <Drawer.Screen name="Çıkış Yap" component={LogoutScreen} />
     </Drawer.Navigator>
   );
 }
 
 function Navigator(): JSX.Element {
-  const {accessToken} = useSelector((state: RootState) => state.user);
-  const {isLoading} = useSelector((state: RootState) => state.auth);
+  const { accessToken } = useSelector((state: RootState) => state.user);
+  const { isLoading } = useSelector((state: RootState) => state.auth);
 
   const dispatch = useDispatch();
   React.useEffect(() => {
     if (isLoading) {
       setTimeout(() => {
-        dispatch(initialTokenLoad({accessToken: ''}));
+        dispatch(initialTokenLoad({ accessToken: '' }));
       }, 500);
     }
   }, [isLoading]);
 
   if (isLoading) {
     return (
-      <View style={{overflow: 'hidden'}}>
+      <View style={{ overflow: 'hidden' }}>
         <Image
           source={{
             uri: 'https://www.cimnasgym.com/wp-content/uploads/2016/05/product-soccer-ball.jpg',
@@ -74,7 +80,7 @@ function Navigator(): JSX.Element {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          title:'Tiki Taka Soccer',
+          title: '3 5 2 Game',
         }}>
         {accessToken ? (
           <>
@@ -82,17 +88,45 @@ function Navigator(): JSX.Element {
             <Stack.Screen
               name="Temel Oyun"
               component={MainLayout}
-              options={{headerShown: true,title:'3 5 2'}}
+              options={{ headerShown: true, title: '3 5 2' }}
             />
             <Stack.Screen
               name="MainLayout"
               component={MainLayout}
-              options={{headerShown: true,title:'3 5 2'}}
+              options={{ headerShown: true, title: '3 5 2' }}
+            />
+            <Stack.Screen
+              name='OnlineGame'
+              component={OnlineGameManagement}
+              options={{ headerShown: true, title: 'Online Oda oluştur ya da Katıl' }}
+            />
+            <Stack.Screen
+              name='CreateRoom'
+              component={CreateRoomScreen}
+              options={{ headerShown: true, title: 'Online Oda oluştur.' }}
+            />
+            <Stack.Screen
+              name='Register'
+              component={Register}
+              options={{ headerShown: true, title: 'Kayıt Ol' }}
             />
           </>
         ) : (
           <>
-            <Stack.Screen name="Giriş Yap" component={LoginScreen} />
+            <Stack.Screen
+              name="Giriş Yap"
+              component={LoginScreen}
+            />
+            <Stack.Screen
+              name='ForgotPassword'
+              component={ResetPassword}
+              options={{ headerShown: true, title: 'Şifreni mi unuttun ?' }}
+            />
+            <Stack.Screen
+              name='Register'
+              component={Register}
+              options={{ headerShown: true, title: 'Kayıt Ol' }}
+            />
           </>
         )}
       </Stack.Navigator>
