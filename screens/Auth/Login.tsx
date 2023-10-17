@@ -12,6 +12,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../utils/redux/reducers/userReducer';
 import { Checkbox, IconButton } from 'react-native-paper';
+import baseAPI from '../../utils/http/base';
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -20,18 +21,24 @@ const LoginScreen = ({ navigation }: any) => {
 
   const dispatch = useDispatch();
 
-  const handleLogin = () => {
-    // Implement your login logic here
-    dispatch(
-      loginSuccess({
+  const handleLogin = async () => {
+    try {
+      const response = await baseAPI.post('sign-in', {
+        email,
+        password,
+      });
+  
+      dispatch(loginSuccess({
         user: {
-          name: 'Fatih',
-          lastName: 'Ateş',
+          name: response.data.name,
+          lastName: response.data.lastName,
         },
-        accessToken: 'access-token',
-      }),
-    );
+        accessToken: response.data.accessToken,
+      }));
+    } catch (error) {
+    }
   };
+  
 
   return (
     <KeyboardAvoidingView
@@ -108,7 +115,8 @@ const LoginScreen = ({ navigation }: any) => {
             <IconButton
               icon="google"
               size={50}
-              onPress={() => console.log("google")}
+              onPress={() => console.log("google")
+            }
             />
           }
 
