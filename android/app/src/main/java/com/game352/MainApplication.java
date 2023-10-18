@@ -1,4 +1,4 @@
-package com.tictacsoccer;
+package com.mygame;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
