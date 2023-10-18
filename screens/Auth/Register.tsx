@@ -18,21 +18,21 @@ const RegisterScreen = ({ navigation }: any) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
+    const [lastName, setLastName] = useState('');
 
     const dispatch = useDispatch();
 
     const handleRegister = async () => {
         try {
-            const response = await baseAPI.post('sign-up', {
+            const response = await baseAPI.post('auth/sign-up', {
                 name,
-                surname,
+                lastName,
                 email,
                 password,
             });
             console.log(response.data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -42,12 +42,12 @@ const RegisterScreen = ({ navigation }: any) => {
             style={styles.container}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <View style={styles.logoContainer}>
-                <Text style={styles.logo}>Our Logo</Text>
+            <Text style={styles.logo}>3 5 2'ye HOŞGELDİN</Text>
             </View>
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Name"
+                    placeholder="Adın"
                     onChangeText={text => setName(text)}
                     value={name}
                     
@@ -55,9 +55,9 @@ const RegisterScreen = ({ navigation }: any) => {
 
                 <TextInput
                     style={styles.input}
-                    placeholder="Surname"
-                    onChangeText={text => setSurname(text)}
-                    value={surname}
+                    placeholder="Soyadın"
+                    onChangeText={text => setLastName(text)}
+                    value={lastName}
                 />
 
                 <TextInput
@@ -70,24 +70,24 @@ const RegisterScreen = ({ navigation }: any) => {
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Password"
+                    placeholder="Parola"
                     onChangeText={text => setPassword(text)}
                     value={password}
                     secureTextEntry
                 />
 
                 <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
-                    <Text style={styles.loginButtonText}>Register</Text>
+                    <Text style={styles.loginButtonText}>Kayıt Ol</Text>
                 </TouchableOpacity>
             </View>
             <View>
-                <Text style={{ alignSelf: 'center', fontSize: 30, padding: 20 }}> OR</Text>
-                <Text style={{ alignSelf: 'center', paddingBottom: 10 }}>Register with these apps</Text>
+                <Text style={{ alignSelf: 'center', fontSize: 30, padding: 20 }}> YA DA </Text>
+                <Text style={{ alignSelf: 'center', paddingBottom: 10 }}>Dilersen bunlardan birisi ile kaydolabilirsin</Text>
                 <View
                     style={{
                         backgroundColor: '#fff',
                         flexDirection: 'row',
-                        justifyContent: 'space-around',
+                        justifyContent: 'center',
                         alignItems: 'center',
                     }}
                 >
@@ -126,7 +126,7 @@ const RegisterScreen = ({ navigation }: any) => {
                     style={{ color: '#007BFF', padding: 10, margin: 10 }}
                     onPress={() => navigation.navigate("Register")}
                 >
-                    Are you already registered? You can login from press here
+                    Zaten üyemiz misin ? Bana tıklayarak giriş yapabilirsin
                 </Text>
             </View>
         </KeyboardAvoidingView>

@@ -19,6 +19,7 @@ import CreateRoomScreen from '../screens/OnlineGame/CreateRoom';
 import Register from '../screens/Auth/Register';
 import ResetPassword from '../screens/Auth/ResetPassword';
 import LogoutScreen from '../screens/Auth/Logout';
+import UserProfile from '../screens/Auth/Profile';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,7 +45,9 @@ function Root() {
       <Drawer.Screen name="HOŞGELDİNİZ" options={{ headerTitle: '3 5 2 Game', headerTitleStyle: { color: '#000' } }} component={WelcomeScreen} />
       <Drawer.Screen name="Oyun Modları" component={GamesScreen} />
       <Drawer.Screen name="Oyun Kuralları" component={GameRulesScreen} />
+      <Drawer.Screen name="Profil" component={UserProfile} />
       <Drawer.Screen name="Çıkış Yap" component={LogoutScreen} />
+    
     </Drawer.Navigator>
   );
 }

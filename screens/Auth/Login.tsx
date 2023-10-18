@@ -23,19 +23,21 @@ const LoginScreen = ({ navigation }: any) => {
 
   const handleLogin = async () => {
     try {
-      const response = await baseAPI.post('sign-in', {
+      const response = await baseAPI.post('auth/sign-in', {
         email,
         password,
       });
-  
+
       dispatch(loginSuccess({
         user: {
-          name: response.data.name,
-          lastName: response.data.lastName,
+          name: response.data.profile.name,
+          lastName: response.data.profile.lastName,
+          email:response.data.profile.email,
         },
         accessToken: response.data.accessToken,
       }));
     } catch (error) {
+      console.error(error);
     }
   };
   
@@ -45,7 +47,7 @@ const LoginScreen = ({ navigation }: any) => {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View style={styles.logoContainer}>
-        <Text style={styles.logo}>Our Logo</Text>
+        <Text style={styles.logo}>3 5 2'ye HOŞGELDİN</Text>
       </View>
       <View style={styles.inputContainer}>
         <TextInput
@@ -58,7 +60,7 @@ const LoginScreen = ({ navigation }: any) => {
         />
         <TextInput
           style={styles.input}
-          placeholder="Password"
+          placeholder="Parola"
           onChangeText={text => setPassword(text)}
           value={password}
           secureTextEntry
@@ -72,28 +74,28 @@ const LoginScreen = ({ navigation }: any) => {
         setChecked(!checked);
       }}
     />
-  <Text>Remember Me</Text>
+  <Text>Beni hatırla</Text>
         </View>
        <View>
           <Text
           style={{alignSelf:'flex-end',padding:10}}
           onPress={() => navigation.navigate("ForgotPassword")}
-          >Forgot Password?</Text>
+          >Şifreni mi unuttun ?</Text>
        </View>
         </View>
   
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-          <Text style={styles.loginButtonText}>Login</Text>
+          <Text style={styles.loginButtonText}>Giriş Yap</Text>
         </TouchableOpacity>
       </View>
       <View>
-        <Text style={{alignSelf:'center',fontSize:30,padding:20}}> OR</Text>
-        <Text style={{alignSelf:'center',paddingBottom:10}}>Login with these apps</Text>
+        <Text style={{alignSelf:'center',fontSize:30,padding:20}}> YA DA </Text>
+        <Text style={{alignSelf:'center',paddingBottom:10}}>İstersen aşağıdakilerden birisini kullanarak da giriş yapabilirsin</Text>
         <View
           style={{
             backgroundColor: '#fff',
             flexDirection: 'row',
-            justifyContent: 'space-around',
+            justifyContent: 'center',
             alignItems: 'center',
           }}
         >
@@ -132,7 +134,7 @@ const LoginScreen = ({ navigation }: any) => {
           style={{ color: '#007BFF', padding: 10, margin: 10 }}
           onPress={() => navigation.navigate("Register")}
         >
-          Are you not registered? You can register from press here
+          Hala üyemiz değilsen, bana tıklayarak üye olabilirsin
         </Text>
       </View>
     </KeyboardAvoidingView>

@@ -1,8 +1,11 @@
 import { Alert } from "react-native";
 import { View } from "react-native";
 import { IconButton, Text } from "react-native-paper";
+import { logoutSuccess } from '../../utils/redux/reducers/userReducer';
+import { useDispatch } from "react-redux";
 
 export default function LogoutScreen(){
+    const dispatch = useDispatch();
 
     const handler = ()=>{
         Alert.alert(
@@ -29,7 +32,7 @@ export default function LogoutScreen(){
                         {
                             text: "Hayır gelmem",
                             onPress: () => {
-                              // "Hayır" butonuna tıklama işlevi
+                              dispatch(logoutSuccess());
                               Alert.alert("Bu beni üzer","Bir şikayetin varsa bana ulaşabilirsin");
                             },
                             style: "cancel", // İptal düğmesini tanımlar
@@ -37,6 +40,7 @@ export default function LogoutScreen(){
                           {
                             text: "Tamam Gelirim",
                             onPress: () => {
+                              dispatch(logoutSuccess());
                               // "Hayır" butonuna tıklama işlevi
                              Alert.alert("Tamam gel","Burada seni bekliyor olacağım");
                             },
