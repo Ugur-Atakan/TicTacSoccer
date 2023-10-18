@@ -12,13 +12,13 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.tictacsoccer"
+    namespace "com.game352"
     defaultConfig {
-        applicationId "com.tictacsoccer"
+        applicationId "com.game352"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.0.5"
+        versionCode 1
+        versionName "0.1.0"
     }
     signingConfigs {
         debug {
