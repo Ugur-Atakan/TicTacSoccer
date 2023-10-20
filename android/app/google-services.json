@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1063264802770",
+    "project_id": "game-352",
+    "storage_bucket": "game-352.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063264802770:android:5a9de27e4e31a753f59a0b",
+        "android_client_info": {
+          "package_name": "com.game352"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063264802770-30m085fq92j9d9gt04s70ugstj5d12rl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.game352",
+            "certificate_hash": "115b5f313594a7ae585e3cb436c0d124f234b317"
+          }
+        },
+        {
+          "client_id": "1063264802770-suc70vs78uqn1s1bv7eoa633klrn5u8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4Q577fZnHl2kYRT_mSoYzCK49q5o8MEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063264802770-suc70vs78uqn1s1bv7eoa633klrn5u8l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

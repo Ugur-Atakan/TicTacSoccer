@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../utils/redux/reducers/userReducer';
 import { Checkbox, IconButton } from 'react-native-paper';
 import baseAPI from '../../utils/http/base';
+import GoogleSignIn from '../../components/UIComponents/SocialLogin/Google';
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -114,12 +115,7 @@ const LoginScreen = ({ navigation }: any) => {
               />
             </>
             :
-            <IconButton
-              icon="google"
-              size={50}
-              onPress={() => console.log("google")
-            }
-            />
+            <GoogleSignIn />
           }
 
           <IconButton

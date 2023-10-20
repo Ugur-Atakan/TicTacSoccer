@@ -11,9 +11,14 @@ export default function UserProfile (){
 const Profile= useSelector((state:RootState)=>state.user.userData);
 const Token= useSelector((state:RootState)=>state.user.accessToken);
 return (
-    <SafeAreaView style={[globalStlyes.container, {justifyContent:'center'}]}>
+    <SafeAreaView style={[globalStlyes.container,]}>
         <View style={{justifyContent:'center',alignItems:'center',padding:10}}>
-        <UserAvatar size={100} name={Profile.name + " " + Profile.lastName} bgColors={['#fff', '#fff', '#007BFF']}/>
+            {
+                Profile.profilePicture?
+                <UserAvatar size={100} name={Profile.name + " " + Profile.lastName} src={Profile.profilePicture}/>
+                :
+                <UserAvatar size={100} name={Profile.name + " " + Profile.lastName} bgColors={['#fff', '#fff', '#007BFF']}/>
+            }
         </View>
         <View>
             <Text variant="headlineMedium" style={{alignSelf:'center'}}>{Profile.name + " " + Profile.lastName}</Text>

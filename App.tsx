@@ -3,6 +3,12 @@ import {Provider} from 'react-redux';
 import {store} from './utils/redux/stores/store';
 import Navigator from './utils/navigation';
 import {MD3LightTheme as DefaultTheme, PaperProvider} from 'react-native-paper';
+import {
+  ALocalNotification,
+  notificationListenr,
+  requestUserPermission,
+} from './utils/commonUtils';
+
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -12,6 +18,12 @@ const theme = {
   },
 };
 export default function App() {
+  React.useEffect(() => {
+    requestUserPermission();
+    notificationListenr();
+  }, []);
+  ALocalNotification();
+
   return (
     <Provider store={store}>
       <PaperProvider theme={theme}>
