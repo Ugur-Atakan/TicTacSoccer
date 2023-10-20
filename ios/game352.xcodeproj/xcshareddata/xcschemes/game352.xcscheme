@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "TicTacSoccer.app"
-               BlueprintName = "TicTacSoccer"
-               ReferencedContainer = "container:TicTacSoccer.xcodeproj">
+               BuildableName = "game352.app"
+               BlueprintName = "game352"
+               ReferencedContainer = "container:game352.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "TicTacSoccerTests.xctest"
-               BlueprintName = "TicTacSoccerTests"
-               ReferencedContainer = "container:TicTacSoccer.xcodeproj">
+               BuildableName = "game352Tests.xctest"
+               BlueprintName = "game352Tests"
+               ReferencedContainer = "container:game352.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "TicTacSoccer.app"
-            BlueprintName = "TicTacSoccer"
-            ReferencedContainer = "container:TicTacSoccer.xcodeproj">
+            BuildableName = "game352.app"
+            BlueprintName = "game352"
+            ReferencedContainer = "container:game352.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "TicTacSoccer.app"
-            BlueprintName = "TicTacSoccer"
-            ReferencedContainer = "container:TicTacSoccer.xcodeproj">
+            BuildableName = "game352.app"
+            BlueprintName = "game352"
+            ReferencedContainer = "container:game352.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

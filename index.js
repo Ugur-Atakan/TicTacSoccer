@@ -19,6 +19,7 @@ if (!firebase.apps.length) {
     offlineAccess: true,
     webClientId: '1063264802770-suc70vs78uqn1s1bv7eoa633klrn5u8l.apps.googleusercontent.com',
     androidClientId:'1063264802770-30m085fq92j9d9gt04s70ugstj5d12rl.apps.googleusercontent.com',
+    iosClientId:'1063264802770-dfvl17vpmd1cvoroerbk02pm8nj0gmve.apps.googleusercontent.com'
   });
 
   const requestNotificationPermission = async () => {
