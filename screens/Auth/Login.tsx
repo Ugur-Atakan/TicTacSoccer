@@ -108,11 +108,7 @@ const LoginScreen = ({ navigation }: any) => {
                 size={50}
                 onPress={() => console.log("twitter")}
               />
-              <IconButton
-                icon="google"
-                size={50}
-                onPress={() => console.log("google")}
-              />
+              <GoogleSignIn />
             </>
             :
             <GoogleSignIn />

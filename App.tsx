@@ -9,6 +9,10 @@ import {
   requestUserPermission,
 } from './utils/commonUtils';
 
+import {check, PERMISSIONS, RESULTS, checkNotifications} from 'react-native-permissions';
+
+
+
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -17,12 +21,16 @@ const theme = {
     secondary: 'lightblue',
   },
 };
+
 export default function App() {
+
   React.useEffect(() => {
     requestUserPermission();
     notificationListenr();
   }, []);
   ALocalNotification();
+
+
 
   return (
     <Provider store={store}>
