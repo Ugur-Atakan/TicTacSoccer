@@ -31,7 +31,6 @@ export default function App() {
   ALocalNotification();
 
 
-
   return (
     <Provider store={store}>
       <PaperProvider theme={theme}>
