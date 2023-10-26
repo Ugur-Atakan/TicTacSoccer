@@ -54,30 +54,8 @@ function Root() {
 
 function Navigator(): JSX.Element {
   const { accessToken } = useSelector((state: RootState) => state.user);
-  const { isLoading } = useSelector((state: RootState) => state.auth);
 
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => {
-        dispatch(initialTokenLoad({ accessToken: '' }));
-      }, 500);
-    }
-  }, [isLoading]);
-
-  if (isLoading) {
-    return (
-      <View style={{ overflow: 'hidden' }}>
-        <Image
-          source={{
-            uri: 'https://www.cimnasgym.com/wp-content/uploads/2016/05/product-soccer-ball.jpg',
-          }}
-          style={styles.logo}
-        />
-      </View>
-    );
-  }
-
   return (
     <NavigationContainer>
       <Stack.Navigator

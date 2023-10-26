@@ -55,7 +55,7 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - fmt (6.2.1)
   - glog (0.3.5)
-  - Google-Mobile-Ads-SDK (10.10.0):
+  - Google-Mobile-Ads-SDK (10.12.0):
     - GoogleAppMeasurement (< 11.0, >= 7.0)
     - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (10.16.0):
@@ -420,7 +420,7 @@ PODS:
   - React-jsinspector (0.72.6)
   - React-logger (0.72.6):
     - glog
-  - react-native-safe-area-context (4.7.2):
+  - react-native-safe-area-context (4.7.3):
     - React-Core
   - react-native-slider (4.4.3):
     - React-Core
@@ -535,7 +535,7 @@ PODS:
     - React-logger (= 0.72.6)
     - React-perflogger (= 0.72.6)
   - RecaptchaInterop (100.0.0)
-  - RNCAsyncStorage (1.12.1):
+  - RNCAsyncStorage (1.19.3):
     - React-Core
   - RNCPushNotificationIOS (1.11.0):
     - React-Core
@@ -551,10 +551,11 @@ PODS:
     - FirebaseCoreExtension (= 10.15.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.12.1):
+  - RNGestureHandler (2.13.3):
+    - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - RNGoogleMobileAds (12.2.0):
-    - Google-Mobile-Ads-SDK (= 10.10.0)
+  - RNGoogleMobileAds (12.3.0):
+    - Google-Mobile-Ads-SDK (= 10.12.0)
     - GoogleUserMessagingPlatform (= 2.1.0)
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -563,7 +564,7 @@ PODS:
     - React-Core
   - RNPermissions (3.10.0):
     - React-Core
-  - RNReanimated (3.5.2):
+  - RNReanimated (3.5.4):
     - DoubleConversion
     - FBLazyVector
     - glog
@@ -592,9 +593,9 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.25.0):
+  - RNScreens (3.26.0):
+    - RCT-Folly (= 2021.07.22.00)
     - React-Core
-    - React-RCTImage
   - RNSound (0.11.2):
     - React-Core
     - RNSound/Core (= 0.11.2)
@@ -602,7 +603,7 @@ PODS:
     - React-Core
   - RNSoundPlayer (0.13.2):
     - React-Core
-  - RNSVG (13.13.0):
+  - RNSVG (13.14.0):
     - React-Core
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
@@ -650,7 +651,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
@@ -775,7 +776,7 @@ EXTERNAL SOURCES:
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
-    :path: "../node_modules/@react-native-community/async-storage"
+    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCPushNotificationIOS:
     :path: "../node_modules/@react-native-community/push-notification-ios"
   RNFBApp:
@@ -821,7 +822,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 0c0ae1eb722ef0c07f7801e5ded8dccd1357d6d4
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  Google-Mobile-Ads-SDK: 509e53bd31c6accb2d9c33b0eb66df1d54dda622
+  Google-Mobile-Ads-SDK: 976fdf273815674eed30b8aafffedb3c25b055e4
   GoogleAppMeasurement: 079d7632810e9d9704a99932547ba1554acc4342
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
@@ -848,7 +849,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 3bf18ff7cb03cd8dfdce08fbbc0d15058c1d71ae
   React-jsinspector: 194e32c6aab382d88713ad3dd0025c5f5c4ee072
   React-logger: cebf22b6cf43434e471dc561e5911b40ac01d289
-  react-native-safe-area-context: 7aa8e6d9d0f3100a820efb1a98af68aa747f9284
+  react-native-safe-area-context: 238cd8b619e05cb904ccad97ef42e84d1b5ae6ec
   react-native-slider: 1cdd6ba29675df21f30544253bf7351d3c2d68c4
   React-NativeModulesApple: 1802a680a4cd891d2ab97780771bcb2ff11fdc0b
   React-perflogger: e3596db7e753f51766bceadc061936ef1472edc3
@@ -868,20 +869,20 @@ SPEC CHECKSUMS:
   React-utils: 1dc03e6e55f56388b6fdde3768a66c885bacb627
   ReactCommon: cfe086d2e2ec9f2907c66666c856082608fba822
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
-  RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
+  RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
   RNCPushNotificationIOS: 64218f3c776c03d7408284a819b2abfda1834bc8
   RNFBApp: 082df9f8ffba99f23f7aee3ecb64df703e7e1adb
   RNFBAuth: b055663339aef8ce9d63cd5d03e2ea5360a3aca2
   RNFBMessaging: b167065ee2fcc7fe43a32b35d79d5eb23bceb4ad
-  RNGestureHandler: c0d04458598fcb26052494ae23dda8f8f5162b13
-  RNGoogleMobileAds: b34663770faa46bab3c718ffbd33151148b6d56f
+  RNGestureHandler: 48e4a6a515fe4a47e49229ca27a78074004fd59e
+  RNGoogleMobileAds: 558b3fa3c365aaba5d928b794b597fa85cff5494
   RNGoogleSignin: ccaa4a81582cf713eea562c5dd9dc1961a715fd0
   RNPermissions: 51847e821238bc4382a1aabd9808f3466b708969
-  RNReanimated: 2491645f0883526f4470d8b5c761308709ba31f8
-  RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
+  RNReanimated: ab2e96c6d5591c3dfbb38a464f54c8d17fb34a87
+  RNScreens: a3eacee8b26a0378c051f11c7587b7f202e9c8fe
   RNSound: 6c156f925295bdc83e8e422e7d8b38d33bc71852
   RNSoundPlayer: 369105c565b8fe6ea0a43fc882dc81eba444e842
-  RNSVG: ed492aaf3af9ca01bc945f7a149d76d62e73ec82
+  RNSVG: d00c8f91c3cbf6d476451313a18f04d220d4f396
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
 

@@ -1,13 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {Flex, VStack} from 'react-native-flex-layout';
+import {VStack} from 'react-native-flex-layout';
 import {Button, Text} from 'react-native-paper';
 
 function WelcomeScreen({navigation}: any): JSX.Element {
-  const image = {
-    uri: 'https://e1.pxfuel.com/desktop-wallpaper/812/237/desktop-wallpaper-55-soccer-field-soccer-pitch.jpg',
-  };
+
   return (
     <SafeAreaProvider style={{flex: 1,backgroundColor:'#303F9F'}}>
         <View
@@ -26,6 +24,23 @@ function WelcomeScreen({navigation}: any): JSX.Element {
             <Text style={{fontSize:30,color:'white'}}> Ya 3 ya 5'ini bilir Kazanırsın</Text>
             <Text style={{fontSize:30,color:'white'}}> Yada 2 bilir kaybedersin</Text>
           </VStack>
+        </View>
+        <View>
+          <Button
+            style={{backgroundColor: '#fff', margin: 10}}
+            onPress={() => {
+             
+            }}>
+            <Text style={{color: '#303F9F'}}>Join Roomm</Text>
+          </Button>
+          <Button
+            style={{backgroundColor: '#fff', margin: 10}}
+            onPress={() => {
+
+            }}>
+            <Text style={{color: '#303F9F'}}>Send test message</Text>
+          </Button>
+
         </View>
         <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
           <Text variant="titleLarge" style={{color: '#fff'}}>

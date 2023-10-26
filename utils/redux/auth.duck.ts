@@ -38,10 +38,11 @@ const authReducer = (state = initialState, action: any) => {
       return {isLoggedIn: false, isLoading: true, user: null, error: null};
    
       case TYPES.LOGIN_SUCCESS:
+      console.log("action.user", action.user);
       return {
         isLoggedIn: true,
         isLoading: false,
-        user: action.payload.user,
+        user: action.user,
         error: null,
       };
       
@@ -54,9 +55,11 @@ const authReducer = (state = initialState, action: any) => {
 
 export const loginUser = (credentials: any) => {
   return (dispatch: any) => {
-    dispatch(startRequest());
-    baseAPI.post('auth/login', {...credentials})
-      .then(res => dispatch(loginSuccess(res.data.user)))
+    baseAPI.post('/auth/sign-in', {...credentials})
+      .then(res => {
+        dispatch(loginSuccess(res.data.profile))
+      }
+        )
       .catch(() => loginFail('Something Went Wrong'));
   };
 };

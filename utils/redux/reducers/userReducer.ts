@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
+import baseAPI from '../../http/base';
 
 interface UserState {
   isLoggedIn: boolean;
@@ -44,5 +45,16 @@ export const userReducer = createSlice({
   },
 });
 
+
+export const loginUser = (credentials: any) => {
+  return (dispatch: any) => {
+    baseAPI.post('/auth/sign-in', {...credentials})
+      .then(res => {
+        dispatch(loginSuccess({user: res.data.profile, accessToken: res.data.accessToken}))
+      }
+        )
+      .catch(() => console.log('Something Went Wrong'));
+  };
+};
 export const {loginSuccess, logoutSuccess, initialTokenLoad} = userReducer.actions;
 export default userReducer.reducer;

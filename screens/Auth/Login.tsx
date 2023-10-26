@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -10,11 +10,11 @@ import {
   Image,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../utils/redux/reducers/userReducer';
 import { Checkbox, IconButton } from 'react-native-paper';
 import baseAPI from '../../utils/http/base';
 import GoogleSignIn from '../../components/UIComponents/SocialLogin/Google';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { loginUser } from '../../utils/redux/reducers/userReducer';
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,25 +23,26 @@ const LoginScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    try {
-      const response = await baseAPI.post('auth/sign-in', {
-        email,
-        password,
-      });
+    let credentials = {
+      email: email,
+      password: password
+    }
+    dispatch(
+      loginUser(credentials) as any);
+  }
 
-      dispatch(loginSuccess({
-        user: {
-          name: response.data.profile.name,
-          lastName: response.data.profile.lastName,
-          email:response.data.profile.email,
-        },
-        accessToken: response.data.accessToken,
-      }));
+  const storeData = async (value: any) => {
+    let data = {
+      email: email,
+      password: password
+    }
+    try {
+      const jsonValue = JSON.stringify(data);
+      await AsyncStorage.setItem('userdata', jsonValue);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
-  
 
   return (
     <KeyboardAvoidingView
@@ -66,32 +67,32 @@ const LoginScreen = ({ navigation }: any) => {
           value={password}
           secureTextEntry
         />
-       <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-        <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
-      <Checkbox
-      status={checked ? 'checked' : 'unchecked'}
-      color='#007BFF'
-      onPress={() => {
-        setChecked(!checked);
-      }}
-    />
-  <Text>Beni hatırla</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+            <Checkbox
+              status={checked ? 'checked' : 'unchecked'}
+              color='#007BFF'
+              onPress={() => {
+                setChecked(!checked);
+              }}
+            />
+            <Text>Beni hatırla</Text>
+          </View>
+          <View>
+            <Text
+              style={{ alignSelf: 'flex-end', padding: 10 }}
+              onPress={() => navigation.navigate("ForgotPassword")}
+            >Şifreni mi unuttun ?</Text>
+          </View>
         </View>
-       <View>
-          <Text
-          style={{alignSelf:'flex-end',padding:10}}
-          onPress={() => navigation.navigate("ForgotPassword")}
-          >Şifreni mi unuttun ?</Text>
-       </View>
-        </View>
-  
+
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={styles.loginButtonText}>Giriş Yap</Text>
         </TouchableOpacity>
       </View>
       <View>
-        <Text style={{alignSelf:'center',fontSize:30,padding:20}}> YA DA </Text>
-        <Text style={{alignSelf:'center',paddingBottom:10}}>İstersen aşağıdakilerden birisini kullanarak da giriş yapabilirsin</Text>
+        <Text style={{ alignSelf: 'center', fontSize: 30, padding: 20 }}> YA DA </Text>
+        <Text style={{ alignSelf: 'center', paddingBottom: 10 }}>İstersen aşağıdakilerden birisini kullanarak da giriş yapabilirsin</Text>
         <View
           style={{
             backgroundColor: '#fff',
