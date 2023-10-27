@@ -4,49 +4,45 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {VStack} from 'react-native-flex-layout';
 import {Button, Text} from 'react-native-paper';
 import {Alert} from 'react-native';
-import { socket } from '../utils/socketService';
+import {useSelector} from 'react-redux';
+import {RootState} from '../utils/redux/stores/store';
 
 function WelcomeScreen({navigation}: any): JSX.Element {
-  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [isConnected, setIsConnected] = useState(false);
+  const {socket} = useSelector((state: RootState) => state.socket);
+  const {userData} = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    function onConnect() {
-      setIsConnected(true);
-      socket.emit('register-socket', {
-        id: 'ee2371c3-5485-40ca-aca0-456bf2fb4043',
-      });
+    console.log(userData);
+    if (socket) {
+      function onConnect() {
+        setIsConnected(true);
+        socket!.emit('register-socket', {
+          id: userData.id,
+        });
+      }
+
+      function onDisconnect() {
+        setIsConnected(false);
+      }
+
+      socket.on('connect', onConnect);
+      socket.on('disconnect', onDisconnect);
+      return () => {
+        socket.off('connect', onConnect);
+        socket.off('disconnect', onDisconnect);
+      };
     }
-
-    function onDisconnect() {
-      setIsConnected(false);
-    }
-
-    socket.on('connect', onConnect);
-    socket.on('disconnect', onDisconnect);
-    socket.on('registered-socket', response => {
-      console.log(response);
-    });
-
-    socket.on('test-response', response => {
-      Alert.alert(response.message + ' ' + response.socketId);
-    });
-
-    socket.on('joined-room', response => {
-      console.log(response);
-    });
-
-    return () => {
-      socket.off('connect', onConnect);
-      socket.off('disconnect', onDisconnect);
-    };
-  }, []);
+  }, [socket, userData]);
 
   useEffect(() => {
-    if (!isConnected) {
-      socket.connect();
+    if (socket) {
+      if (!isConnected) {
+        socket.connect();
+      }
+      console.log(socket.id, isConnected);
     }
-    console.log(socket.id, isConnected);
-  }, [isConnected]);
+  }, [isConnected, socket]);
 
   return (
     <SafeAreaProvider style={{flex: 1, backgroundColor: '#303F9F'}}>
@@ -76,7 +72,7 @@ function WelcomeScreen({navigation}: any): JSX.Element {
         <Button
           style={{backgroundColor: '#fff', margin: 10}}
           onPress={() => {}}>
-          <Text style={{color: '#303F9F'}}>Join Roomm</Text>
+          <Text style={{color: '#303F9F'}}>Çevrimiçi Oyun Oluştur</Text>
         </Button>
         <Button
           style={{backgroundColor: '#fff', margin: 10}}
