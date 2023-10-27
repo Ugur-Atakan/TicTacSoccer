@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { SafeAreaView, Alert, Share, View, Image } from "react-native";
 import { globalStlyes, width } from "../../style";
 import { Button, Text, IconButton, Card } from "react-native-paper";
+import { socket } from "../../utils/socketService";
+import baseAPI from "../../utils/http/base";
 
 export default function CreateRoomScreen() {
   const [roomCode, setRoomCode] = useState('                    ');
@@ -25,21 +27,21 @@ export default function CreateRoomScreen() {
     }
   };
 
-  const generateRoomCode = () => {
-    setRoomCode(makeid(8));
+
+
+  async function createGame() {
+    try {
+      const response = await baseAPI.get("room/create-room");
+      //     const response = await axios.post("http://localhost:3003/api/room/create-room",{ email: "cefatihates@gmail.com"}),
+      socket.emit("join-room-with-code", {
+        roomCode: response.data.roomCode,
+      });
+      setRoomCode(response.data.roomCode);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  function makeid(length: number) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      counter += 1;
-    }
-    return result;
-  }
 
   return (
     <SafeAreaView style={globalStlyes.container}>
@@ -51,7 +53,7 @@ export default function CreateRoomScreen() {
           <Button
             mode="contained"
             buttonColor="#448AFF"
-            onPress={() => { generateRoomCode() }}
+            onPress={() => { createGame() }}
           >
             YENİ ONLİNE OYUN OLUŞTUR.
           </Button>
@@ -88,7 +90,7 @@ export default function CreateRoomScreen() {
           <Button
             mode="contained"
             buttonColor="#448AFF"
-            onPress={() => { generateRoomCode() }}
+            onPress={() => { console.log("Oyunu Başlat") }}
           >
             OYUNU BAŞLAT
           </Button>

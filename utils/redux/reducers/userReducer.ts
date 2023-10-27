@@ -1,6 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import baseAPI from '../../http/base';
+import { socket } from '../../socketService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface UserState {
   isLoggedIn: boolean;
@@ -46,13 +48,30 @@ export const userReducer = createSlice({
 });
 
 
+export const logoutUser = () => {
+  return (dispatch: any) => {
+    try {
+      AsyncStorage.removeItem('accessToken');
+      AsyncStorage.removeItem('user-data').then(() => {
+        dispatch(logoutSuccess());
+      }
+      );
+      dispatch(logoutSuccess());  
+    } catch (error) {
+      console.log(error);
+    }
+    
+  };
+};
+
+
 export const loginUser = (credentials: any) => {
   return (dispatch: any) => {
     baseAPI.post('/auth/sign-in', {...credentials})
       .then(res => {
         dispatch(loginSuccess({user: res.data.profile, accessToken: res.data.accessToken}))
-      }
-        )
+        socket.emit('register-socket', {id: res.data.profile.id});      
+      })
       .catch(() => console.log('Something Went Wrong'));
   };
 };

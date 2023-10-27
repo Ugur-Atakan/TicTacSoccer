@@ -8,13 +8,14 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  Alert,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Checkbox, IconButton } from 'react-native-paper';
-import baseAPI from '../../utils/http/base';
 import GoogleSignIn from '../../components/UIComponents/SocialLogin/Google';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { loginUser } from '../../utils/redux/reducers/userReducer';
+import { loginUser} from '../../utils/redux/reducers/userReducer';
+
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,26 +24,35 @@ const LoginScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
+    if (email === '' || password === '') {
+      Alert.alert('Lütfen tüm alanları doldurunuz',"Email ve parola alanları boş bırakılamaz",[
+        {
+          text: "Tamam",
+        }
+      ]);
+      return;
+    }
     let credentials = {
       email: email,
       password: password
     }
-    dispatch(
-      loginUser(credentials) as any);
+    dispatch(loginUser(credentials) as any);
+
+    if(checked){
+      await AsyncStorage.setItem('user-data', JSON.stringify(credentials));
+    }
   }
 
-  const storeData = async (value: any) => {
-    let data = {
-      email: email,
-      password: password
-    }
-    try {
-      const jsonValue = JSON.stringify(data);
-      await AsyncStorage.setItem('userdata', jsonValue);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    AsyncStorage.getItem('user-data').then((value) => {
+      if (value !== null) {
+        let data = JSON.parse(value);
+        setEmail(data.email);
+        setPassword(data.password);
+        dispatch(loginUser(data) as any);
+      }
+    });
+  }, []);
 
   return (
     <KeyboardAvoidingView

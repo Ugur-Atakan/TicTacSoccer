@@ -4,12 +4,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {VStack} from 'react-native-flex-layout';
 import {Button, Text} from 'react-native-paper';
 import {Alert} from 'react-native';
-import {io} from 'socket.io-client';
-
-export const socket = io('ws://192.168.1.112:3003', {
-  autoConnect: true,
-  transports: ['websocket', 'polling'],
-});
+import { socket } from '../utils/socketService';
 
 function WelcomeScreen({navigation}: any): JSX.Element {
   const [isConnected, setIsConnected] = useState(socket.connected);
