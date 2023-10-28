@@ -11,9 +11,11 @@ import {joinRoomRedux} from '../../utils/redux/reducers/roomReducer';
 export default function CreateRoomScreen() {
   const {socket} = useSelector((state: RootState) => state.socket);
 
-  const {roomCode, connectedSockets} = useSelector(
+  const {roomCode, connectedSockets, connectedUsers} = useSelector(
     (state: RootState) => state.room,
   );
+
+  const {userData} = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
 
@@ -23,23 +25,31 @@ export default function CreateRoomScreen() {
 
   useEffect(() => {
     console.log('create room', socket?.id, 'roomCode', roomCode);
+    if (socket) {
+      socket.on('joined-room', (data: any) => {
+        console.log('joined-room', data);
+      });
+    }
     if (socket && !roomCode) {
       dispatch(
         joinRoomRedux({
-          socketId: socket?.id,
+          user: userData.id,
         } as any) as any,
       );
-      socket?.emit('join-room', {socketId: socket.id, roomCode});
     }
 
     if (roomCode) {
-      socket?.emit('join-room', {socketId: socket.id, roomCode});
+      socket?.emit('join-room', {userId: userData.id, roomCode});
     }
+
+    return () => {
+      socket?.off('joined-room');
+    };
   }, [socket, roomCode]);
 
   useEffect(() => {
-    console.log(connectedSockets);
-  }, [connectedSockets]);
+    console.log(connectedUsers);
+  }, [connectedUsers]);
 
   const photo = {uri: 'https://picsum.photos/200'};
 

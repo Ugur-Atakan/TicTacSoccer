@@ -9,6 +9,7 @@ export interface IRoomState {
 const initialState = {
   roomCode: '',
   connectedSockets: [] as any,
+  connectedUsers: [] as any,
 };
 
 const roomSlice = createSlice({
@@ -18,9 +19,10 @@ const roomSlice = createSlice({
     joinRoom: (state, action) => {
       state.roomCode = action.payload.roomCode;
       if (
-        !state.connectedSockets.find((s: any) => s === action.payload?.socketId)
-      )
-        state.connectedSockets.push(action.payload?.socketId);
+        !state.connectedUsers.find((user: any) => user === action.payload.user)
+      ) {
+        state.connectedUsers.push(action.payload.user);
+      }
     },
     leaveRoom: (state, action) => {
       state.roomCode = '';
@@ -35,10 +37,10 @@ export default roomSlice.reducer;
 export const joinRoomRedux = (payload: any) => {
   return async (dispatch: any) => {
     const room = await baseAPI.get('room/create-room');
-    console.log('room', room.data)
+    console.log('room', room.data);
     const payloadData = {
       roomCode: room.data.roomCode,
-      socketId: payload.socketId,
+      user: payload.user,
     };
     dispatch(joinRoom(payloadData));
   };
