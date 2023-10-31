@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { IconButton, Text } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../utils/redux/reducers/userReducer";
+import { width } from "../../style";
 
 export default function LogoutScreen(){
     const dispatch = useDispatch();
@@ -55,12 +56,12 @@ export default function LogoutScreen(){
     }
     return (
         <View>
-            <Text variant="headlineMedium" style={{padding:30}}>ÇIKIŞ YAPMAK İSTEDİĞİNİ SÖYLEDİN, DOĞRU MU </Text>
+            <Text variant="headlineMedium" style={{padding:width*0.05}}>ÇIKIŞ YAPMAK İSTEDİĞİNİ SÖYLEDİN, DOĞRU MU </Text>
             <View>
-                <Text style={{fontSize:30,alignSelf:'center'}}>Çıkış yapmak için aşağıdaki butona tıkla</Text>
+                <Text style={{fontSize:width*0.05,alignSelf:'center'}}>Çıkış yapmak için aşağıdaki butona tıkla</Text>
                 <IconButton
                 icon='logout-variant'
-                size={300}
+                size={width*0.6}
                 iconColor="red"
             onPress={handler}
                 />

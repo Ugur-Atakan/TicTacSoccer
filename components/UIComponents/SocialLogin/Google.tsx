@@ -3,6 +3,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { IconButton } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../../utils/redux/reducers/userReducer';
+import { width } from '../../../style';
 
 export default function GoogleSignIn() {
     const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export default function GoogleSignIn() {
     return (
         <IconButton
             icon="google"
-            size={50}
+            size={width* 0.17}
             onPress={() => {
                 GoogleSignin.hasPlayServices().then((hasPlayService) => {
                     if (hasPlayService) {

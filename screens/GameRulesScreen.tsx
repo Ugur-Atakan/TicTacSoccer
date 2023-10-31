@@ -4,6 +4,7 @@ import { VStack } from 'react-native-flex-layout';
 import React from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
+import { width } from '../style';
 
 function GameRulesScreen() {
   return (
@@ -55,7 +56,7 @@ function GameRulesScreen() {
 
           <Text
             style={{
-              fontSize: 26,
+              fontSize: width*0.060,
               textAlign: 'left',
               paddingTop: 10,
               color: 'white',

@@ -82,6 +82,9 @@ function Navigator(): JSX.Element {
         screenOptions={{
           headerShown: false,
           title: '3 5 2 Game',
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
         }}>
         {accessToken ? (
           <>

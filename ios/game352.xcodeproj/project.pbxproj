@@ -13,8 +13,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		646D5B6020C73FB055131DBB /* Pods_game352.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3305C27CAA445A681D7EAEC7 /* Pods_game352.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		C1CB27B22AE2E488008F9CF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1CB27B12AE2E488008F9CF5 /* GoogleService-Info.plist */; };
-		C1CB27B32AE2E488008F9CF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1CB27B12AE2E488008F9CF5 /* GoogleService-Info.plist */; };
+		C16BB3D22AF0F90700D24271 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */; };
 		C1DA959C2AE3294F00B5FF56 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DA95892AE3294F00B5FF56 /* Fontisto.ttf */; };
 		C1DA959D2AE3294F00B5FF56 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DA958A2AE3294F00B5FF56 /* Octicons.ttf */; };
 		C1DA959E2AE3294F00B5FF56 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DA958B2AE3294F00B5FF56 /* Feather.ttf */; };
@@ -63,7 +62,7 @@
 		54DE4EC2A0C3B677C816C6E1 /* Pods_game352_game352Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_game352_game352Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E213692EC957D6FB2E1D666 /* Pods-game352-game352Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-game352-game352Tests.release.xcconfig"; path = "Target Support Files/Pods-game352-game352Tests/Pods-game352-game352Tests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = game352/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C1CB27B12AE2E488008F9CF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "game352/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C1DA95892AE3294F00B5FF56 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		C1DA958A2AE3294F00B5FF56 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		C1DA958B2AE3294F00B5FF56 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -158,7 +157,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C1CB27B12AE2E488008F9CF5 /* GoogleService-Info.plist */,
+				C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* game352 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* game352Tests */,
@@ -307,7 +306,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1CB27B32AE2E488008F9CF5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,9 +332,9 @@
 				C1DA95A42AE3294F00B5FF56 /* Foundation.ttf in Resources */,
 				C1DA95A72AE3294F00B5FF56 /* FontAwesome5_Regular.ttf in Resources */,
 				C1DA95A32AE3294F00B5FF56 /* AntDesign.ttf in Resources */,
+				C16BB3D22AF0F90700D24271 /* GoogleService-Info.plist in Resources */,
 				C1DA95AC2AE3294F00B5FF56 /* SimpleLineIcons.ttf in Resources */,
 				C1DA95A92AE3294F00B5FF56 /* Zocial.ttf in Resources */,
-				C1CB27B22AE2E488008F9CF5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,10 +722,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_CFLAGS = "$(inherited)  ";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -809,10 +804,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_CFLAGS = "$(inherited)  ";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",

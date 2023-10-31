@@ -9,12 +9,14 @@ import {
   Platform,
   Image,
   Alert,
+  ScrollView,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Checkbox, IconButton } from 'react-native-paper';
 import GoogleSignIn from '../../components/UIComponents/SocialLogin/Google';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginUser} from '../../utils/redux/reducers/userReducer';
+import {width} from '../../style';
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -55,6 +57,7 @@ const LoginScreen = ({ navigation }: any) => {
   }, []);
 
   return (
+    <ScrollView>
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -101,8 +104,8 @@ const LoginScreen = ({ navigation }: any) => {
         </TouchableOpacity>
       </View>
       <View>
-        <Text style={{ alignSelf: 'center', fontSize: 30, padding: 20 }}> YA DA </Text>
-        <Text style={{ alignSelf: 'center', paddingBottom: 10 }}>İstersen aşağıdakilerden birisini kullanarak da giriş yapabilirsin</Text>
+        <Text style={{ alignSelf: 'center', fontSize: width* 0.09, padding: width* 0.05 }}> YA DA </Text>
+        <Text style={{ alignSelf: 'center', fontSize: width* 0.04, paddingBottom: 10 }}>İstersen aşağıdakilerden birisini kullanarak da giriş yapabilirsin</Text>
         <View
           style={{
             backgroundColor: '#fff',
@@ -116,7 +119,7 @@ const LoginScreen = ({ navigation }: any) => {
             <>
               <IconButton
                 icon="apple"
-                size={50}
+                size={width* 0.17}
                 onPress={() => console.log("twitter")}
               />
               <GoogleSignIn />
@@ -127,20 +130,21 @@ const LoginScreen = ({ navigation }: any) => {
 
           <IconButton
             icon="facebook"
-            size={50}
+            size={width* 0.17}
             onPress={() => console.log("facebook")}
           />
         </View>
       </View>
       <View>
         <Text
-          style={{ color: '#007BFF', padding: 10, margin: 10 }}
+          style={{ color: '#007BFF', padding: width* 0.03, margin: width* 0.03 }}
           onPress={() => navigation.navigate("Register")}
         >
           Hala üyemiz değilsen, bana tıklayarak üye olabilirsin
         </Text>
       </View>
     </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
@@ -152,10 +156,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   logoContainer: {
-    marginBottom: 30,
+    marginBottom: width* 0.06,
   },
   logo: {
-    fontSize: 36,
+    fontSize: width* 0.08,
     fontWeight: 'bold',
     color: '#333',
   },
@@ -165,19 +169,19 @@ const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
     borderColor: '#ccc',
-    paddingVertical: 10,
+    paddingVertical: width* 0.025,
     paddingHorizontal: 5,
-    marginBottom: 20,
+    marginBottom: width* 0.025,
   },
   loginButton: {
     backgroundColor: '#007BFF',
-    padding: 15,
-    borderRadius: 10,
+    padding: width* 0.04,
+    borderRadius: 50,
     alignItems: 'center',
   },
   loginButtonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: width* 0.04,
     fontWeight: 'bold',
   },
 });

@@ -3,9 +3,9 @@ import {View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {VStack} from 'react-native-flex-layout';
 import {Button, Text} from 'react-native-paper';
-import {Alert} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../utils/redux/stores/store';
+import { width } from '../style';
 
 function WelcomeScreen({navigation}: any): JSX.Element {
   const [isConnected, setIsConnected] = useState(false);
@@ -47,7 +47,7 @@ function WelcomeScreen({navigation}: any): JSX.Element {
   return (
     <SafeAreaProvider style={{flex: 1, backgroundColor: '#303F9F'}}>
       <View style={{flex: 3.5, alignItems: 'center', justifyContent: 'center'}}>
-        <Text variant="displayMedium" style={{color: '#fff'}}>
+        <Text style={{fontSize:width*0.1, color: '#fff'}}>
           3 5 2'ye hoş geldiniz
         </Text>
       </View>
@@ -58,11 +58,11 @@ function WelcomeScreen({navigation}: any): JSX.Element {
           shouldWrapChildren
           spacing={10}
           style={{paddingTop: 100}}>
-          <Text style={{fontSize: 30, color: 'white'}}>
+          <Text style={{fontSize: width*0.05, color: 'white'}}>
             {' '}
             Ya 3 ya 5'ini bilir Kazanırsın
           </Text>
-          <Text style={{fontSize: 30, color: 'white'}}>
+          <Text style={{fontSize: width*0.05, color: 'white'}}>
             {' '}
             Yada 2 bilir kaybedersin
           </Text>
@@ -81,7 +81,7 @@ function WelcomeScreen({navigation}: any): JSX.Element {
         </Button>
       </View>
       <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-        <Text variant="titleLarge" style={{color: '#fff'}}>
+        <Text  style={{fontSize:width*0.04,color: '#fff'}}>
           Oyun kuralarını görmek için soldaki menüyü kullanabilirsiniz
         </Text>
       </View>
