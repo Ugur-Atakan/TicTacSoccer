@@ -64,10 +64,6 @@ export default function MainLayout() {
   return (
     <SafeAreaProvider style={globalStlyes.container}>
       <WinnerModal />
-      <View style={globalStlyes.header}>
-        <GameHeader />
-      </View>
-      <SliderComponent />
       <View style={globalStlyes.gameStatus}>
         <StatusBar />
       </View>
