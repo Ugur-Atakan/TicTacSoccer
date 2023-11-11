@@ -5990,10 +5990,10 @@ react-native-paper@^5.10.6:
     color "^3.1.2"
     use-latest-callback "^0.1.5"
 
-react-native-permissions@^3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.10.0.tgz#946fa7e07908ed90620b3f07eb652f20f482196d"
-  integrity sha512-6SB6JInfC0u54Wco8M1QsRoOGThnVjrhaks5IDWyYgwfi6JpXfTIi+F9fZZmRycyyPCgU8vGtht/5gF4VWEB/A==
+react-native-permissions@^3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-3.10.1.tgz#cb0171c8d12113869deaabbdfb979aad1a44752b"
+  integrity sha512-Gc5BxxpjZn4QNUDiVeHOO0vXh3AH7ToolmwTJozqC6DsxV7NAf3ttap+8BSmzDR8WxuAM3Cror+YNiBhHJx7/w==
 
 react-native-push-notification@^8.1.1:
   version "8.1.1"
