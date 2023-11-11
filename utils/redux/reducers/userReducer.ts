@@ -67,7 +67,7 @@ export const logoutUser = () => {
 
 export const loginUser = (credentials: any) => {
   return (dispatch: any) => {
-    baseAPI.post('/auth/sign-in', {...credentials})
+    baseAPI.post('auth/sign-in', {...credentials})
       .then(res => {
         dispatch(loginSuccess({user: res.data.profile, accessToken: res.data.accessToken}))
         socket.emit('register-socket', {id: res.data.profile.id});      

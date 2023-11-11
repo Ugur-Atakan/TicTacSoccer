@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-const baseAPI = axios.create({baseURL: 'https://uguratakan.com/api/'});
+const baseAPI = axios.create({baseURL: 'https://uguratakan.com/API/'});
 
 export default baseAPI;
