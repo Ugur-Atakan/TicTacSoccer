@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  Alert,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {loginSuccess} from '../../utils/redux/reducers/userReducer';
@@ -22,15 +23,50 @@ const RegisterScreen = ({navigation}: any) => {
 
   const dispatch = useDispatch();
 
-  const handleRegister = async () => {
+  const handleRegister = async (navigation) => {
+    if (email === '' || password === '' || name === '' || lastName === '') {
+      Alert.alert('Lütfen tüm alanları doldurunuz',"Alanlar boş bırakılamaz",[
+        {
+          text: "Tamam",
+        }
+      ]);
+      return;
+    }
     try {
       const response = await baseAPI.post('auth/sign-up', {
         name,
         lastName,
         email,
         password,
-      });
-      console.log(response.data);
+      }).then((res) => {
+        if(res.status=200){
+          Alert.alert(
+            "Kayıt başarılı",
+            "Kayıt işlemi başarılı bir şekilde gerçekleşti. \n Şimdi giriş yapabilirsin",
+            [
+                  {
+                    text: "Tamam,Beni giriş ekranına yönlendir",
+                    onPress: () => {
+                      navigation.navigate('Giriş Yap');
+                    },
+                    style: "default", // İptal düğmesini tanımlar
+                  },  
+              ]
+            )
+        } else if (res.status === 409) {
+          Alert.alert(
+            "Kayıt başarısız",
+            "Belirttiğiniz e posta adresine sahip bir hesap var. \n Hesap size aitse şifremi unuttum ekranını kullanabilirsiniz.",
+            [
+                  {
+                    text: "Tamam",
+                  },  
+              ]
+            )
+        }
+      }
+      );
+
     } catch (error) {
       console.error(error);
     }
