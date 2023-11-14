@@ -23,7 +23,7 @@ const RegisterScreen = ({navigation}: any) => {
 
   const dispatch = useDispatch();
 
-  const handleRegister = async (navigation) => {
+  const handleRegister = async (navigation:any) => {
     if (email === '' || password === '' || name === '' || lastName === '') {
       Alert.alert('Lütfen tüm alanları doldurunuz',"Alanlar boş bırakılamaz",[
         {

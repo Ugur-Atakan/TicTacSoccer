@@ -70,7 +70,8 @@ export const loginUser = (credentials: any) => {
     baseAPI.post('auth/sign-in', {...credentials})
       .then(res => {
         dispatch(loginSuccess({user: res.data.profile, accessToken: res.data.accessToken}))
-        socket.emit('register-socket', {id: res.data.profile.id});      
+        socket.emit('register-socket', {id: res.data.profile.id});
+        console.log('sockete bağlantı gönderildi, id: ', res.data.profile.id);      
       })
       .catch(() => console.log('Something Went Wrong'));
   };

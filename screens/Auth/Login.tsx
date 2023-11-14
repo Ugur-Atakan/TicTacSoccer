@@ -5,16 +5,14 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  KeyboardAvoidingView,
   Platform,
-  Image,
   Alert,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Checkbox, IconButton } from 'react-native-paper';
 import GoogleSignIn from '../../components/UIComponents/SocialLogin/Google';
-import { AppleButton,appleAuth } from '@invertase/react-native-apple-authentication';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginUser} from '../../utils/redux/reducers/userReducer';
@@ -58,35 +56,14 @@ const LoginScreen = ({ navigation }: any) => {
     });
   }, []);
 
-  useEffect(() => {
-    // onCredentialRevoked returns a function that will remove the event listener. useEffect will call this function when the component unmounts
-    return appleAuth.onCredentialRevoked(async () => {
-      console.warn('If this function executes, User Credentials have been Revoked');
-    });
-  }, []); // passing in an empty array as the second argument ensures this is only ran once when component mounts initially.
-
-  async function onAppleButtonPress() {
-    // performs login request
-    const appleAuthRequestResponse = await appleAuth.performRequest({
-      requestedOperation: appleAuth.Operation.LOGIN,
-      // Note: it appears putting FULL_NAME first is important, see issue #293
-      requestedScopes: [appleAuth.Scope.FULL_NAME, appleAuth.Scope.EMAIL],
-    });
-  
-    // get current authentication state for user
-    // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
-    const credentialState = await appleAuth.getCredentialStateForUser(appleAuthRequestResponse.user);
-  
-    // use credentialState response to ensure the user is authenticated
-    if (credentialState === appleAuth.State.AUTHORIZED) {
-      // user is authenticated
-    }
-  }
   return (
-    <ScrollView>
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    <SafeAreaView>
+      <ScrollView
+      style={{height: '100%',width: '100%',backgroundColor: '#fff'}}
+      contentContainerStyle={{flexGrow: 1,justifyContent: 'center',alignItems: 'center'}}
+  keyboardShouldPersistTaps="handled"
+>
+
       <View style={styles.logoContainer}>
         <Text style={styles.logo}>3 5 2'ye HOŞGELDİN</Text>
       </View>
@@ -143,26 +120,17 @@ const LoginScreen = ({ navigation }: any) => {
 
           {Platform.OS === 'ios' ?
             <>
-<AppleButton
-        buttonStyle={AppleButton.Style.WHITE}
-        buttonType={AppleButton.Type.SIGN_IN}
-        style={{
-          width: 160, // You must specify a width
-          height: 45, // You must specify a height
-        }}
-        onPress={() => onAppleButtonPress()}
-      />
               <GoogleSignIn />
             </>
             :
             <GoogleSignIn />
           }
 
-          <IconButton
+          {/* <IconButton
             icon="facebook"
             size={width* 0.17}
             onPress={() => console.log("facebook")}
-          />
+          /> */}
         </View>
       </View>
       <View>
@@ -173,8 +141,8 @@ const LoginScreen = ({ navigation }: any) => {
           Hala üyemiz değilsen, bana tıklayarak üye olabilirsin
         </Text>
       </View>
-    </KeyboardAvoidingView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

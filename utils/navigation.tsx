@@ -10,14 +10,8 @@ import MainLayout from '../layout';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from './redux/stores/store';
-import {
-  initialTokenLoad,
-  loginSuccess,
-  logoutSuccess,
-} from './redux/reducers/userReducer';
 import LoginScreen from '../screens/Auth/Login';
 
-import {View, Image, StyleSheet} from 'react-native';
 import OnlineGameManagement from '../screens/OnlineGame';
 import CreateRoomScreen from '../screens/OnlineGame/CreateRoom';
 import Register from '../screens/Auth/Register';
@@ -26,21 +20,6 @@ import LogoutScreen from '../screens/Auth/Logout';
 import UserProfile from '../screens/Auth/Profile';
 import {registerSocketToRedux} from './redux/reducers/socketReducer';
 import {socket} from './socketService';
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-  },
-  logo: {
-    marginTop: 50,
-    height: 658,
-    resizeMode: 'cover',
-  },
-});
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();

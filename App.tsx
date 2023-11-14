@@ -8,9 +8,6 @@ import {
   notificationListenr,
   requestUserPermission,
 } from './utils/commonUtils';
-import { socket } from './utils/socket/socket';
-
-import {check, PERMISSIONS, RESULTS, checkNotifications} from 'react-native-permissions';
 
 const theme = {
   ...DefaultTheme,
