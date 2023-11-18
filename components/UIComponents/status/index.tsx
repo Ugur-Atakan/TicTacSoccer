@@ -13,7 +13,7 @@ export default function StatusBar() {
   return (
     <View>
       <View style={{backgroundColor:'rgba(255,255,255,0.1)'}}>
-        <Text style={{color:'white',fontWeight:'bold',fontSize:width*0.07,textAlign:'center'}}>Round {Round}</Text>
+        <Text style={{color:'white',fontWeight:'bold',fontSize:width*0.05,textAlign:'center'}}>Round {Round}</Text>
     </View>
     <View
       style={{

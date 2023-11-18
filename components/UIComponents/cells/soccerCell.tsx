@@ -16,7 +16,7 @@ const SoccerCell: React.FC<SoccerCellProps> = ({cellId, openModal}) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        gameStatus==true?
+        gameStatus==true && !soccerCells[cellId].data ?
         openModal(cellId):
       ({})
       }}>

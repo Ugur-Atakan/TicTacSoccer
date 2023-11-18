@@ -10,7 +10,7 @@ export default function GameHeader() {
         color: 'white',
         alignSelf: 'center',
       }}>
-      TİKİ TAKA SOCCER TÜRKİYE{' '}
+      3   5   2 G  A  M  E  {' '}
     </Text>
   );
 }

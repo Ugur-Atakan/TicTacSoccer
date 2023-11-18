@@ -12,14 +12,14 @@ export default function CurrentPlayer() {
   );
   return (
         <View style={{backgroundColor:'#448AFF',
-        width: width * 0.3,
-        height: width * 0.1,
-        borderRadius:30,
+        width: width * 0.28,
+        height: width * 0.09,
+        borderRadius:50,
         justifyContent:'flex-end',
         alignItems:'center',
         flexDirection:'row',
         }}>
-    <Text style={{color:'white',fontWeight:'bold',fontSize:width*0.04,paddingRight:10}}>Oyuncu</Text>
+    <Text style={{color:'white',fontWeight:'bold',fontSize:width*0.035,paddingRight:10}}>Oyuncu</Text>
     <Circle />
        
     </View>

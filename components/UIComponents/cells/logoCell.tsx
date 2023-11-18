@@ -2,19 +2,19 @@ import * as React from 'react';
 import {Flex} from 'react-native-flex-layout';
 import {Image, View} from 'react-native';
 import {Text} from 'react-native-paper';
-import {cellSize,cellStyles,imageStyles } from '../../../style';
+import {cellSize,cellStyles,imageStyles, width } from '../../../style';
 
 const LogoCell = () => {
   return (
     <View>
       <Flex w={cellSize} h={cellSize} style={cellStyles.teamcells}>
         <Image
-          source={{
-            uri: 'https://assets.stickpng.com/images/5842fe0ea6515b1e0ad75b3c.png',
-          }}
+          source={require('../../../assets/logo.png')}
           style={imageStyles.logoimg}
         />
-        <Text style={{color: 'white'}}>Tiki Taka</Text>
+       
+      
+        <Text style={{color: 'white',fontSize:width*0.04}}>3 5 2 </Text>
       </Flex>
     </View>
   );

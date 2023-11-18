@@ -23,7 +23,7 @@
 
         return (
             <Portal>
-                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+                <Modal visible={visible} contentContainerStyle={containerStyle}>
                     <Text style={{ fontSize: 30, alignSelf: 'center', fontWeight: 'bold' }}>BU RAUND BİTTİ !</Text>
                     <View style={{ padding: 10, margin: 10 }}>
                         <Text variant="headlineLarge"> Kazanan Oyuncu {JSON.stringify(winnerUserData.id)}</Text>

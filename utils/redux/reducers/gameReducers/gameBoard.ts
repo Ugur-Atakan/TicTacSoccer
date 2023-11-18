@@ -20,7 +20,7 @@ const initialState: any = {
   scores: [0, 0],
   selectedCellId: -1,
   selectedTeamCell: -1,
-  currentPlayer: { id: null },
+  currentPlayer: { id: 1 },
   winnerUserData: { id: null },
   teamCells: Array(6).fill(null),
   soccerCells: Array(9).fill(
@@ -56,6 +56,7 @@ const gameBoardReducer = createSlice({
 
     setTeamCells: (state, action) => {
       state.teamCells = action.payload;
+      console.warn("setTeamCells", state.teamCells);
     },
 
     setSelectedTeamCell: (state, action) => {
@@ -72,7 +73,6 @@ const gameBoardReducer = createSlice({
 
     goNextRound: (state) => {
       state.round = state.round + 1;
-      state.scores= [0, 0],
       state.selectedCellId= -1,
       state.selectedTeamCell= -1,
       state.currentPlayer= { id: 1 },
