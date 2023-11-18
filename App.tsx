@@ -37,6 +37,3 @@ export default function App() {
   );
 }
 
-
-// navigation.navigate('Root', { screen: 'Profile' });
-
