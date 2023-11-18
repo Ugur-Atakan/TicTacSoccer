@@ -1,21 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Alert, Share, View, Image} from 'react-native';
-import {globalStlyes, width} from '../../style';
-import {Button, Text, IconButton, Card} from 'react-native-paper';
-import {socket} from '../../utils/socketService';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, Alert, Share, View, Image } from 'react-native';
+import { globalStlyes, width } from '../../style';
+import { Button, Text, IconButton, Card } from 'react-native-paper';
+import { socket } from '../../utils/socketService';
 import baseAPI from '../../utils/http/base';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../utils/redux/stores/store';
-import {joinRoomRedux} from '../../utils/redux/reducers/roomReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../utils/redux/stores/store';
+import { joinRoomRedux } from '../../utils/redux/reducers/roomReducer';
 
 export default function CreateRoomScreen() {
-  const {socket} = useSelector((state: RootState) => state.socket);
+  const { socket } = useSelector((state: RootState) => state.socket);
 
-  const {roomCode, connectedSockets, connectedUsers} = useSelector(
+  const { roomCode, connectedSockets, connectedUsers } = useSelector(
     (state: RootState) => state.room,
   );
 
-  const {userData} = useSelector((state: RootState) => state.user);
+  const { userData } = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ export default function CreateRoomScreen() {
     }
 
     if (roomCode) {
-      socket?.emit('join-room', {userId: userData.id, roomCode});
+      socket?.emit('join-room', { userId: userData.id, roomCode });
     }
 
     return () => {
@@ -50,8 +50,6 @@ export default function CreateRoomScreen() {
   useEffect(() => {
     console.log(connectedUsers);
   }, [connectedUsers]);
-
-  const photo = {uri: 'https://picsum.photos/200'};
 
   const onShare = async () => {
     try {
@@ -83,7 +81,7 @@ export default function CreateRoomScreen() {
           ONLİNE OYUN MODU
         </Text>
       </View>
-      <View style={{flex: 2, paddingTop: width * 0.15}}>
+      <View style={{ flex: 2, paddingTop: width * 0.15 }}>
         <View>
           <Button
             mode="contained"
@@ -131,7 +129,7 @@ export default function CreateRoomScreen() {
           />
         </View>
       </View>
-      <View style={{flex: 3, flexDirection: 'column'}}>
+      <View style={{ flex: 3, flexDirection: 'column' }}>
         <Text
           style={{
             fontSize: 30,
@@ -234,7 +232,7 @@ export default function CreateRoomScreen() {
             </Text>
           </View>
         </View>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Button
             mode="contained"
             buttonColor="#448AFF"

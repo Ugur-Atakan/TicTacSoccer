@@ -1,6 +1,6 @@
 {
-  "name": "TicTacSoccer",
-  "version": "0.0.1",
+  "name": "352game",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@invertase/react-native-apple-authentication": "^2.3.0",
     "@react-native-async-storage/async-storage": "^1.19.3",
     "@react-native-community/push-notification-ios": "^1.11.0",
     "@react-native-community/slider": "^4.4.3",

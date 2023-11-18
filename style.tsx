@@ -14,7 +14,6 @@ const globalStlyes = StyleSheet.create({
       justifyContent: 'center',
     },
     gameStatus: {
-      marginTop: 15,
       justifyContent: 'flex-end',
       alignItems: 'stretch',
       marginLeft: 0,
@@ -25,7 +24,7 @@ const globalStlyes = StyleSheet.create({
     },
   
     bottomButtons: {
-      flex: 0.6,
+      flex: 0.60,
       justifyContent: 'center',
   
     },
@@ -46,65 +45,6 @@ const buttonStyles=StyleSheet.create({
 
 })
 
-const ViewStyles=StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderRadius: 30,
-        justifyContent: 'space-around',
-        backgroundColor: '#448AFF',
-        width: width * 0.3,
-        height: width * 0.1,
-      },
-    
-      playerContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      playerBadge: {
-        backgroundColor: 'blue',
-        borderRadius: 50,
-        width: width * 0.1,
-        height: width * 0.1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 0,
-      },
-    
-      scoreText: {
-        fontSize: width * 0.05,
-        marginHorizontal: 5,
-        fontWeight: 'bold',
-        color: '#fff',
-      },
-      scoreSeparator: {
-        paddingHorizontal: width * 0.03,
-      },
-      scoreSeparatorText: {
-        fontSize: width * 0.05,
-        fontWeight: 'bold',
-        color: '#fff',
-      },
-    greencircle:{
-        backgroundColor:'#4CAF50',
-        borderRadius: 50,
-        width: width * 0.1,
-        height: width * 0.1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        
-      },
-      redcircle:{
-        backgroundColor:'#FF4081',
-        borderRadius: 50,
-        width: width * 0.1,
-        height: width * 0.1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }, 
-
-})
 
 const textStyles=StyleSheet.create({
     fs15: {
@@ -168,7 +108,6 @@ const imageStyles=StyleSheet.create({
     logoimg:{
         width: 55,
         height: 55,
-        tintColor: 'white'
     },
 
 })
@@ -229,13 +168,13 @@ const modalStyles=StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 22,
+        marginTop: 35,
       },
       modalView: {
         margin: 20,
         backgroundColor: '#C5CAE9',
         borderRadius: 20,
-        padding: 35,
+        paddingHorizontal: 15,
         alignItems: 'center',
         shadowColor: '#000',
         position: 'relative',
@@ -258,8 +197,10 @@ const modalStyles=StyleSheet.create({
         borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
+        zIndex:999,
       },
       modalExitText: {
+        zIndex: 999,
         color: 'red',
         fontSize: 20,
         fontWeight: 'bold',
@@ -284,7 +225,6 @@ export {
     globalStlyes,
     layoutStyles,
     buttonStyles,
-    ViewStyles,
     textStyles,
     imageStyles,
     cellStyles,

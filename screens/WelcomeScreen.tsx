@@ -67,19 +67,9 @@ function WelcomeScreen({navigation}: any): JSX.Element {
             Yada 2 bilir kaybedersin
           </Text>
         </VStack>
+        
       </View>
-      <View>
-        <Button
-          style={{backgroundColor: '#fff', margin: 10}}
-          onPress={() => {}}>
-          <Text style={{color: '#303F9F'}}>Çevrimiçi Oyun Oluştur</Text>
-        </Button>
-        <Button
-          style={{backgroundColor: '#fff', margin: 10}}
-          onPress={() => {}}>
-          <Text style={{color: '#303F9F'}}>Send test message</Text>
-        </Button>
-      </View>
+      <Text style={{fontSize:width*0.03,alignSelf:'center', color: '#fff'}}>Oyunun ilk beta testini oynuyorsunuz,{' \n'}Çeşitli hatalar ve kararsızlıklar olabilir.</Text>
       <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
         <Text  style={{fontSize:width*0.04,color: '#fff'}}>
           Oyun kuralarını görmek için soldaki menüyü kullanabilirsiniz

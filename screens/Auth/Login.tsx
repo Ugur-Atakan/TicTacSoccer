@@ -5,15 +5,15 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  KeyboardAvoidingView,
   Platform,
-  Image,
   Alert,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Checkbox, IconButton } from 'react-native-paper';
 import GoogleSignIn from '../../components/UIComponents/SocialLogin/Google';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginUser} from '../../utils/redux/reducers/userReducer';
 import {width} from '../../style';
@@ -57,10 +57,13 @@ const LoginScreen = ({ navigation }: any) => {
   }, []);
 
   return (
-    <ScrollView>
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+    <SafeAreaView>
+      <ScrollView
+      style={{height: '100%',width: '100%',backgroundColor: '#fff'}}
+      contentContainerStyle={{flexGrow: 1,justifyContent: 'center',alignItems: 'center'}}
+  keyboardShouldPersistTaps="handled"
+>
+
       <View style={styles.logoContainer}>
         <Text style={styles.logo}>3 5 2'ye HOŞGELDİN</Text>
       </View>
@@ -117,22 +120,17 @@ const LoginScreen = ({ navigation }: any) => {
 
           {Platform.OS === 'ios' ?
             <>
-              <IconButton
-                icon="apple"
-                size={width* 0.17}
-                onPress={() => console.log("twitter")}
-              />
               <GoogleSignIn />
             </>
             :
             <GoogleSignIn />
           }
 
-          <IconButton
+          {/* <IconButton
             icon="facebook"
             size={width* 0.17}
             onPress={() => console.log("facebook")}
-          />
+          /> */}
         </View>
       </View>
       <View>
@@ -143,8 +141,8 @@ const LoginScreen = ({ navigation }: any) => {
           Hala üyemiz değilsen, bana tıklayarak üye olabilirsin
         </Text>
       </View>
-    </KeyboardAvoidingView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

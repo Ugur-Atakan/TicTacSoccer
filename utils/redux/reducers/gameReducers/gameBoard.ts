@@ -39,7 +39,7 @@ const gameBoardReducer = createSlice({
       if (!state.soccerCells[index].data) {
         state.soccerCells[index] = action.payload.soccer;
         state.soccerCells[index].knowingPlayer = state.currentPlayer.id;
-        if (checkWinner(state.soccerCells)) {
+        if (checkWinner(state.soccerCells)==true) {
           try {
             state.winnerUserData = state.currentPlayer;
             console.log("kazanan oyuncu", state.winnerUserData.id);
@@ -56,6 +56,7 @@ const gameBoardReducer = createSlice({
 
     setTeamCells: (state, action) => {
       state.teamCells = action.payload;
+      console.warn("setTeamCells", state.teamCells);
     },
 
     setSelectedTeamCell: (state, action) => {
@@ -72,7 +73,6 @@ const gameBoardReducer = createSlice({
 
     goNextRound: (state) => {
       state.round = state.round + 1;
-      state.scores= [0, 0],
       state.selectedCellId= -1,
       state.selectedTeamCell= -1,
       state.currentPlayer= { id: 1 },
@@ -95,6 +95,7 @@ const gameBoardReducer = createSlice({
 });
 
 const checkWinner = (Data: Square[]): boolean => {
+  console.log("Kontrol edilen data:", Data);
   const winPatterns: number[][] = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], // Yatay kazanma kombinasyonları
     [0, 3, 6], [1, 4, 7], [2, 5, 8], // Dikey kazanma kombinasyonları
@@ -108,19 +109,13 @@ const checkWinner = (Data: Square[]): boolean => {
       const valueC = Data[c].knowingPlayer;
 
       if (valueA === valueB && valueB === valueC && valueA !== null) {
+        console.log("Kazanan var");
         return true; // oynayan oyuncu oyunu kazandı
-      } else {
-        return false; // oynayan oyuncu oyunu kaybetti
       }
     }
   }
-
-  // Hiçbir oyuncu kazanmadıysa ve tahta dolu ise berabere.
-  //   if (Object.values(Data).every(cell => cell)) {
-  //     return "Berabere!";
-  //   }
-  // Henüz kazanan yok.
-  return false;
+  console.log("Kazanan henüz yok");
+  return false; // oynayan oyuncu oyunu kaybetti
 }
 
 export const { play, reset, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, setSelectedTeamCell,goNextRound } = gameBoardReducer.actions;

@@ -1,134 +1,175 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  KeyboardAvoidingView,
+  SafeAreaView,
+  ScrollView,
   Platform,
-  Image,
+  Alert,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
-import {loginSuccess} from '../../utils/redux/reducers/userReducer';
-import {Checkbox, IconButton} from 'react-native-paper';
+import { useDispatch } from 'react-redux';
+import { IconButton } from 'react-native-paper';
 import baseAPI from '../../utils/http/base';
 
-const RegisterScreen = ({navigation}: any) => {
+const RegisterScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
-
-  const dispatch = useDispatch();
-
   const handleRegister = async () => {
+    if (email === '' || password === '' || name === '' || lastName === '') {
+      Alert.alert('Lütfen tüm alanları doldurunuz', "Alanlar boş bırakılamaz", [
+        {
+          text: "Tamam",
+        }
+      ]);
+      return;
+    }
     try {
       const response = await baseAPI.post('auth/sign-up', {
         name,
         lastName,
         email,
         password,
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
+      }).then((res) => {
+
+        Alert.alert(
+          "Kayıt başarılı",
+          "Kayıt işlemi başarılı bir şekilde gerçekleşti. \n Şimdi giriş yapabilirsin",
+          [
+            {
+              text: "Tamam,Beni giriş ekranına yönlendir",
+              onPress: () => {
+                navigation.navigate("Giriş Yap")
+              },
+              style: "default", // İptal düğmesini tanımlar
+            },
+          ]
+        )
+      }
+      )
+    } catch (error: any) {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        if (errorMessage === 'Duplicate record') {
+          Alert.alert(
+            "Kayıt başarısız",
+            "Belirttiğiniz e posta adresine sahip bir hesap var. \nHesap size aitse şifremi unuttum ekranını kullanabilirsiniz.",
+            [
+                  {
+                    text: "Tamam",
+                  },  
+              ]
+            )
+        } else {
+          console.error('Bilinmeyen bir hata oluştu:', errorMessage);
+        }
+      } else {
+        console.error('Bir hata oluştu:', error.message);
+      }
     }
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <View style={styles.logoContainer}>
-        <Text style={styles.logo}>3 5 2'ye HOŞGELDİN</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Adın"
-          onChangeText={text => setName(text)}
-          value={name}
-        />
+    <SafeAreaView>
+      <ScrollView
+        style={{ height: '100%', width: '100%', backgroundColor: '#fff' }}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.logoContainer}>
+          <Text style={styles.logo}>3 5 2'ye HOŞGELDİN</Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Adın"
+            onChangeText={text => setName(text)}
+            value={name}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Soyadın"
-          onChangeText={text => setLastName(text)}
-          value={lastName}
-        />
+          <TextInput
+            style={styles.input}
+            placeholder="Soyadın"
+            onChangeText={text => setLastName(text)}
+            value={lastName}
+          />
 
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          onChangeText={text => setEmail(text)}
-          value={email}
-          autoCapitalize="none"
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Parola"
-          onChangeText={text => setPassword(text)}
-          value={password}
-          secureTextEntry
-        />
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            onChangeText={text => setEmail(text)}
+            value={email}
+            autoCapitalize="none"
+            keyboardType="email-address"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Parola"
+            onChangeText={text => setPassword(text)}
+            value={password}
+            secureTextEntry
+          />
 
-        <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
-          <Text style={styles.loginButtonText}>Kayıt Ol</Text>
-        </TouchableOpacity>
-      </View>
-      <View>
-        <Text style={{alignSelf: 'center', fontSize: 30, padding: 20}}>
-          {' '}
-          YA DA{' '}
-        </Text>
-        <Text style={{alignSelf: 'center', paddingBottom: 10}}>
-          Dilersen bunlardan birisi ile kaydolabilirsin
-        </Text>
-        <View
-          style={{
-            backgroundColor: '#fff',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          {Platform.OS === 'ios' ? (
-            <>
-              <IconButton
-                icon="apple"
-                size={50}
-                onPress={() => console.log('twitter')}
-              />
+          <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
+            <Text style={styles.loginButtonText}>Kayıt Ol</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <Text style={{ alignSelf: 'center', fontSize: 25, padding: 10 }}>
+            {' '}
+            YA DA{' '}
+          </Text>
+          <Text style={{ alignSelf: 'center', paddingBottom: 10 }}>
+            Dilersen bunlardan birisi ile kaydolabilirsin
+          </Text>
+          <View
+            style={{
+              backgroundColor: '#fff',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            {Platform.OS === 'ios' ? (
+              <>
+                <IconButton
+                  icon="apple"
+                  size={50}
+                  onPress={() => console.log('twitter')}
+                />
+                <IconButton
+                  icon="google"
+                  size={50}
+                  onPress={() => console.log('google')}
+                />
+              </>
+            ) : (
               <IconButton
                 icon="google"
                 size={50}
                 onPress={() => console.log('google')}
               />
-            </>
-          ) : (
-            <IconButton
-              icon="google"
-              size={50}
-              onPress={() => console.log('google')}
-            />
-          )}
+            )}
 
-          <IconButton
-            icon="facebook"
-            size={50}
-            onPress={() => console.log('facebook')}
-          />
+            <IconButton
+              icon="facebook"
+              size={50}
+              onPress={() => console.log('facebook')}
+            />
+          </View>
         </View>
-      </View>
-      <View>
-        <Text
-          style={{color: '#007BFF', padding: 10, margin: 10}}
-          onPress={() => navigation.navigate('Register')}>
-          Zaten üyemiz misin ? Bana tıklayarak giriş yapabilirsin
-        </Text>
-      </View>
-    </KeyboardAvoidingView>
+        <View>
+          <Text
+            style={{ color: '#007BFF', padding: 10, margin: 10 }}
+            onPress={() => navigation.navigate('Register')}>
+            Zaten üyemiz misin ? Bana tıklayarak giriş yapabilirsin
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

@@ -13,6 +13,24 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		646D5B6020C73FB055131DBB /* Pods_game352.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3305C27CAA445A681D7EAEC7 /* Pods_game352.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		C139B3D62B03797400F6386E /* iphone-spotlight-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3CD2B03797400F6386E /* iphone-spotlight-3x.png */; };
+		C139B3D72B03797400F6386E /* iphone-spotlight-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3CD2B03797400F6386E /* iphone-spotlight-3x.png */; };
+		C139B3D82B03797400F6386E /* iphone-app-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3CE2B03797400F6386E /* iphone-app-3x.png */; };
+		C139B3D92B03797400F6386E /* iphone-app-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3CE2B03797400F6386E /* iphone-app-3x.png */; };
+		C139B3DA2B03797400F6386E /* appstore-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3CF2B03797400F6386E /* appstore-icon.png */; };
+		C139B3DB2B03797400F6386E /* appstore-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3CF2B03797400F6386E /* appstore-icon.png */; };
+		C139B3DC2B03797400F6386E /* iphone-notification-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D02B03797400F6386E /* iphone-notification-2x.png */; };
+		C139B3DD2B03797400F6386E /* iphone-notification-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D02B03797400F6386E /* iphone-notification-2x.png */; };
+		C139B3DE2B03797400F6386E /* iphone-settings-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D12B03797400F6386E /* iphone-settings-3x.png */; };
+		C139B3DF2B03797400F6386E /* iphone-settings-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D12B03797400F6386E /* iphone-settings-3x.png */; };
+		C139B3E02B03797400F6386E /* iphone-notification-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D22B03797400F6386E /* iphone-notification-3x.png */; };
+		C139B3E12B03797400F6386E /* iphone-notification-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D22B03797400F6386E /* iphone-notification-3x.png */; };
+		C139B3E22B03797400F6386E /* iphone-settings-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D32B03797400F6386E /* iphone-settings-2x.png */; };
+		C139B3E32B03797400F6386E /* iphone-settings-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D32B03797400F6386E /* iphone-settings-2x.png */; };
+		C139B3E42B03797400F6386E /* iphone-spotlight-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D42B03797400F6386E /* iphone-spotlight-2x.png */; };
+		C139B3E52B03797400F6386E /* iphone-spotlight-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D42B03797400F6386E /* iphone-spotlight-2x.png */; };
+		C139B3E62B03797400F6386E /* iphone-app-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D52B03797400F6386E /* iphone-app-2x.png */; };
+		C139B3E72B03797400F6386E /* iphone-app-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C139B3D52B03797400F6386E /* iphone-app-2x.png */; };
 		C16BB3D22AF0F90700D24271 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */; };
 		C1DA959C2AE3294F00B5FF56 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DA95892AE3294F00B5FF56 /* Fontisto.ttf */; };
 		C1DA959D2AE3294F00B5FF56 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DA958A2AE3294F00B5FF56 /* Octicons.ttf */; };
@@ -62,6 +80,15 @@
 		54DE4EC2A0C3B677C816C6E1 /* Pods_game352_game352Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_game352_game352Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E213692EC957D6FB2E1D666 /* Pods-game352-game352Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-game352-game352Tests.release.xcconfig"; path = "Target Support Files/Pods-game352-game352Tests/Pods-game352-game352Tests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = game352/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C139B3CD2B03797400F6386E /* iphone-spotlight-3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-spotlight-3x.png"; sourceTree = "<group>"; };
+		C139B3CE2B03797400F6386E /* iphone-app-3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-app-3x.png"; sourceTree = "<group>"; };
+		C139B3CF2B03797400F6386E /* appstore-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appstore-icon.png"; sourceTree = "<group>"; };
+		C139B3D02B03797400F6386E /* iphone-notification-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-notification-2x.png"; sourceTree = "<group>"; };
+		C139B3D12B03797400F6386E /* iphone-settings-3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-settings-3x.png"; sourceTree = "<group>"; };
+		C139B3D22B03797400F6386E /* iphone-notification-3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-notification-3x.png"; sourceTree = "<group>"; };
+		C139B3D32B03797400F6386E /* iphone-settings-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-settings-2x.png"; sourceTree = "<group>"; };
+		C139B3D42B03797400F6386E /* iphone-spotlight-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-spotlight-2x.png"; sourceTree = "<group>"; };
+		C139B3D52B03797400F6386E /* iphone-app-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-app-2x.png"; sourceTree = "<group>"; };
 		C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "game352/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C1BE25EA2AFF899400C7E4FC /* game352.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = game352.entitlements; path = game352/game352.entitlements; sourceTree = "<group>"; };
 		C1DA95892AE3294F00B5FF56 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
@@ -127,6 +154,7 @@
 		13B07FAE1A68108700A75B9A /* game352 */ = {
 			isa = PBXGroup;
 			children = (
+				C139B3CA2B03622300F6386E /* Resources */,
 				C1BE25EA2AFF899400C7E4FC /* game352.entitlements */,
 				C1DA95882AE3294F00B5FF56 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -190,6 +218,38 @@
 				7E213692EC957D6FB2E1D666 /* Pods-game352-game352Tests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C139B3CA2B03622300F6386E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C139B3CB2B03622B00F6386E /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C139B3CB2B03622B00F6386E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C139B3CC2B03623900F6386E /* AppIcon */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		C139B3CC2B03623900F6386E /* AppIcon */ = {
+			isa = PBXGroup;
+			children = (
+				C139B3CF2B03797400F6386E /* appstore-icon.png */,
+				C139B3D52B03797400F6386E /* iphone-app-2x.png */,
+				C139B3CE2B03797400F6386E /* iphone-app-3x.png */,
+				C139B3D02B03797400F6386E /* iphone-notification-2x.png */,
+				C139B3D22B03797400F6386E /* iphone-notification-3x.png */,
+				C139B3D32B03797400F6386E /* iphone-settings-2x.png */,
+				C139B3D12B03797400F6386E /* iphone-settings-3x.png */,
+				C139B3D42B03797400F6386E /* iphone-spotlight-2x.png */,
+				C139B3CD2B03797400F6386E /* iphone-spotlight-3x.png */,
+			);
+			path = AppIcon;
 			sourceTree = "<group>";
 		};
 		C1DA95882AE3294F00B5FF56 /* Fonts */ = {
@@ -273,7 +333,8 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -308,6 +369,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C139B3E12B03797400F6386E /* iphone-notification-3x.png in Resources */,
+				C139B3DF2B03797400F6386E /* iphone-settings-3x.png in Resources */,
+				C139B3D72B03797400F6386E /* iphone-spotlight-3x.png in Resources */,
+				C139B3DB2B03797400F6386E /* appstore-icon.png in Resources */,
+				C139B3D92B03797400F6386E /* iphone-app-3x.png in Resources */,
+				C139B3DD2B03797400F6386E /* iphone-notification-2x.png in Resources */,
+				C139B3E32B03797400F6386E /* iphone-settings-2x.png in Resources */,
+				C139B3E52B03797400F6386E /* iphone-spotlight-2x.png in Resources */,
+				C139B3E72B03797400F6386E /* iphone-app-2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,26 +386,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1DA95A52AE3294F00B5FF56 /* Ionicons.ttf in Resources */,
+				C139B3E42B03797400F6386E /* iphone-spotlight-2x.png in Resources */,
 				C1DA959D2AE3294F00B5FF56 /* Octicons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				C1DA95A82AE3294F00B5FF56 /* FontAwesome.ttf in Resources */,
 				C1DA959E2AE3294F00B5FF56 /* Feather.ttf in Resources */,
+				C139B3D82B03797400F6386E /* iphone-app-3x.png in Resources */,
 				C1DA95A12AE3294F00B5FF56 /* FontAwesome5_Brands.ttf in Resources */,
+				C139B3D62B03797400F6386E /* iphone-spotlight-3x.png in Resources */,
+				C139B3E02B03797400F6386E /* iphone-notification-3x.png in Resources */,
 				C1DA95AE2AE3294F00B5FF56 /* MaterialIcons.ttf in Resources */,
+				C139B3E22B03797400F6386E /* iphone-settings-2x.png in Resources */,
 				C1DA959F2AE3294F00B5FF56 /* FontAwesome6_Regular.ttf in Resources */,
 				C1DA95AA2AE3294F00B5FF56 /* EvilIcons.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C1DA95A62AE3294F00B5FF56 /* FontAwesome5_Solid.ttf in Resources */,
 				C1DA95AD2AE3294F00B5FF56 /* FontAwesome6_Brands.ttf in Resources */,
 				C1DA95A22AE3294F00B5FF56 /* MaterialCommunityIcons.ttf in Resources */,
+				C139B3DC2B03797400F6386E /* iphone-notification-2x.png in Resources */,
 				C1DA95A02AE3294F00B5FF56 /* Entypo.ttf in Resources */,
+				C139B3DA2B03797400F6386E /* appstore-icon.png in Resources */,
 				C1DA95AB2AE3294F00B5FF56 /* FontAwesome6_Solid.ttf in Resources */,
 				C1DA959C2AE3294F00B5FF56 /* Fontisto.ttf in Resources */,
+				C139B3E62B03797400F6386E /* iphone-app-2x.png in Resources */,
 				C1DA95A42AE3294F00B5FF56 /* Foundation.ttf in Resources */,
 				C1DA95A72AE3294F00B5FF56 /* FontAwesome5_Regular.ttf in Resources */,
 				C1DA95A32AE3294F00B5FF56 /* AntDesign.ttf in Resources */,
 				C16BB3D22AF0F90700D24271 /* GoogleService-Info.plist in Resources */,
 				C1DA95AC2AE3294F00B5FF56 /* SimpleLineIcons.ttf in Resources */,
+				C139B3DE2B03797400F6386E /* iphone-settings-3x.png in Resources */,
 				C1DA95A92AE3294F00B5FF56 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +630,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CEDD08F31D716020E8BBAD2D /* Pods-game352-game352Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -578,6 +658,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E213692EC957D6FB2E1D666 /* Pods-game352-game352Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = game352Tests/Info.plist;
@@ -608,6 +689,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZCSUTJ34AN;
 				ENABLE_BITCODE = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = game352/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -622,8 +704,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.game352;
 				PRODUCT_NAME = game352;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -637,6 +723,7 @@
 				CODE_SIGN_ENTITLEMENTS = game352/game352.entitlements;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZCSUTJ34AN;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = game352/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -651,7 +738,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.game352;
 				PRODUCT_NAME = game352;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -689,6 +780,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -726,7 +818,10 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "$(inherited)  ";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -776,6 +871,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -808,7 +904,10 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "$(inherited)  ";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",

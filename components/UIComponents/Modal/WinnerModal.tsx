@@ -8,7 +8,7 @@
 
     export default function WinnerModal() {
         const [visible, setVisible] = React.useState(false);
-        const { winnerUserData, currentPlayer } = useSelector((state: RootState) => state.gameBoard);
+        const { winnerUserData} = useSelector((state: RootState) => state.gameBoard);
         const Scores = useSelector((state: RootState) => state.gameBoard.scores);
         const dispatch = useDispatch();
         const hideModal = () => setVisible(false);
@@ -17,14 +17,13 @@
             if (winnerUserData?.id != null) {
                 setVisible(true);
             }
-        }
-            , [winnerUserData?.id]);
+        },[winnerUserData]);
 
         const containerStyle = { backgroundColor: '#BDBDBD', padding: 20 };
 
         return (
             <Portal>
-                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+                <Modal visible={visible} contentContainerStyle={containerStyle}>
                     <Text style={{ fontSize: 30, alignSelf: 'center', fontWeight: 'bold' }}>BU RAUND BİTTİ !</Text>
                     <View style={{ padding: 10, margin: 10 }}>
                         <Text variant="headlineLarge"> Kazanan Oyuncu {JSON.stringify(winnerUserData.id)}</Text>
@@ -52,9 +51,10 @@
                         <Button
                             mode="contained"
                             buttonColor="#448AFF"
-                            onPress={() => {
-                                hideModal();
+                            onPress={
+                                () => {
                                 dispatch(nextRound() as any);
+                                hideModal();
                               }}>
                             Sonraki Raund
                         </Button>

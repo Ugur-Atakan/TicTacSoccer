@@ -76,5 +76,4 @@ if (!firebase.apps.length) {
   //Genel Bildirimlere üye ettim.
   messaging().subscribeToTopic('genel_bildirimler');
 
-
 AppRegistry.registerComponent(appName, () => App);

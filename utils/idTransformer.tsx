@@ -350,10 +350,10 @@ const originalTeams = [
 ]
 
 const idTransformer = (id: any) => {
-  return originalTeams.filter((data: any) => data.id === id)[0].teamId;
-};
+  return originalTeams.filter((data: any) => data.id === id)[0]?.teamId;
+}
 const shortNameGenerator = (id: any) => {
-  return originalTeams.filter((data: any) => data.id === id)[0].shortName;
-};
+  return originalTeams.filter((data: any) => data.id === id)[0]?.shortName;
+}
 
 export {idTransformer,shortNameGenerator};

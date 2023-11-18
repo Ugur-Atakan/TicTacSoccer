@@ -1,6 +1,6 @@
 import {Text} from 'react-native-paper';
-import {View} from 'react-native';
-import {ViewStyles} from '../../../style';
+import {StyleSheet, View} from 'react-native';
+import {width} from '../../../style';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
 
@@ -25,3 +25,44 @@ export default function ScoreBoard() {
     </View>
   );
 }
+const ViewStyles=StyleSheet.create({
+  container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderRadius: 30,
+      justifyContent: 'space-around',
+      backgroundColor: '#448AFF',
+      width: width * 0.25,
+      height: width * 0.09,
+    },
+  
+    playerContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    playerBadge: {
+      backgroundColor: 'blue',
+      borderRadius: 50,
+      width: width * 0.09,
+      height: width * 0.09,
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 0,
+    },
+  
+    scoreText: {
+      fontSize: width * 0.045,
+      marginHorizontal: 5,
+      fontWeight: 'bold',
+      color: '#fff',
+    },
+    scoreSeparator: {
+      paddingHorizontal: width * 0.025,
+    },
+    scoreSeparatorText: {
+      fontSize: width * 0.045,
+      fontWeight: 'bold',
+      color: '#fff',
+    }
+})

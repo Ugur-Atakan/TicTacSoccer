@@ -19,7 +19,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
             center
             shouldWrapChildren
             spacing={10}
-            style={{ paddingTop: 100 }}>
+            style={{ paddingTop: 10 }}>
             <Flex
               w={compstyles.gamemode.width}
               h={compstyles.gamemode.height}
@@ -39,7 +39,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
               h={compstyles.gamemode.height}
               center
               style={{ backgroundColor: '#536DFE', borderRadius: 30 }}>
-              <TouchableOpacity onPress={() => navigation.navigate('OnlineGame')}>
+              <TouchableOpacity onPress={cokYakinda}>
                 <Text style={{ alignSelf: 'center', fontSize: width * 0.08, color: 'white' }}>
                   Çevrimiçi Oyun Modu
                 </Text>

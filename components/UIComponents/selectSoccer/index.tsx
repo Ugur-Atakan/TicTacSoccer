@@ -38,9 +38,6 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
         }
     }, [input, teamCells]);
 
-
-
-
     const _finCoords = (cellID: number) => {
         switch (cellID) {
             case 0:
@@ -81,8 +78,6 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
     const handleInputSubmit = async (Soccer: any) => {
         const check = await _isCorrect(Soccer.id);
         if (check == true) {
-            console.log('soccer',Soccer);
-            console.log('selected cell id',selectedCellId)
             dispatch(
                 play({
                     index: selectedCellId, // Burada 'cellID' değişkeni, oynanacak hücrenin indeksini temsil etmelidir.
@@ -92,11 +87,11 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
                     },
                 })
             );
-            console.log('Oyuncu iki takımda birden oynamış doğru döndü yani en azından Fatih öyle diyor')
-            // Burasından emin değilim.
+            console.log('Selected player is corrected')
+           
 
         } else {
-            console.log('Oyuncu iki takımda birden oynamış değil ve sıra diğer oyuncuya geçti')
+            console.log('Selected player is not corrected')
             dispatch(nextPlayer());
         }
         closeModal();
