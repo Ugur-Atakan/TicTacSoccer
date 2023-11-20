@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import baseAPI from '../../http/base';
 import { socket } from '../../socketService';
+import { useEffect } from 'react';
 
 export interface IRoomState {
   roomCode: string;
@@ -37,6 +38,12 @@ const roomSlice = createSlice({
 
 export const {joinRoom, leaveRoom,updatejoinedUsers} = roomSlice.actions;
 export default roomSlice.reducer;
+
+export const updateJoinedUsersState =(payload: any)=> {
+  return (dispatch:any) => {
+    dispatch(updatejoinedUsers(payload))
+  }
+}
 
 export const createRoom = (payload: any) => {
   return async (dispatch: any) => {

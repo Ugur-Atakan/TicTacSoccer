@@ -3,7 +3,7 @@ import { SafeAreaView, Alert, Share, View, Image } from 'react-native';
 import { globalStlyes, width } from '../../../style';
 import { Button, Text, IconButton, Card } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import {updatejoinedUsers} from '../../../utils/redux/reducers/roomReducer';
+import {updateJoinedUsersState} from '../../../utils/redux/reducers/roomReducer';
 import { RootState } from '../../../utils/redux/stores/store';
 import { createRoom } from '../../../utils/redux/reducers/roomReducer';
 
@@ -20,10 +20,10 @@ export default function CreateRoom() {
     console.log(roomCode,'kodlu oda',socket?.id,'idli soket tarafından oluşturuldu');
     if (socket) {
       socket.on('joined-room', (data: any) => {
-        console.log('joined-room-logu: ', data.roomUsers);
-        dispatch(updatejoinedUsers({
+        console.log('joined-room-logu: ', data);
+        dispatch(updateJoinedUsersState({
           connectedUsers: data.roomUsers,
-        }));
+        }) as any );
       });
     }
     if (socket && !roomCode) {
@@ -46,6 +46,7 @@ export default function CreateRoom() {
     console.log('connectedUsers değişti: ', connectedUsers);
   }
   , [connectedUsers]);
+
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -182,7 +183,7 @@ export default function CreateRoom() {
                 fontWeight: 'bold',
                 alignSelf: 'center',
               }}>
-            {connectedUsers[1]?.name+' '+connectedUsers[1]?.lastName ?'Oyuncu 2':''}
+            {connectedUsers[1]?.name+' '+connectedUsers[1]?.lastName ?connectedUsers[1]?.name+' '+connectedUsers[1]?.lastName :''}
             </Text>
             <Text
               style={{

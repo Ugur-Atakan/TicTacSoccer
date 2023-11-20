@@ -15,6 +15,8 @@ import LoginScreen from '../screens/Auth/Login';
 import OnlineGameManagement from '../games/online/OnlineGame/GameManagement';
 import JoinRoom from '../games/online/OnlineGame/JoinRoom';
 import CreateRoom from '../games/online/OnlineGame/CreateRoom';
+import Lobby from '../games/online/OnlineGame/Lobby';
+
 import Register from '../screens/Auth/Register';
 import ResetPassword from '../screens/Auth/ResetPassword';
 import LogoutScreen from '../screens/Auth/Logout';
@@ -100,6 +102,14 @@ function Navigator(): JSX.Element {
             <Stack.Screen
               name="JoinRoom"
               component={JoinRoom}
+              options={{
+                headerShown: true,
+                title: 'Online oyuna Katıl',
+              }}
+            />
+            <Stack.Screen
+              name="Lobby"
+              component={Lobby}
               options={{
                 headerShown: true,
                 title: 'Online oyuna Katıl',

@@ -18,9 +18,7 @@ export default function JoinRoom({ navigation }: any) {
     const [roomCode, setRoomCode] = useState('');
     const { socket } = useSelector((state: RootState) => state.socket);
     const { userData } = useSelector((state: RootState) => state.user);
-    const { connectedSockets, connectedUsers } = useSelector(
-        (state: RootState) => state.room,
-    );
+    const { connectedSockets, connectedUsers } = useSelector((state: RootState) => state.room);
 
     const joinGame = () => {
         console.log('code', roomCode);
@@ -28,10 +26,20 @@ export default function JoinRoom({ navigation }: any) {
         console.log('connectedUsers', connectedUsers);
         if (socket) {
             socket.emit('join-room', { roomCode, userId: userData.id });
-            console.log('userdata:',userData)
-
+            console.log('odaya join olunmaya çalışıldı, userdata:',userData)
         }
+        navigation.navigate('Lobby', { roomCode });
     };
+
+    useEffect(() => {
+        socket?.on('joined-room', (data: any) => {
+            console.log('joined-room-logu: ', data.roomUsers);
+            navigation.navigate('Lobby',{ code: roomCode});
+        }
+        );
+        return () => {
+            socket?.off('joined-room');
+        }}, [socket]);
 
     return (
         <SafeAreaView
