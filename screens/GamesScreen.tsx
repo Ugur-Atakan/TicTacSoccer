@@ -25,7 +25,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
               h={compstyles.gamemode.height}
               center
               style={{ backgroundColor: '#536DFE', borderRadius: 30 }}>
-              <TouchableOpacity onPress={() => navigation.navigate('BaseGame')}>
+              <TouchableOpacity onPress={() => navigation.navigate('SingleGame')}>
                 <Text style={{ alignSelf: 'center', fontSize: width * 0.08, color: 'white' }}>
                   Temel Oyun Modu
                 </Text>
@@ -54,7 +54,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
               h={compstyles.gamemode.height}
               center
               style={{ backgroundColor: '#536DFE', borderRadius: 30 }}>
-              <TouchableOpacity onPress={cokYakinda}>
+              <TouchableOpacity onPress={() => navigation.navigate('OnlineGameManagement')}>
                 <Text style={{ alignSelf: 'center', fontSize: width * 0.08, color: 'white' }}>
                   Düello Oyun Modu
                 </Text>

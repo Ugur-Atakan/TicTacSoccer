@@ -1,43 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Alert, Share, View, Image } from 'react-native';
-import { globalStlyes, width } from '../../style';
+import { globalStlyes, width } from '../../../style';
 import { Button, Text, IconButton, Card } from 'react-native-paper';
-import { socket } from '../../utils/socketService';
-import baseAPI from '../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../utils/redux/stores/store';
-import { joinRoomRedux } from '../../utils/redux/reducers/roomReducer';
+import {updatejoinedUsers} from '../../../utils/redux/reducers/roomReducer';
+import { RootState } from '../../../utils/redux/stores/store';
+import { createRoom } from '../../../utils/redux/reducers/roomReducer';
 
-export default function CreateRoomScreen() {
+export default function CreateRoom() {
   const { socket } = useSelector((state: RootState) => state.socket);
-
-  const { roomCode, connectedSockets, connectedUsers } = useSelector(
-    (state: RootState) => state.room,
-  );
-
+  const { roomCode, connectedUsers } = useSelector((state: RootState) => state.room);
   const { userData } = useSelector((state: RootState) => state.user);
-
   const dispatch = useDispatch();
-
   useEffect(() => {
-    console.log(roomCode);
+    console.log('oda kodu: ', roomCode);
   }, [roomCode]);
 
   useEffect(() => {
-    console.log('create room', socket?.id, 'roomCode', roomCode);
+    console.log(roomCode,'kodlu oda',socket?.id,'idli soket tarafından oluşturuldu');
     if (socket) {
       socket.on('joined-room', (data: any) => {
-        console.log('joined-room', data);
+        console.log('joined-room-logu: ', data.roomUsers);
+        dispatch(updatejoinedUsers({
+          connectedUsers: data.roomUsers,
+        }));
       });
     }
     if (socket && !roomCode) {
       dispatch(
-        joinRoomRedux({
-          user: userData.id,
+        createRoom({
+          user: userData,
         } as any) as any,
       );
     }
-
     if (roomCode) {
       socket?.emit('join-room', { userId: userData.id, roomCode });
     }
@@ -46,11 +41,11 @@ export default function CreateRoomScreen() {
       socket?.off('joined-room');
     };
   }, [socket, roomCode]);
-
+  
   useEffect(() => {
-    console.log(connectedUsers);
-  }, [connectedUsers]);
-
+    console.log('connectedUsers değişti: ', connectedUsers);
+  }
+  , [connectedUsers]);
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -72,16 +67,15 @@ export default function CreateRoomScreen() {
       <View>
         <Text
           style={{
-            fontSize: 30,
+            fontSize: 25,
             color: 'white',
             fontWeight: 'bold',
             alignSelf: 'center',
           }}>
-          {' '}
           ONLİNE OYUN MODU
         </Text>
       </View>
-      <View style={{ flex: 2, paddingTop: width * 0.15 }}>
+      <View style={{ flex: 1, paddingTop: width * 0.15 }}>
         <View>
           <Button
             mode="contained"
@@ -129,7 +123,7 @@ export default function CreateRoomScreen() {
           />
         </View>
       </View>
-      <View style={{ flex: 3, flexDirection: 'column' }}>
+      <View style={{ flex: 1, flexDirection: 'column' }}>
         <Text
           style={{
             fontSize: 30,
@@ -147,88 +141,58 @@ export default function CreateRoomScreen() {
           }}>
           <View
             style={{
+              flex:1,
               backgroundColor: '#4CAF50',
               padding: 10,
-              borderRightWidth: 2,
-              height: 300,
+              borderRightWidth: 1,
+              borderColor: 'white',
             }}>
-            <Image
-              width={190}
-              height={200}
-              source={{
-                uri: 'https://media.licdn.com/dms/image/C4E03AQEcqn1DbcUfvg/profile-displayphoto-shrink_800_800/0/1651873246055?e=2147483647&v=beta&t=L8_md6oOE96E0a8YlI_p8ZoGWx77rg7LBxdMDcACbKE',
-              }}
-            />
             <Text
               style={{
-                fontSize: 20,
+                fontSize: width*0.045,
                 color: 'white',
                 fontWeight: 'bold',
                 alignSelf: 'center',
               }}>
-              Fatih ATEŞ
+            {connectedUsers[0]?.name+' '+connectedUsers[0]?.lastName}
             </Text>
             <Text
               style={{
-                fontSize: 20,
-                color: 'white',
-                fontWeight: 'bold',
-                alignSelf: 'center',
-              }}>
-              Skoru: 56
-            </Text>
-            <Text
-              style={{
-                fontSize: 22,
+                fontSize: width*0.045,
                 color: 'white',
                 fontWeight: 'bold',
                 alignSelf: 'center',
               }}>
               {' '}
-              Hazır
+              {connectedUsers[0]?.name ?'Hazır':'Bekleniyor'}
             </Text>
           </View>
           <View
             style={{
+              flex:1,
               backgroundColor: '#FF4081',
               padding: 10,
-              borderLeftWidth: 2,
-              height: 300,
+              borderLeftWidth: 1,
+              borderColor: 'white',
             }}>
-            <Image
-              width={190}
-              height={200}
-              source={{
-                uri: 'https://pbs.twimg.com/profile_images/924662122470141954/MrpWxlRK_400x400.jpg',
-              }}
-            />
             <Text
               style={{
-                fontSize: 20,
+                fontSize: width*0.045,
                 color: 'white',
                 fontWeight: 'bold',
                 alignSelf: 'center',
               }}>
-              Orhan CANBULAT
+            {connectedUsers[1]?.name+' '+connectedUsers[1]?.lastName ?'Oyuncu 2':''}
             </Text>
             <Text
               style={{
-                fontSize: 20,
-                color: 'white',
-                fontWeight: 'bold',
-                alignSelf: 'center',
-              }}>
-              Skoru: 1315
-            </Text>
-            <Text
-              style={{
-                fontSize: 22,
+                fontSize: width*0.045,
                 color: 'white',
                 fontWeight: 'bold',
                 alignSelf: 'center',
               }}>
               {' '}
-              Hazır
+              {connectedUsers[1]?.name ?'Hazır':'Bekleniyor'}
             </Text>
           </View>
         </View>

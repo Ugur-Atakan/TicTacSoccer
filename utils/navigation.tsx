@@ -1,46 +1,47 @@
-import React, {useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import WelcomeScreen from '../screens/WelcomeScreen';
 import GamesScreen from '../screens/GamesScreen';
 import GameRulesScreen from '../screens/GameRulesScreen';
-import MainLayout from '../layout';
-
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from './redux/stores/store';
+import SingleGame from '../games/single';
+import OnlineGame from '../games/online';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from './redux/stores/store';
 import LoginScreen from '../screens/Auth/Login';
 
-import OnlineGameManagement from '../screens/OnlineGame';
-import CreateRoomScreen from '../screens/OnlineGame/CreateRoom';
+import OnlineGameManagement from '../games/online/OnlineGame/GameManagement';
+import JoinRoom from '../games/online/OnlineGame/JoinRoom';
+import CreateRoom from '../games/online/OnlineGame/CreateRoom';
 import Register from '../screens/Auth/Register';
 import ResetPassword from '../screens/Auth/ResetPassword';
 import LogoutScreen from '../screens/Auth/Logout';
-import {registerSocketToRedux} from './redux/reducers/socketReducer';
-import {socket} from './socketService';
+import { registerSocketToRedux } from './redux/reducers/socketReducer';
+import { socket } from './socketService';
 import { Alert, Button } from 'react-native';
 import { IconButton } from 'react-native-paper';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
-function Root({navigation}:any) {
+function Root({ navigation }: any) {
   return (
     <Drawer.Navigator>
       <Drawer.Screen
         name="Ana Ekran"
         options={{
-        headerTitle: '3 5 2 Game', 
-        headerTitleStyle: {color: '#000'},
-        headerRight: () => (
-<IconButton
-    icon="exit-to-app"
-    size={30}
-    onPress={() => navigation.navigate('Logout')}
-  />
-        ),
-      }}
+          headerTitle: '3 5 2 Game',
+          headerTitleStyle: { color: '#000' },
+          headerRight: () => (
+            <IconButton
+              icon="exit-to-app"
+              size={30}
+              onPress={() => navigation.navigate('Logout')}
+            />
+          ),
+        }}
         component={WelcomeScreen}
       />
       <Drawer.Screen name="Oyun Modları" component={GamesScreen} />
@@ -50,7 +51,7 @@ function Root({navigation}:any) {
 }
 
 function Navigator(): JSX.Element {
-  const {accessToken} = useSelector((state: RootState) => state.user);
+  const { accessToken } = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
 
@@ -78,38 +79,47 @@ function Navigator(): JSX.Element {
           <>
             <Stack.Screen name="MainScreen" component={Root} />
             <Stack.Screen
-              name="BaseGame"
-              component={MainLayout}
-              options={{headerShown: true, title: '3 5 2'}}
-            />
-            <Stack.Screen
-              name="MainLayout"
-              component={MainLayout}
-              options={{headerShown: true, title: '3 5 2'}}
+              name="SingleGame"
+              component={SingleGame}
+              options={{ headerShown: true, title: '3 5 2' }}
             />
             <Stack.Screen
               name="OnlineGame"
+              component={OnlineGame}
+              options={{ headerShown: true, title: '3 5 2' }}
+            />
+            <Stack.Screen
+              name="OnlineGameManagement"
               component={OnlineGameManagement}
               options={{
                 headerShown: true,
                 title: 'Online Oda oluştur ya da Katıl',
               }}
             />
+
+            <Stack.Screen
+              name="JoinRoom"
+              component={JoinRoom}
+              options={{
+                headerShown: true,
+                title: 'Online oyuna Katıl',
+              }}
+            />
             <Stack.Screen
               name="CreateRoom"
-              component={CreateRoomScreen}
-              options={{headerShown: true, title: 'Online Oda oluştur.'}}
+              component={CreateRoom}
+              options={{ headerShown: true, title: 'Online Oda oluştur.' }}
             />
             <Stack.Screen
               name="Register"
               component={Register}
-              options={{headerShown: true, title: 'Kayıt Ol'}}
+              options={{ headerShown: true, title: 'Kayıt Ol' }}
             />
             <Stack.Screen
               name="Logout"
               component={LogoutScreen}
-              options={{headerShown: true, title: 'Çıkış Yap'}}
-              />
+              options={{ headerShown: true, title: 'Çıkış Yap' }}
+            />
           </>
         ) : (
           <>
@@ -117,12 +127,12 @@ function Navigator(): JSX.Element {
             <Stack.Screen
               name="ForgotPassword"
               component={ResetPassword}
-              options={{headerShown: true, title: 'Şifreni mi unuttun ?'}}
+              options={{ headerShown: true, title: 'Şifreni mi unuttun ?' }}
             />
             <Stack.Screen
               name="Register"
               component={Register}
-              options={{headerShown: true, title: 'Kayıt Ol'}}
+              options={{ headerShown: true, title: 'Kayıt Ol' }}
             />
           </>
         )}

@@ -15,7 +15,7 @@ import BannerADS from '../../components/UIComponents/Banner';
 import WinnerModal from '../../components/UIComponents/Modal/WinnerModal';
 import { useFocusEffect } from '@react-navigation/native';
 
-export default function MainLayout() {
+export default function SingleGame() {
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const gameStatus = useSelector((state: RootState) => state.gameStatus.gameStatus);
@@ -64,10 +64,6 @@ export default function MainLayout() {
   return (
     <SafeAreaProvider style={globalStlyes.container}>
       <WinnerModal />
-      <View style={globalStlyes.header}>
-        <GameHeader />
-      </View>
-      <SliderComponent />
       <View style={globalStlyes.gameStatus}>
         <StatusBar />
       </View>

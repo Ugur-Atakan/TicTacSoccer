@@ -3,13 +3,11 @@ import { AppState, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import BaseGame from '../../game/index';
-import GameHeader from '../../components/UIComponents/header/GameHeader';
 import StatusBar from '../../components/UIComponents/status';
 import BottomButtons from '../../components/UIComponents/buttons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { globalStlyes } from '../../style';
 import { RootState } from '../../utils/redux/stores/store';
-import SliderComponent from '../../components/UIComponents/slider/index';
 import SoundPlayer from 'react-native-sound-player';
 import BannerADS from '../../components/UIComponents/Banner';
 import WinnerModal from '../../components/UIComponents/Modal/WinnerModal';
@@ -64,10 +62,6 @@ export default function OnlineGame() {
   return (
     <SafeAreaProvider style={globalStlyes.container}>
       <WinnerModal />
-      <View style={globalStlyes.header}>
-        <GameHeader />
-      </View>
-      <SliderComponent />
       <View style={globalStlyes.gameStatus}>
         <StatusBar />
       </View>

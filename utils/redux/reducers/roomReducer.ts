@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import baseAPI from '../../http/base';
+import { socket } from '../../socketService';
 
 export interface IRoomState {
   roomCode: string;
@@ -18,9 +19,7 @@ const roomSlice = createSlice({
   reducers: {
     joinRoom: (state, action) => {
       state.roomCode = action.payload.roomCode;
-      if (
-        !state.connectedUsers.find((user: any) => user === action.payload.user)
-      ) {
+      if (!state.connectedUsers.find((user: any) => user === action.payload.user)) {
         state.connectedUsers.push(action.payload.user);
       }
     },
@@ -28,13 +27,18 @@ const roomSlice = createSlice({
       state.roomCode = '';
       state.connectedSockets = [];
     },
+    updatejoinedUsers: (state, action) => {
+      console.log('action.payload.connectedUsers', action.payload.connectedUsers);
+      state.connectedUsers = action.payload.connectedUsers;
+    },
   },
 });
 
-export const {joinRoom, leaveRoom} = roomSlice.actions;
+
+export const {joinRoom, leaveRoom,updatejoinedUsers} = roomSlice.actions;
 export default roomSlice.reducer;
 
-export const joinRoomRedux = (payload: any) => {
+export const createRoom = (payload: any) => {
   return async (dispatch: any) => {
     const room = await baseAPI.get('room/create-room');
     console.log('room', room.data);
