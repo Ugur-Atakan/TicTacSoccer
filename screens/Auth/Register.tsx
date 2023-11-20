@@ -65,10 +65,10 @@ const RegisterScreen = ({ navigation }: any) => {
               ]
             )
         } else {
-          console.error('Bilinmeyen bir hata oluştu:', errorMessage);
+          Alert.alert('Bilinmeyen bir hata oluştu',errorMessage)
         }
       } else {
-        console.error('Bir hata oluştu:', error.message);
+        Alert.alert('Bir hata oluştu:', error.message);
       }
     }
   };
@@ -118,7 +118,7 @@ const RegisterScreen = ({ navigation }: any) => {
             <Text style={styles.loginButtonText}>Kayıt Ol</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        {/* <View>
           <Text style={{ alignSelf: 'center', fontSize: 25, padding: 10 }}>
             {' '}
             YA DA{' '}
@@ -160,11 +160,11 @@ const RegisterScreen = ({ navigation }: any) => {
               onPress={() => console.log('facebook')}
             />
           </View>
-        </View>
+        </View> */}
         <View>
           <Text
             style={{ color: '#007BFF', padding: 10, margin: 10 }}
-            onPress={() => navigation.navigate('Register')}>
+            onPress={() => navigation.navigate('Login')}>
             Zaten üyemiz misin ? Bana tıklayarak giriş yapabilirsin
           </Text>
         </View>

@@ -13,7 +13,7 @@ function WelcomeScreen({navigation}: any): JSX.Element {
   const {userData} = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    console.log(userData);
+    console.log('userData: ',userData);
     if (socket) {
       function onConnect() {
         setIsConnected(true);
@@ -40,15 +40,15 @@ function WelcomeScreen({navigation}: any): JSX.Element {
       if (!isConnected) {
         socket.connect();
       }
-      console.log(socket.id, isConnected);
+      console.log('socket id: ',socket.id, 'isConnected: ',isConnected);
     }
   }, [isConnected, socket]);
 
   return (
     <SafeAreaProvider style={{flex: 1, backgroundColor: '#303F9F'}}>
       <View style={{flex: 3.5, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={{fontSize:width*0.1, color: '#fff'}}>
-          3 5 2'ye hoş geldiniz
+        <Text style={{fontSize:width*0.08, color: '#fff'}}>
+          3 5 2'YE HOŞ GELDİNİZ
         </Text>
       </View>
 
@@ -69,7 +69,6 @@ function WelcomeScreen({navigation}: any): JSX.Element {
         </VStack>
         
       </View>
-      <Text style={{fontSize:width*0.03,alignSelf:'center', color: '#fff'}}>Oyunun ilk beta testini oynuyorsunuz,{' \n'}Çeşitli hatalar ve kararsızlıklar olabilir.</Text>
       <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
         <Text  style={{fontSize:width*0.04,color: '#fff'}}>
           Oyun kuralarını görmek için soldaki menüyü kullanabilirsiniz

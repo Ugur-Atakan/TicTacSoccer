@@ -199,154 +199,154 @@ const originalTeams = [
   },
   {
     "id": 34,
-  "teamId": 536,
-  "teamName": "Eskişehirspor",
-  "shortName": "ESK"
-},
-{
-  "id": 35,
-  "teamId": 1648,
-  "teamName": "Balıkesirspor",
-  "shortName": "BAL"
-},
-{
-  "id": 36,
-  "teamId": 459,
-  "teamName": "KayseriErciyesspor",
-  "shortName": "KERC"
-},
-{
-  "id": 37,
-  "teamId": 16,
-  "teamName": "Elazığspor",
-  "shortName": "ELZ"
-},
-{
-  "id": 38,
-  "teamId": 562,
-  "teamName": "Orduspor",
-  "shortName": "ORD"
-},
-{
-  "id": 39,
-  "teamId": 449,
-  "teamName": "Manisaspor",
-  "shortName": "MAN"
-},
-{
-  "id": 40,
-  "teamId": 17,
-  "teamName": "Diyarbakırspor",
-  "shortName": "DIY"
-},
-{
-  "id": 41,
-  "teamId": 625,
-  "teamName": "HacettepeSpor",
-  "shortName": "HAC"
-},
-{
-  "id": 42,
-  "teamId": 18,
-  "teamName": "Kocaelispor",
-  "shortName": "KOC"
-},
-{
-  "id": 43,
-  "teamId": 445,
-  "teamName": "AkçaabatSebatspor",
-  "shortName": "AKÇ"
-},
-{
-  "id": 44,
-  "teamId": 14,
-  "teamName": "Adanaspor",
-  "shortName": "ADS"
-},
-{
-  "id": 45,
-  "teamId": 450,
-  "teamName": "YozgatsporA.ş",
-  "shortName": "YOZ"
-},
-{
-  "id": 46,
-  "teamId": 579,
-  "teamName": "Siirtspor",
-  "shortName": "SII"
-},
-{
-  "id": 47,
-  "teamId": 14593,
-  "teamName": "Vanspor",
-  "shortName": "VAN"
-},
-{
-  "id": 48,
-  "teamId": 456,
-  "teamName": "ÇanakkaleDardanelSk",
-  "shortName": "ÇAN"
-},
-{
-  "id": 49,
-  "teamId": 458,
-  "teamName": "Sakaryaspor",
-  "shortName": "SAK"
-},
-{
-  "id": 50,
-  "teamId": 563,
-  "teamName": "Sarıyer",
-  "shortName": "SAR"
-},
-{
-  "id": 51,
-  "teamId": 661,
-  "teamName": "Zeytinburnuspor",
-  "shortName": "ZEY"
-},
-{
-  "id": 52,
-  "teamId": 541,
-  "teamName": "Karşıyaka",
-  "shortName": "KAR"
-},
-{
-  "id": 53,
-  "teamId": 886,
-  "teamName": "PetrolOfisi",
-  "shortName": "PET"
-},
-{
-  "id": 54,
-  "teamId": 548,
-  "teamName": "Bakırköyspor",
-  "shortName": "BAK"
-},
-{
-  "id": 55,
-  "teamId": 533,
-  "teamName": "Aydınspor",
-  "shortName": "AYD"
-},
-{
-  "id": 56,
-  "teamId": 621,
-  "teamName": "Boluspor",
-  "shortName": "BOL"
-},
-{
-  "id": 57,
-  "teamId": 1652,
-  "teamName": "Kahramanmaraşspor",
-  "shortName": "KAH"
-},
-{
-  "id": 58,
-  "teamId": 566,
-  "teamName": "Zonguldakspor",
-  "shortName": "ZON"
-}
+    "teamId": 536,
+    "teamName": "Eskişehirspor",
+    "shortName": "ESK"
+  },
+  {
+    "id": 35,
+    "teamId": 1648,
+    "teamName": "Balıkesirspor",
+    "shortName": "BAL"
+  },
+  {
+    "id": 36,
+    "teamId": 459,
+    "teamName": "KayseriErciyesspor",
+    "shortName": "KERC"
+  },
+  {
+    "id": 37,
+    "teamId": 16,
+    "teamName": "Elazığspor",
+    "shortName": "ELZ"
+  },
+  {
+    "id": 38,
+    "teamId": 562,
+    "teamName": "Orduspor",
+    "shortName": "ORD"
+  },
+  {
+    "id": 39,
+    "teamId": 449,
+    "teamName": "Manisaspor",
+    "shortName": "MAN"
+  },
+  {
+    "id": 40,
+    "teamId": 17,
+    "teamName": "Diyarbakırspor",
+    "shortName": "DIY"
+  },
+  {
+    "id": 41,
+    "teamId": 625,
+    "teamName": "HacettepeSpor",
+    "shortName": "HAC"
+  },
+  {
+    "id": 42,
+    "teamId": 18,
+    "teamName": "Kocaelispor",
+    "shortName": "KOC"
+  },
+  {
+    "id": 43,
+    "teamId": 445,
+    "teamName": "AkçaabatSebatspor",
+    "shortName": "AKÇ"
+  },
+  {
+    "id": 44,
+    "teamId": 14,
+    "teamName": "Adanaspor",
+    "shortName": "ADS"
+  },
+  {
+    "id": 45,
+    "teamId": 450,
+    "teamName": "YozgatsporA.ş",
+    "shortName": "YOZ"
+  },
+  {
+    "id": 46,
+    "teamId": 579,
+    "teamName": "Siirtspor",
+    "shortName": "SII"
+  },
+  {
+    "id": 47,
+    "teamId": 14593,
+    "teamName": "Vanspor",
+    "shortName": "VAN"
+  },
+  {
+    "id": 48,
+    "teamId": 456,
+    "teamName": "ÇanakkaleDardanelSk",
+    "shortName": "ÇAN"
+  },
+  {
+    "id": 49,
+    "teamId": 458,
+    "teamName": "Sakaryaspor",
+    "shortName": "SAK"
+  },
+  {
+    "id": 50,
+    "teamId": 563,
+    "teamName": "Sarıyer",
+    "shortName": "SAR"
+  },
+  {
+    "id": 51,
+    "teamId": 661,
+    "teamName": "Zeytinburnuspor",
+    "shortName": "ZEY"
+  },
+  {
+    "id": 52,
+    "teamId": 541,
+    "teamName": "Karşıyaka",
+    "shortName": "KAR"
+  },
+  {
+    "id": 53,
+    "teamId": 886,
+    "teamName": "PetrolOfisi",
+    "shortName": "PET"
+  },
+  {
+    "id": 54,
+    "teamId": 548,
+    "teamName": "Bakırköyspor",
+    "shortName": "BAK"
+  },
+  {
+    "id": 55,
+    "teamId": 533,
+    "teamName": "Aydınspor",
+    "shortName": "AYD"
+  },
+  {
+    "id": 56,
+    "teamId": 621,
+    "teamName": "Boluspor",
+    "shortName": "BOL"
+  },
+  {
+    "id": 57,
+    "teamId": 1652,
+    "teamName": "Kahramanmaraşspor",
+    "shortName": "KAH"
+  },
+  {
+    "id": 58,
+    "teamId": 566,
+    "teamName": "Zonguldakspor",
+    "shortName": "ZON"
+  }
 ]
 
 const idTransformer = (id: any) => {
@@ -356,4 +356,4 @@ const shortNameGenerator = (id: any) => {
   return originalTeams.filter((data: any) => data.id === id)[0]?.shortName;
 }
 
-export {idTransformer,shortNameGenerator};
+export { idTransformer, shortNameGenerator };

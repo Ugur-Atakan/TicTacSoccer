@@ -1,4 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Alert } from 'react-native';
+import { err } from 'react-native-svg/lib/typescript/xml';
 
 interface Square {
   isCorrect: boolean;
@@ -44,8 +46,8 @@ const gameBoardReducer = createSlice({
             state.winnerUserData = state.currentPlayer;
             console.log("kazanan oyuncu", state.winnerUserData.id);
             state.scores[state.currentPlayer.id - 1] += 1;
-          } catch (error) {
-            console.error(error);
+          } catch (error:any) {
+            Alert.alert('Bir şeyler yanlış gitti',error)
           }
         } else {
           state.currentPlayer.id = state.currentPlayer.id === 1 ? 2 : 1;
@@ -56,7 +58,6 @@ const gameBoardReducer = createSlice({
 
     setTeamCells: (state, action) => {
       state.teamCells = action.payload;
-      console.warn("setTeamCells", state.teamCells);
     },
 
     setSelectedTeamCell: (state, action) => {

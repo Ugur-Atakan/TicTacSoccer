@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import baseAPI from '../../http/base';
 import { socket } from '../../socketService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
 
 interface Credentials {
   email: string;
@@ -82,14 +83,16 @@ export const loginUser = (credentials: Credentials) => {
       if (error.response) {
         const errorMessage = error.response.data.message;
         if (errorMessage === 'Duplicate record') {
-          console.error('Bu e-posta adresi zaten kayıtlı.');
+          Alert.alert('Bu e-posta adresi zaten kayıtlı.');
+          console.log('Bu e-posta adresi zaten kayıtlı.');
         } else if (errorMessage === 'Not Found') {
-          console.error('Kullanıcı bulunamadı.');
+          console.log('Kullanıcı bulunamadı.');
+          Alert.alert('Kullanıcı bulunamadı.');
         } else {
-          console.error('Bilinmeyen bir hata oluştu:', errorMessage);
+          Alert.alert('Bilinmeyen bir hata oluştu.',errorMessage);
         }
       } else {
-        console.error('Bir hata oluştu:', error.message);
+        Alert.alert('Bilinmeyen bir hata oluştu.',error.message);
       }
     }
   };

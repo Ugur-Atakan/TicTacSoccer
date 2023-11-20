@@ -17,7 +17,6 @@ import CreateRoomScreen from '../screens/OnlineGame/CreateRoom';
 import Register from '../screens/Auth/Register';
 import ResetPassword from '../screens/Auth/ResetPassword';
 import LogoutScreen from '../screens/Auth/Logout';
-import UserProfile from '../screens/Auth/Profile';
 import {registerSocketToRedux} from './redux/reducers/socketReducer';
 import {socket} from './socketService';
 import { Alert, Button } from 'react-native';
@@ -30,7 +29,7 @@ function Root({navigation}:any) {
   return (
     <Drawer.Navigator>
       <Drawer.Screen
-        name="HOŞGELDİNİZ"
+        name="Ana Ekran"
         options={{
         headerTitle: '3 5 2 Game', 
         headerTitleStyle: {color: '#000'},
@@ -45,7 +44,7 @@ function Root({navigation}:any) {
         component={WelcomeScreen}
       />
       <Drawer.Screen name="Oyun Modları" component={GamesScreen} />
-      <Drawer.Screen name="Oyun Kuralları" component={GameRulesScreen} />
+      <Drawer.Screen name="Kurallar" component={GameRulesScreen} />
     </Drawer.Navigator>
   );
 }
@@ -77,9 +76,9 @@ function Navigator(): JSX.Element {
         }}>
         {accessToken ? (
           <>
-            <Stack.Screen name="Ana Ekran" component={Root} />
+            <Stack.Screen name="MainScreen" component={Root} />
             <Stack.Screen
-              name="Temel Oyun"
+              name="BaseGame"
               component={MainLayout}
               options={{headerShown: true, title: '3 5 2'}}
             />
@@ -114,7 +113,7 @@ function Navigator(): JSX.Element {
           </>
         ) : (
           <>
-            <Stack.Screen name="Giriş Yap" component={LoginScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen
               name="ForgotPassword"
               component={ResetPassword}

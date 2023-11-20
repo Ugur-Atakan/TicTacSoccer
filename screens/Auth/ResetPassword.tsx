@@ -5,7 +5,7 @@ import baseAPI from "../../utils/http/base";
 export default function ResetPassword() {
   const [email, setEmail] = useState('');
 
-  const handleResetPassword = async (navigation: any) => {
+  const handleResetPassword = async () => {
     if (email === '') {
       Alert.alert('Lütfen tüm alanları doldurunuz', "Alanlar boş bırakılamaz", [
         {
@@ -60,10 +60,10 @@ export default function ResetPassword() {
         }
 
         else {
-          console.error('Bilinmeyen bir hata oluştu:', errorMessage);
+          Alert.alert('Bilinmeyen bir hata meydana geldi', errorMessage)
         }
       } else {
-        console.error('Bir hata oluştu:', error.message);
+        Alert.alert('Bir hata meydana geldi', error.message)
       }
     }
   }

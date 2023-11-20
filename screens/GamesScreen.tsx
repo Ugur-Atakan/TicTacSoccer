@@ -25,7 +25,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
               h={compstyles.gamemode.height}
               center
               style={{ backgroundColor: '#536DFE', borderRadius: 30 }}>
-              <TouchableOpacity onPress={() => navigation.navigate('Temel Oyun')}>
+              <TouchableOpacity onPress={() => navigation.navigate('BaseGame')}>
                 <Text style={{ alignSelf: 'center', fontSize: width * 0.08, color: 'white' }}>
                   Temel Oyun Modu
                 </Text>

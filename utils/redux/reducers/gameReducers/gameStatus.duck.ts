@@ -48,7 +48,7 @@ export const startGame = () => {
       .get('game')
       .then(res => dispatch(setTeamCells(res.data)))
       .then(dispatch(started()))
-      .catch(() => console.error('Something Went Wrong'));
+      .catch(() => console.error('Bir şeyler yanlış gitti'));
   };
 };
 
@@ -66,7 +66,7 @@ export const nextRound = () => {
       .get('game')
       .then(res => dispatch(setTeamCells(res.data)))
       .then(dispatch(started()))
-      .catch(() => console.error('Something Went Wrong'));
+      .catch(() => console.error('Bir şeyler yanlış gitti'));
   };
 }
 export {gameStatusReducer};

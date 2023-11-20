@@ -33,12 +33,11 @@ if (!firebase.apps.length) {
       // Bildirimleri kullanabilirsiniz
     } else if (result === RESULTS.DENIED) {
       console.log('Bildirimlere izin verilmedi');
-      // Kullanıcıyı ayarlara yönlendirme
       Linking.openSettings();
     }
   } else{
     try {
-      const result = await request(PERMISSIONS.IOS.NOTIFICATIONS, {
+      const result = await request(PERMISSIONS.ANDROID.NOTIFICATIONS, {
         title: 'Bildirimlere izin verin',
         message:
           'Bu uygulama sana gerektiğinde bildirimler gönderecek ' +
@@ -54,7 +53,7 @@ if (!firebase.apps.length) {
         console.log('Bildirimlere izin verilmedi');
       }
     } catch (err) {
-      console.warn(err);
+      console.log(err);
     }
   }
 };
