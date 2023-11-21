@@ -87,18 +87,13 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
                     },
                 })
             );
-            console.log('Selected player is corrected')
-           
-
         } else {
-            console.log('Selected player is not corrected')
             dispatch(nextPlayer());
         }
         closeModal();
         setData([]);
         setInput('');
     };
-
     return (
         <View style={{ backgroundColor: '#C5CAE9' }}>
             <View

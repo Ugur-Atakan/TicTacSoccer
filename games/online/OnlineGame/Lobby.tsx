@@ -5,35 +5,21 @@ import { Button, Text, IconButton, Card } from 'react-native-paper';
 import { RootState } from '../../../utils/redux/stores/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { socket } from '../../../utils/socketService';
-import { updatejoinedUsers } from '../../../utils/redux/reducers/roomReducer';
+import { roomPlayerstoGameBoard, updateJoinedUsersState, updatejoinedUsers } from '../../../utils/redux/reducers/roomReducer';
 import baseAPI from '../../../utils/http/base';
 
 export default function Lobby({ route }:any){
     const {connectedUsers} = useSelector((state:RootState)=>state.room);
     const roomCode = route.params?.roomCode || 'Bekleniyor';
-    const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //  baseAPI.get(`/room/room-players?roomCode=${roomCode}`).then((res)=>{
-    //   console.log('joined-room-logu: ', res.data);
-    //   dispatch(updatejoinedUsers({
-    //     connectedUsers: res.data,
-    //   }));
-    //  }
-    //   ).catch((err)=>{
-    //     console.log(err);
-    //   });
-    // }, [socket]);
-
+    const dispatch = useDispatch();   
     useEffect(() => {
-
-      socket?.on('joined-room', (data: any) => {
-        console.log('joined-room-logu from Lobby: ', data.roomUsers);
-        dispatch(updatejoinedUsers({
-          connectedUsers: data.roomUsers,
-        }) as any );
-      }
-      );
+     baseAPI.get(`/room/room-players?roomCode=${roomCode}`).then((res)=>{
+      dispatch(roomPlayerstoGameBoard({connectedUsers: res.data}) as any )
+      dispatch(updateJoinedUsersState({ connectedUsers: res.data}) as any );
+    }
+      ).catch((err)=>{
+        console.log(err);
+      });
     }, [socket]);
 
     return (

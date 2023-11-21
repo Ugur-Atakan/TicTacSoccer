@@ -61,7 +61,12 @@
     "metro-react-native-babel-preset": "0.76.8",
     "prettier": "^2.4.1",
     "react-test-renderer": "18.2.0",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "chalk": "^4.1.2",
+    "nuxt3": "latest"
+  },
+  "resolutions": {
+    "chalk": "^4.1.2"
   },
   "engines": {
     "node": ">=16"

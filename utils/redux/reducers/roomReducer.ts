@@ -1,7 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import baseAPI from '../../http/base';
-import { socket } from '../../socketService';
-import { useEffect } from 'react';
+import { setPlayersData } from './gameReducers/gameBoard';
 
 export interface IRoomState {
   roomCode: string;
@@ -29,7 +28,6 @@ const roomSlice = createSlice({
       state.connectedSockets = [];
     },
     updatejoinedUsers: (state, action) => {
-      console.log('action.payload.connectedUsers', action.payload.connectedUsers);
       state.connectedUsers = action.payload.connectedUsers;
     },
   },
@@ -45,10 +43,14 @@ export const updateJoinedUsersState =(payload: any)=> {
   }
 }
 
+export const roomPlayerstoGameBoard = (payload: any) => {
+  return (dispatch: any) => {
+    dispatch(setPlayersData(payload));
+  };
+};
 export const createRoom = (payload: any) => {
   return async (dispatch: any) => {
     const room = await baseAPI.get('room/create-room');
-    console.log('room', room.data);
     const payloadData = {
       roomCode: room.data.roomCode,
       user: payload.user,

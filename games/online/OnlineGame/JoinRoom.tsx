@@ -13,6 +13,8 @@ import { Button, Text, IconButton, Card, TextInput } from 'react-native-paper';
 import { width } from '../../../style';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
+import chalk from 'chalk';
+
 
 export default function JoinRoom({ navigation }: any) {
     const [roomCode, setRoomCode] = useState('');
@@ -21,19 +23,14 @@ export default function JoinRoom({ navigation }: any) {
     const { connectedSockets, connectedUsers } = useSelector((state: RootState) => state.room);
 
     const joinGame = () => {
-        console.log('code', roomCode);
-        console.log('connectedSockets', connectedSockets);
-        console.log('connectedUsers', connectedUsers);
         if (socket) {
             socket.emit('join-room', { roomCode, userId: userData.id });
-            console.log('odaya join olunmaya çalışıldı, userdata:',userData)
         }
         navigation.navigate('Lobby', { roomCode });
     };
 
     useEffect(() => {
         socket?.on('joined-room', (data: any) => {
-            console.log('joined-room-logu: ', data.roomUsers);
             navigation.navigate('Lobby',{ code: roomCode});
         }
         );

@@ -14,7 +14,6 @@ export const socketSlice = createSlice({
   initialState,
   reducers: {
     registerSocket: (state, action) => {
-      console.log(action);
       state.socket = action.payload.socket;
     },
   },

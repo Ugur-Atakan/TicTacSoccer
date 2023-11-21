@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import baseAPI from '../../../http/base';
 import {goNextRound, reset, setTeamCells} from './gameBoard';
 

@@ -77,7 +77,6 @@ export const loginUser = (credentials: Credentials) => {
       const { profile, accessToken } = response.data;
       dispatch(loginSuccess({ user: profile, accessToken }));
       socket.emit('register-socket', { id: profile.id });
-      console.log('Sockete bağlantı gönderildi, id:', profile.id);
     }
     catch (error: any) {
       if (error.response) {

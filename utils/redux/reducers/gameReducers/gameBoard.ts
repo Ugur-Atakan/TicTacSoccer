@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Alert } from 'react-native';
-import { err } from 'react-native-svg/lib/typescript/xml';
-
+import { socket } from '../../../socketService';
+import { useDispatch } from 'react-redux';
 interface Square {
   isCorrect: boolean;
   knowingPlayer: number | null;
@@ -22,6 +22,7 @@ const initialState: any = {
   scores: [0, 0],
   selectedCellId: -1,
   selectedTeamCell: -1,
+  playersData: [],
   currentPlayer: { id: 1 },
   winnerUserData: { id: null },
   teamCells: Array(6).fill(null),
@@ -44,7 +45,6 @@ const gameBoardReducer = createSlice({
         if (checkWinner(state.soccerCells)==true) {
           try {
             state.winnerUserData = state.currentPlayer;
-            console.log("kazanan oyuncu", state.winnerUserData.id);
             state.scores[state.currentPlayer.id - 1] += 1;
           } catch (error:any) {
             Alert.alert('Bir şeyler yanlış gitti',error)
@@ -85,18 +85,17 @@ const gameBoardReducer = createSlice({
           knowingPlayer: null,
         })
     },
-
+    setPlayersData: (state, action: PayloadAction<any>) => {
+      state.playersData = action.payload.connectedUsers;
+    },
     setWinnerPlayer: (state, action: PayloadAction<any>) => {
       state.winnerUserData = action.payload;
-
     },
-
     reset: () => initialState,
   },
 });
 
 const checkWinner = (Data: Square[]): boolean => {
-  console.log("Kontrol edilen data:", Data);
   const winPatterns: number[][] = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], // Yatay kazanma kombinasyonları
     [0, 3, 6], [1, 4, 7], [2, 5, 8], // Dikey kazanma kombinasyonları
@@ -110,15 +109,18 @@ const checkWinner = (Data: Square[]): boolean => {
       const valueC = Data[c].knowingPlayer;
 
       if (valueA === valueB && valueB === valueC && valueA !== null) {
-        console.log("Kazanan var");
         return true; // oynayan oyuncu oyunu kazandı
       }
     }
   }
-  console.log("Kazanan henüz yok");
   return false; // oynayan oyuncu oyunu kaybetti
 }
 
-export const { play, reset, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, setSelectedTeamCell,goNextRound } = gameBoardReducer.actions;
+export const playOnline = (payload:any) => async (dispatch:any) => {
+  socket?.emit('update-cell', payload);
+  dispatch(play(payload));
+};
+
+export const { play, reset, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, setSelectedTeamCell,goNextRound,setPlayersData } = gameBoardReducer.actions;
 
 export default gameBoardReducer.reducer;
