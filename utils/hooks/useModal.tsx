@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { selectCellID } from "../redux/reducers/gameReducers/gameBoard";
+import { selectCellID } from "../redux/reducers/gameReducers/gameReducer.duck";
 const useModal = () => {
     const dispatch = useDispatch();
     const [isShowing, setIsShowing] = useState(false);

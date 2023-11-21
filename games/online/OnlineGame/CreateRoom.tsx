@@ -6,18 +6,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateJoinedUsersState } from '../../../utils/redux/reducers/roomReducer';
 import { RootState } from '../../../utils/redux/stores/store';
 import { createRoom } from '../../../utils/redux/reducers/roomReducer';
+import { startGame } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
 
 export default function CreateRoom() {
   const { socket } = useSelector((state: RootState) => state.socket);
   const { roomCode, connectedUsers } = useSelector((state: RootState) => state.room);
   const { userData } = useSelector((state: RootState) => state.user);
+  const {teamCells} = useSelector((state: RootState) => state.game);
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     console.log(roomCode, 'kodlu oda', socket?.id, 'idli soket tarafından oluşturuldu');
     if (socket) {
-      socket.on('joined-room', (data: any) => {
+      socket?.on('game-started', (data: any) => {
+        console.warn('game-started dan gelen data', data)
+      });
+
+      socket?.on('joined-room', (data: any) => {
         dispatch(updateJoinedUsersState({
           connectedUsers: data.roomUsers,
         }) as any);
@@ -33,12 +38,21 @@ export default function CreateRoom() {
     if (roomCode) {
       socket?.emit('join-room', { userId: userData.id, roomCode });
     }
-
     return () => {
       socket?.off('joined-room');
     };
   }, [socket, roomCode]);
 
+  useEffect(() => {
+    if(socket){
+      socket.on('game-started', (data: any) => {
+        dispatch(startGame() as any);
+      });
+    }
+    return () => {
+      socket?.off('start-game');
+    };
+  }, [socket]);
 
   const onShare = async () => {
     try {
@@ -195,7 +209,8 @@ export default function CreateRoom() {
             mode="contained"
             buttonColor="#448AFF"
             onPress={() => {
-              console.log('Oyunu Başlat');
+              dispatch(startGame() as any);
+              socket?.emit('start-game', {roomCode: roomCode, userId: userData.id, teams:teamCells});
             }}>
             OYUNU BAŞLAT
           </Button>

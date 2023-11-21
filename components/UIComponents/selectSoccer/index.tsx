@@ -10,7 +10,7 @@ import { VStack } from 'react-native-flex-layout';
 import baseAPI from '../../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
-import { play, nextPlayer, playOnline } from '../../../utils/redux/reducers/gameReducers/gameBoard';
+import { play, nextPlayer, playOnline } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
 import { selectSoccerInputStyles } from '../../../style';
 
 interface SelectSoccerInputProps {
@@ -18,7 +18,6 @@ interface SelectSoccerInputProps {
 }
 
 export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps) {
-
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
     const [data, setData] = useState([]);

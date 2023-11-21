@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import baseAPI from '../../http/base';
-import { setPlayersData } from './gameReducers/gameBoard';
+import { setPlayersData } from './gameReducers/gameReducer.duck';
 
 export interface IRoomState {
   roomCode: string;

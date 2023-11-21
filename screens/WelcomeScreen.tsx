@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { VStack } from 'react-native-flex-layout';
-import { Button, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 import { RootState } from '../utils/redux/stores/store';
 import { width } from '../style';
@@ -37,6 +37,17 @@ function WelcomeScreen({ navigation }: any): JSX.Element {
       };
     }
   }, [socket, userData]);
+
+  useEffect(() => {
+    if(socket){
+      socket?.on('game-started', (data: any) => {
+        console.log('socketten gelen oyun datası', data)
+      });
+    }
+    return () => {
+      socket?.off('start-game');
+    };
+  }, [socket]);
 
   useEffect(() => {
     if (socket) {
