@@ -5,7 +5,7 @@ import { finishGame, startGame } from '../../../utils/redux/reducers/gameReducer
 import useSoundPlayer from '../../../utils/soundPlayer';
 import {useDispatch, useSelector} from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
-export default function BottomButtons() {
+export default function BottomButtons(roomCode: any) {
   const gameStatus = useSelector((state:RootState) => state.game.gameStatus);
 
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export default function BottomButtons() {
  mode="contained"
  buttonColor="#448AFF"
  onPress={() => {
-   dispatch(startGame() as any);
+   dispatch(startGame(roomCode) as any);
    playSound();
  }}>
 Oyunu Başlat
@@ -34,7 +34,7 @@ Oyunu Başlat
  mode="contained"
  buttonColor="#448AFF"
  onPress={() => {
-   dispatch(startGame() as any);
+   dispatch(startGame(roomCode) as any);
    playSound();
  }}>
 Oyunu Başlat

@@ -18,6 +18,7 @@ export default function OnlineGame() {
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const gameStatus = useSelector((state: RootState) => state.game.gameStatus);
   const soundVolume = useSelector((state: RootState) => state.soundVolume.soundVolume);
+  const roomCode = useSelector((state: RootState) => state.room.roomCode);
   
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
@@ -70,7 +71,7 @@ export default function OnlineGame() {
         <BaseGame />
       </View>
       <View style={globalStlyes.bottomButtons}>
-        <BottomButtons />
+        <BottomButtons roomCode={roomCode} />
       </View>
       <View style={globalStlyes.footer}>
         <BannerADS />

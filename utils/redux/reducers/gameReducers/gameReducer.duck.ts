@@ -129,12 +129,14 @@ export const playOnline = (payload: any) => async (dispatch: any) => {
     dispatch(play(payload));
 };
 
-export const startGame = () => async (dispatch: any) => {
+export const startGame = (roomCode:any) => async (dispatch: any) => {
     try {
         dispatch(fetching());
         const teams = (await baseAPI.get('game')).data;
         await dispatch(setTeamCells(teams))
         socket?.emit('start-game', {
+            roomCode: roomCode,
+            userId: 1,
             teams: teams,
         });
         dispatch(started())
