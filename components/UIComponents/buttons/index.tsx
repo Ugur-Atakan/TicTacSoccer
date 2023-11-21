@@ -1,14 +1,13 @@
 import {Button} from 'react-native-paper';
 import {HStack} from 'react-native-flex-layout';
 import React from 'react';
-import {
-  finishGame,
-  startGame,
-} from '../../../utils/redux/reducers/gameReducers/gameStatus.duck';
+import { finishGame, startGame } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
 import useSoundPlayer from '../../../utils/soundPlayer';
 import {useDispatch, useSelector} from 'react-redux';
+import { RootState } from '../../../utils/redux/stores/store';
 export default function BottomButtons() {
-  const gameStatus = useSelector((state: any) => state.gameStatus.gameStatus);
+  const gameStatus = useSelector((state:RootState) => state.game.gameStatus);
+
   const dispatch = useDispatch();
 
   const {playSound} = useSoundPlayer();

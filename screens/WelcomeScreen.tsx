@@ -1,19 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {VStack} from 'react-native-flex-layout';
-import {Button, Text} from 'react-native-paper';
-import {useSelector} from 'react-redux';
-import {RootState} from '../utils/redux/stores/store';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { VStack } from 'react-native-flex-layout';
+import { Button, Text } from 'react-native-paper';
+import { useSelector } from 'react-redux';
+import { RootState } from '../utils/redux/stores/store';
 import { width } from '../style';
 
-function WelcomeScreen({navigation}: any): JSX.Element {
+function WelcomeScreen({ navigation }: any): JSX.Element {
   const [isConnected, setIsConnected] = useState(false);
-  const {socket} = useSelector((state: RootState) => state.socket);
-  const {userData} = useSelector((state: RootState) => state.user);
+  const { socket } = useSelector((state: RootState) => state.socket);
+  const { userData } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    console.log('userData: ',userData);
+    console.log('userData: ', userData);
+  }, [userData]);
+
+  useEffect(() => {
     if (socket) {
       function onConnect() {
         setIsConnected(true);
@@ -21,6 +24,11 @@ function WelcomeScreen({navigation}: any): JSX.Element {
           id: userData.id,
         });
       }
+
+
+      socket.on('updated-cell', (data) => {
+        console.log('updated-cell logu', data);
+      });
 
       function onDisconnect() {
         setIsConnected(false);
@@ -40,37 +48,37 @@ function WelcomeScreen({navigation}: any): JSX.Element {
       if (!isConnected) {
         socket.connect();
       }
-      console.log('socket id: ',socket.id, 'isConnected: ',isConnected);
+      console.log('socket id: ', socket.id, 'isConnected: ', isConnected);
     }
   }, [isConnected, socket]);
 
   return (
-    <SafeAreaProvider style={{flex: 1, backgroundColor: '#303F9F'}}>
-      <View style={{flex: 3.5, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={{fontSize:width*0.08, color: '#fff'}}>
+    <SafeAreaProvider style={{ flex: 1, backgroundColor: '#303F9F' }}>
+      <View style={{ flex: 3.5, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontSize: width * 0.08, color: '#fff' }}>
           3 5 2'YE HOŞ GELDİNİZ
         </Text>
       </View>
 
-      <View style={{flex: 6}}>
+      <View style={{ flex: 6 }}>
         <VStack
           center
           shouldWrapChildren
           spacing={10}
-          style={{paddingTop: 100}}>
-          <Text style={{fontSize: width*0.05, color: 'white'}}>
+          style={{ paddingTop: 100 }}>
+          <Text style={{ fontSize: width * 0.05, color: 'white' }}>
             {' '}
             Ya 3 ya 5'ini bilir Kazanırsın
           </Text>
-          <Text style={{fontSize: width*0.05, color: 'white'}}>
+          <Text style={{ fontSize: width * 0.05, color: 'white' }}>
             {' '}
             Yada 2 bilir kaybedersin
           </Text>
         </VStack>
-        
+
       </View>
-      <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-        <Text  style={{fontSize:width*0.04,color: '#fff'}}>
+      <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontSize: width * 0.04, color: '#fff' }}>
           Oyun kuralarını görmek için soldaki menüyü kullanabilirsiniz
         </Text>
       </View>

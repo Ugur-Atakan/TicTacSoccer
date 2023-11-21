@@ -10,7 +10,7 @@ import { VStack } from 'react-native-flex-layout';
 import baseAPI from '../../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
-import { play, nextPlayer } from '../../../utils/redux/reducers/gameReducers/gameBoard';
+import { play, nextPlayer, playOnline } from '../../../utils/redux/reducers/gameReducers/gameBoard';
 import { selectSoccerInputStyles } from '../../../style';
 
 interface SelectSoccerInputProps {
@@ -22,8 +22,8 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
     const [data, setData] = useState([]);
-    const teamCells = useSelector((state: RootState) => state.gameBoard.teamCells);
-    const { selectedCellId } = useSelector((state: RootState) => state.gameBoard);
+    const teamCells = useSelector((state: RootState) => state.game.teamCells);
+    const { selectedCellId } = useSelector((state: RootState) => state.game);
 
     useEffect(() => {
         const fectData = () => {
@@ -79,13 +79,13 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
         const check = await _isCorrect(Soccer.id);
         if (check == true) {
             dispatch(
-                play({
-                    index: selectedCellId, // Burada 'cellID' değişkeni, oynanacak hücrenin indeksini temsil etmelidir.
+                playOnline({
+                    index: selectedCellId,
                     soccer: {
                         isCorrect: true,
-                        data: Soccer, // 'Player' değişkeni, oyuncu verilerini içermelidir.
+                        data: Soccer,
                     },
-                })
+                }) as any,
             );
         } else {
             dispatch(nextPlayer());

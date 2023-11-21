@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Alert, View, Image } from 'react-native';
+import React, { useEffect } from 'react';
+import { SafeAreaView, View } from 'react-native';
 import { globalStlyes, width } from '../../../style';
-import { Button, Text, IconButton, Card } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { RootState } from '../../../utils/redux/stores/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { socket } from '../../../utils/socketService';

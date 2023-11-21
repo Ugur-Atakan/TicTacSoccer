@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
 
 export default function ScoreBoard() {
-  const Scores=useSelector((state:RootState)=>state.gameBoard.scores);
+  const Scores=useSelector((state:RootState)=>state.game.scores);
   const p1Score=Scores[0];
   const p2Score=Scores[1];
   

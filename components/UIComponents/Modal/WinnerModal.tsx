@@ -8,8 +8,8 @@
 
     export default function WinnerModal() {
         const [visible, setVisible] = React.useState(false);
-        const { winnerUserData} = useSelector((state: RootState) => state.gameBoard);
-        const Scores = useSelector((state: RootState) => state.gameBoard.scores);
+        const { winnerUserData} = useSelector((state: RootState) => state.game);
+        const Scores = useSelector((state: RootState) => state.game.scores);
         const dispatch = useDispatch();
         const hideModal = () => setVisible(false);
 

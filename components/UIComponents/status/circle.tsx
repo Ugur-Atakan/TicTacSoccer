@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../utils/redux/stores/store";
 
 export default function Circle() {
-const currentPlayer=useSelector((state:RootState)=>state.gameBoard.currentPlayer.id);
+const currentPlayer=useSelector((state:RootState)=>state.game.currentPlayer.id);
 return ( <View style={currentPlayer==1?ViewStyles.greencircle:ViewStyles.redcircle}></View> );
 };
 

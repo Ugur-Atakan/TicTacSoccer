@@ -12,21 +12,14 @@ interface TeamCellProps {
 }
 
 const TeamCell: React.FC<TeamCellProps> = ({ cellId }) => {
-
-  const teamCells = useSelector(
-    (state: RootState) => state.gameBoard.teamCells,
-  );
-
+  const teamCells = useSelector((state: RootState) => state.game.teamCells);
   const logoId = teamCells[cellId]?.id;
-
-  
   return (
     <TouchableWithoutFeedback>
       <Flex w={cellSize} h={cellSize} style={cellStyles.teamcells}>
         {
         teamCells[cellId]?.id !== null ? (
           <>
-        
             <Image
               source={{ uri:`https://uguratakan.com/352game/assets/teamlogos/${logoId}.gif`}}
               style={{ width: 55, height: 55 }}

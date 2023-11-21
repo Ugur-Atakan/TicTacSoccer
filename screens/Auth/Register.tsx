@@ -10,8 +10,7 @@ import {
   Platform,
   Alert,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { IconButton } from 'react-native-paper';
+
 import baseAPI from '../../utils/http/base';
 
 const RegisterScreen = ({ navigation }: any) => {

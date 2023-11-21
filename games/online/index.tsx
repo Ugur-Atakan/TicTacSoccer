@@ -16,8 +16,9 @@ import { useFocusEffect } from '@react-navigation/native';
 export default function OnlineGame() {
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
-  const gameStatus = useSelector((state: RootState) => state.gameStatus.gameStatus);
+  const gameStatus = useSelector((state: RootState) => state.game.gameStatus);
   const soundVolume = useSelector((state: RootState) => state.soundVolume.soundVolume);
+  
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
       if (

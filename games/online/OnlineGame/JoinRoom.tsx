@@ -13,7 +13,6 @@ import { Button, Text, IconButton, Card, TextInput } from 'react-native-paper';
 import { width } from '../../../style';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
-import chalk from 'chalk';
 
 
 export default function JoinRoom({ navigation }: any) {

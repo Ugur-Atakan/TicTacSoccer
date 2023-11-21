@@ -7,9 +7,7 @@ import {useSelector} from 'react-redux';
 import Circle from './circle';
 import { textStyles, width } from '../../../style';
 export default function CurrentPlayer() {
-  const {winnerUserData, currentPlayer} = useSelector(
-    (state: RootState) => state.gameBoard,
-  );
+  const {winnerUserData, currentPlayer} = useSelector((state: RootState) => state.game);
   return (
         <View style={{backgroundColor:'#448AFF',
         width: width * 0.28,

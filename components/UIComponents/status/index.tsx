@@ -8,7 +8,7 @@ import { Text } from 'react-native-paper';
 import { width } from '../../../style';
 export default function StatusBar() {
 
-  const Round = useSelector((state:RootState)=>state.gameBoard.round);
+  const Round = useSelector((state:RootState)=>state.game.round);
 
   return (
     <View>
