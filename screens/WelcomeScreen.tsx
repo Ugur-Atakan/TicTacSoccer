@@ -25,11 +25,6 @@ function WelcomeScreen({ navigation }: any): JSX.Element {
         });
       }
 
-
-      socket.on('updated-cell', (data) => {
-        console.log('updated-cell logu', data);
-      });
-
       function onDisconnect() {
         setIsConnected(false);
       }
