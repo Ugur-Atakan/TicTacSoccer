@@ -8,7 +8,7 @@ import { RootState } from '../../../utils/redux/stores/store';
 import { createRoom } from '../../../utils/redux/reducers/roomReducer';
 import { startGame } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
 
-export default function CreateRoom() {
+export default function CreateRoom({ navigation }: any) {
   const { socket } = useSelector((state: RootState) => state.socket);
   const { roomCode, connectedUsers } = useSelector((state: RootState) => state.room);
   const { userData } = useSelector((state: RootState) => state.user);
@@ -208,10 +208,7 @@ export default function CreateRoom() {
           <Button
             mode="contained"
             buttonColor="#448AFF"
-            onPress={() => {
-              dispatch(startGame() as any);
-              socket?.emit('start-game', {roomCode: roomCode, userId: userData.id, teams:teamCells});
-            }}>
+            onPress={() => navigation.navigate('OnlineGame')}>
             OYUNU BAŞLAT
           </Button>
         </View>

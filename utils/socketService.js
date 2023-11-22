@@ -1,7 +1,5 @@
 import io from 'socket.io-client';
-import { useDispatch } from 'react-redux';
-import { play } from './redux/reducers/gameReducers/gameBoard';
-export const socket = io('https://uguratakan.com', {
+export const socket = io('ws://192.168.1.41:5052', {
   autoConnect: true,
   transports: ['websocket', 'polling'],
 });

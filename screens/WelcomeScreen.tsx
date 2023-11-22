@@ -3,18 +3,31 @@ import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { VStack } from 'react-native-flex-layout';
 import { Text } from 'react-native-paper';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../utils/redux/stores/store';
 import { width } from '../style';
+import { synchronizeGame } from '../utils/redux/reducers/gameReducers/gameReducer.duck';
 
 function WelcomeScreen({ navigation }: any): JSX.Element {
   const [isConnected, setIsConnected] = useState(false);
   const { socket } = useSelector((state: RootState) => state.socket);
   const { userData } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('userData: ', userData);
-  }, [userData]);
+    if(socket){
+      socket.on('game-data-changed', (data: any) => {
+        dispatch(synchronizeGame(data.gameData) as any);
+          navigation.navigate('OnlineGame');
+     
+        console.log('game-data-changed listener:', data);
+      });
+      return () => {
+        socket.off('game-data-changed');
+      };
+    }
+  }, [socket]);
+
 
   useEffect(() => {
     if (socket) {
@@ -28,26 +41,16 @@ function WelcomeScreen({ navigation }: any): JSX.Element {
       function onDisconnect() {
         setIsConnected(false);
       }
-
+      
       socket.on('connect', onConnect);
       socket.on('disconnect', onDisconnect);
+
       return () => {
         socket.off('connect', onConnect);
         socket.off('disconnect', onDisconnect);
       };
     }
   }, [socket, userData]);
-
-  useEffect(() => {
-    if(socket){
-      socket?.on('game-started', (data: any) => {
-        console.log('socketten gelen oyun datası', data)
-      });
-    }
-    return () => {
-      socket?.off('start-game');
-    };
-  }, [socket]);
 
   useEffect(() => {
     if (socket) {

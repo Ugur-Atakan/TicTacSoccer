@@ -25,7 +25,7 @@ export default function BottomButtons(roomCode: any) {
  mode="contained"
  buttonColor="#448AFF"
  onPress={() => {
-   dispatch(startGame(roomCode) as any);
+   dispatch(startGame() as any);
    playSound();
  }}>
 Oyunu Başlat
@@ -34,7 +34,7 @@ Oyunu Başlat
  mode="contained"
  buttonColor="#448AFF"
  onPress={() => {
-   dispatch(startGame(roomCode) as any);
+   dispatch(startGame() as any);
    playSound();
  }}>
 Oyunu Başlat

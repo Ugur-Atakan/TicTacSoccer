@@ -6,20 +6,37 @@ import BaseGame from '../../game/index';
 import StatusBar from '../../components/UIComponents/status';
 import BottomButtons from '../../components/UIComponents/buttons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { globalStlyes } from '../../style';
+import { globalStlyes, textStyles } from '../../style';
 import { RootState } from '../../utils/redux/stores/store';
 import SoundPlayer from 'react-native-sound-player';
 import BannerADS from '../../components/UIComponents/Banner';
 import WinnerModal from '../../components/UIComponents/Modal/WinnerModal';
 import { useFocusEffect } from '@react-navigation/native';
+import { socket } from '../../utils/socketService';
+import { Text } from 'react-native';
 
-export default function OnlineGame() {
+export default function OnlineGame({ route, navigation }: any) {
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const gameStatus = useSelector((state: RootState) => state.game.gameStatus);
   const soundVolume = useSelector((state: RootState) => state.soundVolume.soundVolume);
   const roomCode = useSelector((state: RootState) => state.room.roomCode);
-  
+  const gameData = useSelector((state: RootState) => state.game);
+  const userData = useSelector((state: RootState) => state.user.userData);
+  useEffect(() => {
+  console.log('game-data-change-sender', gameData);
+  let data={
+    roomCode:roomCode,
+    gameData: gameData,
+    userId: userData.id
+  } 
+socket?.emit('game-data-changed', data);
+
+  return () => {
+    socket?.off('game-data-changed');
+  };
+}
+, [gameData]);
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
       if (
@@ -65,7 +82,9 @@ export default function OnlineGame() {
     <SafeAreaProvider style={globalStlyes.container}>
       <WinnerModal />
       <View style={globalStlyes.gameStatus}>
+      <Text style={textStyles.fs15white}>ROOM CODE : {roomCode}</Text>
         <StatusBar />
+        
       </View>
       <View style={globalStlyes.game}>
         <BaseGame />

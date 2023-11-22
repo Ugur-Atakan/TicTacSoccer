@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Alert } from 'react-native';
-import { socket } from '../../../socketService';
 import baseAPI from '../../../http/base';
 interface Square {
     isCorrect: boolean;
@@ -99,6 +98,9 @@ const GameReducer = createSlice({
         setWinnerPlayer: (state, action: PayloadAction<any>) => {
             state.winnerUserData = action.payload;
         },
+        sycnGame: (state, action: PayloadAction<any>) => {
+            state = action.payload;
+        },
         resetGame: () => initialState,
     },
 });
@@ -125,20 +127,14 @@ const checkWinner = (Data: Square[]): boolean => {
 }
 
 export const playOnline = (payload: any) => async (dispatch: any) => {
-    socket?.emit('update-cell', payload);
     dispatch(play(payload));
 };
 
-export const startGame = (roomCode:any) => async (dispatch: any) => {
+export const startGame = () => async (dispatch: any) => {
     try {
         dispatch(fetching());
         const teams = (await baseAPI.get('game')).data;
-        await dispatch(setTeamCells(teams))
-        socket?.emit('start-game', {
-            roomCode: roomCode,
-            userId: 1,
-            teams: teams,
-        });
+        await dispatch(setTeamCells(teams));
         dispatch(started())
     } catch (error) {
         console.error('Bir şeyler yanlış gitti', error);
@@ -159,6 +155,11 @@ export const nextRound = (payload: any) => async (dispatch: any) => {
         .catch(() => console.error('Bir şeyler yanlış gitti'));
 }
 
-export const { play, resetGame, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, goNextRound, setPlayersData, fetching, started, finished } = GameReducer.actions;
+export const synchronizeGame = (data:any) => async (dispatch: any) => {
+    dispatch(sycnGame(data));
+}
+
+
+export const { play, resetGame, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, goNextRound, setPlayersData, fetching, started, finished,sycnGame } = GameReducer.actions;
 
 export default GameReducer.reducer;

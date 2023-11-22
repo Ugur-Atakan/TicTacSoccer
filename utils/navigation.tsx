@@ -22,7 +22,6 @@ import ResetPassword from '../screens/Auth/ResetPassword';
 import LogoutScreen from '../screens/Auth/Logout';
 import { registerSocketToRedux } from './redux/reducers/socketReducer';
 import { socket } from './socketService';
-import { Alert, Button } from 'react-native';
 import { IconButton } from 'react-native-paper';
 
 const Stack = createNativeStackNavigator();
