@@ -99,7 +99,18 @@ const GameReducer = createSlice({
             state.winnerUserData = action.payload;
         },
         sycnGame: (state, action: PayloadAction<any>) => {
-            state = action.payload;
+            console.log('gelen payload',action.payload)
+            state.gameStatus = action.payload.gameStatus
+            state.isLoading = action.payload.isLoading
+            state.round = action.payload.roundaction
+            state.scores = action.payload.scores
+            state.selectedCellId = action.payload.selectedCellId
+            state.selectedTeamCell = action.payload.selectedTeamCell
+            state.playersData = action.payload.playersData
+            state.currentPlayer = action.payload.currentPlayer
+            state.winnerUserData = action.payload.winnerUserData
+            state.teamCells = action.payload.teamCells
+            state.soccerCells = action.payload.soccerCells
         },
         resetGame: () => initialState,
     },
@@ -155,11 +166,11 @@ export const nextRound = (payload: any) => async (dispatch: any) => {
         .catch(() => console.error('Bir şeyler yanlış gitti'));
 }
 
-export const synchronizeGame = (data:any) => async (dispatch: any) => {
+export const synchronizeGame = (data: any) => async (dispatch: any) => {
     dispatch(sycnGame(data));
 }
 
 
-export const { play, resetGame, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, goNextRound, setPlayersData, fetching, started, finished,sycnGame } = GameReducer.actions;
+export const { play, resetGame, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, goNextRound, setPlayersData, fetching, started, finished, sycnGame } = GameReducer.actions;
 
 export default GameReducer.reducer;

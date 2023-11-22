@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { AppState, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import BaseGame from '../../game/index';
 import StatusBar from '../../components/UIComponents/status';
@@ -12,8 +12,8 @@ import SoundPlayer from 'react-native-sound-player';
 import BannerADS from '../../components/UIComponents/Banner';
 import WinnerModal from '../../components/UIComponents/Modal/WinnerModal';
 import { useFocusEffect } from '@react-navigation/native';
-import { socket } from '../../utils/socketService';
 import { Text } from 'react-native';
+import { synchronizeGame } from '../../utils/redux/reducers/gameReducers/gameReducer.duck';
 
 export default function OnlineGame({ route, navigation }: any) {
   const appState = useRef(AppState.currentState);
@@ -23,6 +23,20 @@ export default function OnlineGame({ route, navigation }: any) {
   const roomCode = useSelector((state: RootState) => state.room.roomCode);
   const gameData = useSelector((state: RootState) => state.game);
   const userData = useSelector((state: RootState) => state.user.userData);
+  const { socket } = useSelector((state: RootState) => state.socket);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if(socket){
+      socket.on('game-data-changed', (data: any) => {
+        dispatch(synchronizeGame(data.gameData) as any);
+      });
+      return () => {
+        socket.off('game-data-changed');
+      };
+    }
+  }, [gameData]);
+
   useEffect(() => {
   console.log('game-data-change-sender', gameData);
   let data={
