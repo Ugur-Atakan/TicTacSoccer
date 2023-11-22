@@ -13,22 +13,19 @@ function WelcomeScreen({ navigation }: any): JSX.Element {
   const { socket } = useSelector((state: RootState) => state.socket);
   const { userData } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
-
   useEffect(() => {
     if(socket){
       socket.on('game-data-changed', (data: any) => {
         dispatch(synchronizeGame(data.gameData) as any);
           navigation.navigate('OnlineGame');
      
-        console.log('game-data-changed listener:', data);
+        console.log('Welcome Screen:', data);
       });
       return () => {
         socket.off('game-data-changed');
       };
     }
   }, [socket]);
-
-
   useEffect(() => {
     if (socket) {
       function onConnect() {
