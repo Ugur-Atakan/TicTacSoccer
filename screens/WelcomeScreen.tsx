@@ -16,9 +16,7 @@ function WelcomeScreen({ navigation }: any): JSX.Element {
   useEffect(() => {
     if(socket){
       socket.on('game-data-changed', (data: any) => {
-        dispatch(synchronizeGame(data.gameData) as any);
-          navigation.navigate('OnlineGame');
-     
+        navigation.navigate('OnlineGame');
         console.log('Welcome Screen:', data);
       });
       return () => {

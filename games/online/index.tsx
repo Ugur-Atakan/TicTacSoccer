@@ -24,12 +24,18 @@ export default function OnlineGame({ route, navigation }: any) {
   const gameData = useSelector((state: RootState) => state.game);
   const userData = useSelector((state: RootState) => state.user.userData);
   const { socket } = useSelector((state: RootState) => state.socket);
-
   const dispatch = useDispatch();
+  
   useEffect(() => {
     if(socket){
       socket.on('game-data-changed', (data: any) => {
-        dispatch(synchronizeGame(data.gameData) as any);
+        console.log('socketen gelen data',JSON.stringify(data.gameData));
+        console.log('gameData', gameData);
+        if (!isGameDataEqual(data.gameData, gameData)) {
+          dispatch(synchronizeGame(data.gameData) as any);
+        }else{
+          console.log('gameData is equal');
+        }
       });
       return () => {
         socket.off('game-data-changed');
@@ -51,6 +57,11 @@ socket?.emit('game-data-changed', data);
   };
 }
 , [gameData]);
+
+const isGameDataEqual = (newGameData: any, currentGameData: any): boolean => {
+  return JSON.stringify(newGameData) === JSON.stringify(currentGameData);
+};
+
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
       if (

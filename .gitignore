@@ -66,3 +66,9 @@ yarn-error.log
 # testing
 /coverage
 android/app/release/app-release.apk
+
+# Android output folder
+/android/app/release/app-release.apk
+/android/app/release/app-release.aab
+/android/app/release/app-release-unsigned.apk
+/android/app/release/output-metadata.json

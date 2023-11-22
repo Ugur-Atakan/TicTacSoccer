@@ -8,10 +8,10 @@ import { socket } from '../../../utils/socketService';
 import { roomPlayerstoGameBoard, updateJoinedUsersState, updatejoinedUsers } from '../../../utils/redux/reducers/roomReducer';
 import baseAPI from '../../../utils/http/base';
 
-export default function Lobby({ route }:any){
-    const {connectedUsers} = useSelector((state:RootState)=>state.room);
-    const roomCode = route.params?.roomCode || 'Bekleniyor';
-    const dispatch = useDispatch();   
+export default function Lobby(){
+    const {connectedUsers,roomCode} = useSelector((state:RootState)=>state.room);
+    const dispatch = useDispatch();  
+
     useEffect(() => {
      baseAPI.get(`/room/room-players?roomCode=${roomCode}`).then((res)=>{
       dispatch(roomPlayerstoGameBoard({connectedUsers: res.data}) as any )
@@ -21,7 +21,7 @@ export default function Lobby({ route }:any){
         console.log(err);
       });
     }, [socket]);
-
+    
     return (
         <SafeAreaView style={globalStlyes.container}>
           <View>

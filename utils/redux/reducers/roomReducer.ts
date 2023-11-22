@@ -37,6 +37,11 @@ const roomSlice = createSlice({
 export const {joinRoom, leaveRoom,updatejoinedUsers} = roomSlice.actions;
 export default roomSlice.reducer;
 
+export const joinRoomState = (payload: any) => {
+  return (dispatch: any) => {
+    dispatch(joinRoom(payload));
+  };
+}
 export const updateJoinedUsersState =(payload: any)=> {
   return (dispatch:any) => {
     dispatch(updatejoinedUsers(payload))
@@ -48,6 +53,7 @@ export const roomPlayerstoGameBoard = (payload: any) => {
     dispatch(setPlayersData(payload));
   };
 };
+
 export const createRoom = (payload: any) => {
   return async (dispatch: any) => {
     const room = await baseAPI.get('room/create-room');

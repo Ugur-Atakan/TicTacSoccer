@@ -1,41 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import {
     SafeAreaView,
-    Alert,
-    Share,
-    View,
-    Image,
-    Touchable,
     TouchableOpacity,
 } from 'react-native';
-import { globalStlyes } from '../../../style';
-import { Button, Text, IconButton, Card, TextInput } from 'react-native-paper';
+import { Text, IconButton, TextInput } from 'react-native-paper';
 import { width } from '../../../style';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
+import { joinRoomState } from '../../../utils/redux/reducers/roomReducer';
 
 
 export default function JoinRoom({ navigation }: any) {
     const [roomCode, setRoomCode] = useState('');
     const { socket } = useSelector((state: RootState) => state.socket);
     const { userData } = useSelector((state: RootState) => state.user);
-    const { connectedSockets, connectedUsers } = useSelector((state: RootState) => state.room);
+    const dispatch = useDispatch();
 
-    const joinGame = () => {
+    const joinGame = async () => {
+        await dispatch(joinRoomState({ roomCode: roomCode, user: userData }) as any);
         if (socket) {
             socket.emit('join-room', { roomCode, userId: userData.id });
         }
-        navigation.navigate('Lobby', { roomCode });
+        navigation.navigate('Lobby');
     };
 
     useEffect(() => {
         socket?.on('joined-room', (data: any) => {
-            navigation.navigate('Lobby',{ code: roomCode});
+            navigation.navigate('Lobby', { code: roomCode });
         }
         );
         return () => {
             socket?.off('joined-room');
-        }}, [socket]);
+        }
+    }, [socket]);
 
     return (
         <SafeAreaView

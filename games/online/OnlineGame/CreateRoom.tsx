@@ -18,10 +18,6 @@ export default function CreateRoom({ navigation }: any) {
   useEffect(() => {
     console.log(roomCode, 'kodlu oda', socket?.id, 'idli soket tarafından oluşturuldu');
     if (socket) {
-      socket?.on('game-started', (data: any) => {
-        console.warn('game-started dan gelen data', data)
-      });
-
       socket?.on('joined-room', (data: any) => {
         dispatch(updateJoinedUsersState({
           connectedUsers: data.roomUsers,
@@ -185,12 +181,12 @@ export default function CreateRoom({ navigation }: any) {
             }}>
             <Text
               style={{
-                fontSize: width * 0.045,
+                fontSize: width * 0.040,
                 color: 'white',
                 fontWeight: 'bold',
                 alignSelf: 'center',
               }}>
-              {connectedUsers[1]?.name + ' ' + connectedUsers[1]?.lastName ? connectedUsers[1]?.name + ' ' + connectedUsers[1]?.lastName : ''}
+              {connectedUsers[1]&&connectedUsers[1].name!==undefined ? connectedUsers[1]?.name + ' ' + connectedUsers[1]?.lastName : '2. Oyuncu'}
             </Text>
             <Text
               style={{
