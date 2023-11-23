@@ -12,7 +12,6 @@ function WelcomeScreen({ navigation }: any): JSX.Element {
   const [isConnected, setIsConnected] = useState(false);
   const { socket } = useSelector((state: RootState) => state.socket);
   const { userData } = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
   useEffect(() => {
     if(socket){
       socket.on('game-data-changed', (data: any) => {

@@ -12,7 +12,6 @@ export default function CreateRoom({ navigation }: any) {
   const { socket } = useSelector((state: RootState) => state.socket);
   const { roomCode, connectedUsers } = useSelector((state: RootState) => state.room);
   const { userData } = useSelector((state: RootState) => state.user);
-  const {teamCells} = useSelector((state: RootState) => state.game);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,16 +38,6 @@ export default function CreateRoom({ navigation }: any) {
     };
   }, [socket, roomCode]);
 
-  useEffect(() => {
-    if(socket){
-      socket.on('game-started', (data: any) => {
-        dispatch(startGame() as any);
-      });
-    }
-    return () => {
-      socket?.off('start-game');
-    };
-  }, [socket]);
 
   const onShare = async () => {
     try {
@@ -186,7 +175,7 @@ export default function CreateRoom({ navigation }: any) {
                 fontWeight: 'bold',
                 alignSelf: 'center',
               }}>
-              {connectedUsers[1]&&connectedUsers[1].name!==undefined ? connectedUsers[1]?.name + ' ' + connectedUsers[1]?.lastName : '2. Oyuncu'}
+              {connectedUsers[1] && connectedUsers[1].name !== undefined ? connectedUsers[1]?.name + ' ' + connectedUsers[1]?.lastName : '2. Oyuncu'}
             </Text>
             <Text
               style={{

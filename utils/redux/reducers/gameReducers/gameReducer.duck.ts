@@ -71,7 +71,7 @@ const GameReducer = createSlice({
         setTeamCells: (state, action) => {
             state.teamCells = action.payload;
         },
-
+        
         selectCellID: (state, action) => {
             state.selectedCellId = action.payload;
         },
@@ -102,7 +102,7 @@ const GameReducer = createSlice({
             console.log('gelen payload',action.payload)
             state.gameStatus = action.payload.gameStatus
             state.isLoading = action.payload.isLoading
-            state.round = action.payload.roundaction
+            state.round = action.payload.round
             state.scores = action.payload.scores
             state.selectedCellId = action.payload.selectedCellId
             state.selectedTeamCell = action.payload.selectedTeamCell
@@ -137,7 +137,7 @@ const checkWinner = (Data: Square[]): boolean => {
     return false; // oynayan oyuncu oyunu kaybetti
 }
 
-export const playOnline = (payload: any) => async (dispatch: any) => {
+export const playOnline = (payload: any) => (dispatch: any) => {
     dispatch(play(payload));
 };
 
@@ -152,12 +152,12 @@ export const startGame = () => async (dispatch: any) => {
     }
 };
 
-export const finishGame = () => async (dispatch: any) => {
+export const finishGame = () => (dispatch: any) => {
     dispatch(finished());
     dispatch(resetGame());
 };
 
-export const nextRound = (payload: any) => async (dispatch: any) => {
+export const nextRound = (payload: any) => (dispatch: any) => {
     dispatch(goNextRound());
     baseAPI
         .get('game')
@@ -166,7 +166,7 @@ export const nextRound = (payload: any) => async (dispatch: any) => {
         .catch(() => console.error('Bir şeyler yanlış gitti'));
 }
 
-export const synchronizeGame = (data: any) => async (dispatch: any) => {
+export const synchronizeGame = (data: any) => (dispatch: any) => {
     dispatch(sycnGame(data));
 }
 

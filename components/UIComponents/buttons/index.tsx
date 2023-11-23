@@ -7,12 +7,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
 export default function BottomButtons(roomCode: any) {
   const gameStatus = useSelector((state:RootState) => state.game.gameStatus);
-
   const dispatch = useDispatch();
-
   const {playSound} = useSoundPlayer();
-
-
   return (
     <HStack
       style={{
