@@ -13,7 +13,7 @@ import BannerADS from '../../components/UIComponents/Banner';
 import WinnerModal from '../../components/UIComponents/Modal/WinnerModal';
 import { useFocusEffect } from '@react-navigation/native';
 import { Text } from 'react-native';
-import { synchronizeGame } from '../../utils/redux/reducers/gameReducers/gameReducer.duck';
+import { startOnlineGame, synchronizeGame } from '../../utils/redux/reducers/gameReducers/gameReducer.duck';
 
 export default function OnlineGame({ route, navigation }: any) {
   const appState = useRef(AppState.currentState);
@@ -25,42 +25,28 @@ export default function OnlineGame({ route, navigation }: any) {
   const userData = useSelector((state: RootState) => state.user.userData);
   const { socket } = useSelector((state: RootState) => state.socket);
   const dispatch = useDispatch();
-  
+
+  const startGameCB= () => {
+    console.log('startGameCB')
+    dispatch(startOnlineGame() as any);
+    socket?.emit('game-data-changed',{gameData:gameData,userId:userData.id,roomCode:roomCode})
+  }
+
+  useEffect(() => {
+  console.log('gameData',gameData)
+  }, [gameData])
+
   useEffect(() => {
     if(socket){
       socket.on('game-data-changed', (data: any) => {
-        console.log('socketen gelen data',JSON.stringify(data.gameData));
-        console.log('gameData', gameData);
-        if (!isGameDataEqual(data.gameData, gameData)) {
+        console.log('Veri Alındı', data.gameData.teamCells);
           dispatch(synchronizeGame(data.gameData) as any);
-        }else{
-          console.log('gameData is equal');
-        }
       });
       return () => {
         socket.off('game-data-changed');
       };
     }
-  }, [gameData]);
-
-  useEffect(() => {
-  console.log('game-data-change-sender', gameData);
-  let data={
-    roomCode:roomCode,
-    gameData: gameData,
-    userId: userData.id
-  } 
-socket?.emit('game-data-changed', data);
-
-  return () => {
-    socket?.off('game-data-changed');
-  };
-}
-, [gameData]);
-
-const isGameDataEqual = (newGameData: any, currentGameData: any): boolean => {
-  return JSON.stringify(newGameData) === JSON.stringify(currentGameData);
-};
+  }, [socket]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
@@ -115,7 +101,7 @@ const isGameDataEqual = (newGameData: any, currentGameData: any): boolean => {
         <BaseGame />
       </View>
       <View style={globalStlyes.bottomButtons}>
-        <BottomButtons roomCode={roomCode} />
+        <BottomButtons startGameCB={startGameCB} />
       </View>
       <View style={globalStlyes.footer}>
         <BannerADS />

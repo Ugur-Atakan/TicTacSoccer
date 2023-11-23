@@ -6,13 +6,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateJoinedUsersState } from '../../../utils/redux/reducers/roomReducer';
 import { RootState } from '../../../utils/redux/stores/store';
 import { createRoom } from '../../../utils/redux/reducers/roomReducer';
-import { startGame } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
+import { updateTeamCells } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
+import baseAPI from '../../../utils/http/base';
 
 export default function CreateRoom({ navigation }: any) {
   const { socket } = useSelector((state: RootState) => state.socket);
   const { roomCode, connectedUsers } = useSelector((state: RootState) => state.room);
   const { userData } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+
+  const handlePrepareGame = async () => {
+    try {
+      const teams = (await baseAPI.get('game')).data;
+      await dispatch(updateTeamCells(teams) as any);
+      socket?.emit('prepare-game', { roomCode: roomCode, teams: teams });
+      navigation.navigate('OnlineGame');
+    } catch (error) {
+      console.error('Bir hata oluştu:', error);
+    }
+  };
 
   useEffect(() => {
     console.log(roomCode, 'kodlu oda', socket?.id, 'idli soket tarafından oluşturuldu');
@@ -193,8 +205,8 @@ export default function CreateRoom({ navigation }: any) {
           <Button
             mode="contained"
             buttonColor="#448AFF"
-            onPress={() => navigation.navigate('OnlineGame')}>
-            OYUNU BAŞLAT
+            onPress={handlePrepareGame}>
+            OYUNU HAZIRLA
           </Button>
         </View>
       </View>

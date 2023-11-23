@@ -38,11 +38,6 @@ const GameReducer = createSlice({
     name: 'board',
     initialState,
     reducers: {
-
-        fetching: (state) => {
-            state.gameStatus = false;
-            state.isLoading = true;
-        },
         started: (state) => {
             state.gameStatus = true, state.isLoading = false;
         },
@@ -99,7 +94,6 @@ const GameReducer = createSlice({
             state.winnerUserData = action.payload;
         },
         sycnGame: (state, action: PayloadAction<any>) => {
-            console.log('gelen payload',action.payload)
             state.gameStatus = action.payload.gameStatus
             state.isLoading = action.payload.isLoading
             state.round = action.payload.round
@@ -143,7 +137,6 @@ export const playOnline = (payload: any) => (dispatch: any) => {
 
 export const startGame = () => async (dispatch: any) => {
     try {
-        dispatch(fetching());
         const teams = (await baseAPI.get('game')).data;
         await dispatch(setTeamCells(teams));
         dispatch(started())
@@ -151,6 +144,14 @@ export const startGame = () => async (dispatch: any) => {
         console.error('Bir şeyler yanlış gitti', error);
     }
 };
+
+export const startOnlineGame = () => (dispatch: any) => {
+    dispatch(started());
+}
+
+export const updateTeamCells = (payload: any) => async (dispatch: any) => {
+    await dispatch(setTeamCells(payload));
+}
 
 export const finishGame = () => (dispatch: any) => {
     dispatch(finished());
@@ -171,6 +172,6 @@ export const synchronizeGame = (data: any) => (dispatch: any) => {
 }
 
 
-export const { play, resetGame, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, goNextRound, setPlayersData, fetching, started, finished, sycnGame } = GameReducer.actions;
+export const { play, resetGame, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, goNextRound, setPlayersData, started, finished, sycnGame } = GameReducer.actions;
 
 export default GameReducer.reducer;

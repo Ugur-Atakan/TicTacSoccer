@@ -6,23 +6,26 @@ import { Text } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../utils/redux/stores/store';
 import { width } from '../style';
-import { synchronizeGame } from '../utils/redux/reducers/gameReducers/gameReducer.duck';
+import { updateTeamCells } from '../utils/redux/reducers/gameReducers/gameReducer.duck';
 
 function WelcomeScreen({ navigation }: any): JSX.Element {
   const [isConnected, setIsConnected] = useState(false);
   const { socket } = useSelector((state: RootState) => state.socket);
   const { userData } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     if(socket){
-      socket.on('game-data-changed', (data: any) => {
+      socket.on('game-prepared', async (data: any) => {
+        await dispatch(updateTeamCells(data.teams) as any);
         navigation.navigate('OnlineGame');
-        console.log('Welcome Screen:', data);
       });
       return () => {
-        socket.off('game-data-changed');
+        socket.off('game-prepared');
       };
     }
   }, [socket]);
+
   useEffect(() => {
     if (socket) {
       function onConnect() {
