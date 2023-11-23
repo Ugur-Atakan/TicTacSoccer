@@ -12,11 +12,14 @@ interface SoccerCellProps {
 const SoccerCell: React.FC<SoccerCellProps> = ({cellId, openModal}) => {
   const soccerCells = useSelector((state: RootState) => state.game.soccerCells);
   const gameStatus= useSelector((state: RootState) => state.game.gameStatus);
+  const userData= useSelector((state: RootState) => state.user.userData);
+  const {currentPlayer}= useSelector((state: RootState) => state.game);
+  const connectedUsers= useSelector((state: RootState) => state.room.connectedUsers);
 
   return (
     <TouchableOpacity
       onPress={() => {
-        gameStatus==true && !soccerCells[cellId].data ?
+        (userData?.id==connectedUsers[currentPlayer?.id-1]?.id )&& gameStatus==true && !soccerCells[cellId].data ?
         openModal(cellId):
       ({})
       }}>

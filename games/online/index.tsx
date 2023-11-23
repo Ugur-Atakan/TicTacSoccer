@@ -33,7 +33,13 @@ export default function OnlineGame({ route, navigation }: any) {
   }
 
   useEffect(() => {
-  console.log('gameData',gameData)
+  console.log('gameData sender',gameData)
+  let data={
+    gameData:gameData,
+    userId:userData.id,
+    roomCode:roomCode
+  }
+    socket?.emit('game-data-changed',data)
   }, [gameData])
 
   useEffect(() => {

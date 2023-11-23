@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateJoinedUsersState } from '../../../utils/redux/reducers/roomReducer';
 import { RootState } from '../../../utils/redux/stores/store';
 import { createRoom } from '../../../utils/redux/reducers/roomReducer';
-import { updateTeamCells } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
+import { startOnlineGame, updateTeamCells } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
 import baseAPI from '../../../utils/http/base';
 
 export default function CreateRoom({ navigation }: any) {
@@ -19,6 +19,7 @@ export default function CreateRoom({ navigation }: any) {
     try {
       const teams = (await baseAPI.get('game')).data;
       await dispatch(updateTeamCells(teams) as any);
+       await dispatch(startOnlineGame() as any)
       socket?.emit('prepare-game', { roomCode: roomCode, teams: teams });
       navigation.navigate('OnlineGame');
     } catch (error) {
