@@ -20,8 +20,8 @@ import Lobby from '../games/online/OnlineGame/Lobby';
 import Register from '../screens/Auth/Register';
 import ResetPassword from '../screens/Auth/ResetPassword';
 import LogoutScreen from '../screens/Auth/Logout';
-import { registerSocketToRedux } from './redux/reducers/socketReducer';
-import { socket } from './socketService';
+import { registerSocketToRedux } from './redux/reducers/socketReducer.duck';
+import { socket } from './SocketService';
 import { IconButton } from 'react-native-paper';
 
 const Stack = createNativeStackNavigator();

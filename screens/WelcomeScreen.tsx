@@ -6,7 +6,7 @@ import { Text } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../utils/redux/stores/store';
 import { width } from '../style';
-import { updateTeamCells } from '../utils/redux/reducers/gameReducers/gameReducer.duck';
+import { updateTeamCells } from '../utils/redux/actions/game';
 
 function WelcomeScreen({ navigation }: any): JSX.Element {
   const [isConnected, setIsConnected] = useState(false);
@@ -18,7 +18,7 @@ function WelcomeScreen({ navigation }: any): JSX.Element {
     if(socket){
       socket.on('game-prepared', async (data: any) => {
         await dispatch(updateTeamCells(data.teams) as any);
-        navigation.navigate('OnlineGame');
+        navigation.navigate('OnlineGame',{isHost: false} as any);
       });
       return () => {
         socket.off('game-prepared');

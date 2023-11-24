@@ -4,8 +4,8 @@ import { globalStlyes, width } from '../../../style';
 import { Text } from 'react-native-paper';
 import { RootState } from '../../../utils/redux/stores/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { socket } from '../../../utils/socketService';
-import { roomPlayerstoGameBoard, updateJoinedUsersState, updatejoinedUsers } from '../../../utils/redux/reducers/roomReducer';
+import { socket } from '../../../utils/SocketService';
+import { roomPlayerstoGameBoard, updateJoinedUsersState } from '../../../utils/redux/actions/room';
 import baseAPI from '../../../utils/http/base';
 
 export default function Lobby(){

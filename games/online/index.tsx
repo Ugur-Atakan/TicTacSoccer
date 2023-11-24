@@ -45,7 +45,7 @@ export default function OnlineGame({route, navigation}:any) {
       { 
         roomCode: roomCode,
       }
-      await dispatch(finishGame() as any);
+      await dispatch(finishGame(roomCode) as any);
             socket?.emit('stop-game',data);
     } catch (error) {
       console.error('Bir hata oluştu:', error);
@@ -66,7 +66,7 @@ export default function OnlineGame({route, navigation}:any) {
 
       socket?.on('stop-game', () => {
         try{
-          dispatch(finishGame() as any);
+          dispatch(finishGame(roomCode) as any);
         }
         catch(error){
           console.log(error);

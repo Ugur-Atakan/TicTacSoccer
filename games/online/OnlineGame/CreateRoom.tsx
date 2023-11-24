@@ -19,7 +19,7 @@ export default function CreateRoom({ navigation }: any) {
       const teams = (await baseAPI.get('game')).data;
       await dispatch(updateTeamCells(teams) as any);
       socket?.emit('prepare-game', { roomCode: roomCode, teams: teams });
-      navigation.navigate('OnlineGame');
+      navigation.navigate('OnlineGame',{isHost: true} as any);
     } catch (error) {
       console.error('Bir hata oluştu:', error);
     }
