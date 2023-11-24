@@ -2,9 +2,13 @@ import baseAPI from "../../http/base";
 import { goNextRound, nextPlayer, play, resetGame, setTeamCells, started, sycnGame } from "../reducers/game.duck";
 import  {socket} from "../../SocketService";
 
-export const playOnline = (payload: any) => async (dispatch: any) => {
+//SOCKET EMITTER THUNKS
+
+export const playOnline = (roomCode:string,userId:any, payload: any) => async (dispatch: any) => {
     await dispatch(play(payload));
-    socket?.emit('play', payload);
+    socket?.emit('play', { roomCode,userId, data:payload});
+    console.log('Play online logu',{roomCode, userId, data:payload})
+
 };
 
 export const startGame = (roomCode:string) => async (dispatch: any) => {
@@ -27,13 +31,13 @@ export const updateTeamCells = (payload: any) => async (dispatch: any) => {
     await dispatch(setTeamCells(payload));
 }
 
-export const finishGame = (roomCode:string) => (dispatch: any) => {
+export const finishGame = () => (dispatch: any) => {
     dispatch(resetGame());
-    socket?.emit('stop-game',{roomCode:roomCode});
 };
 
-export const nextPlayerTurn = () => async (dispatch: any) => {
+export const nextPlayerTurn = (roomCode:any) => async (dispatch: any) => {
     dispatch(nextPlayer());
+    socket?.emit('next-player',{roomCode:roomCode});
 }
 
 
@@ -50,6 +54,9 @@ export const synchronizeGame = (data: any) => (dispatch: any) => {
     dispatch(sycnGame(data));
 }
 
+export const gameReset=()=>(dispatch:any)=>{
+    dispatch(resetGame());
+}
 
 /// Path: utils/redux/actions/game.ts
 
@@ -72,3 +79,14 @@ next player turn
 play
 sync game
 */
+
+
+/// SOCKET LİSTENER THUNKS
+
+export const playListener=(payload:any)=>(dispatch:any)=>{
+    dispatch(play(payload));
+}
+
+export const listenerNextPlayerTurn = () => async (dispatch: any) => {
+    dispatch(nextPlayer());
+}

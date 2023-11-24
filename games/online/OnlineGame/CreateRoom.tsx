@@ -5,7 +5,7 @@ import { Button, Text, IconButton, Card } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import {createRoom, updateJoinedUsersState } from '../../../utils/redux/actions/room';
 import { RootState } from '../../../utils/redux/stores/store';
-import { startOnlineGame, updateTeamCells } from '../../../utils/redux/actions/game';
+import { gameReset, startOnlineGame, updateTeamCells } from '../../../utils/redux/actions/game';
 import baseAPI from '../../../utils/http/base';
 
 export default function CreateRoom({ navigation }: any) {
@@ -15,10 +15,10 @@ export default function CreateRoom({ navigation }: any) {
   const dispatch = useDispatch();
 
   const handlePrepareGame = async () => {
+    console.log('handlePrepareGame');
     try {
-      const teams = (await baseAPI.get('game')).data;
-      await dispatch(updateTeamCells(teams) as any);
-      socket?.emit('prepare-game', { roomCode: roomCode, teams: teams });
+      dispatch(gameReset() as any);
+      socket?.emit('prepare-game', { roomCode: roomCode});
       navigation.navigate('OnlineGame',{isHost: true} as any);
     } catch (error) {
       console.error('Bir hata oluştu:', error);

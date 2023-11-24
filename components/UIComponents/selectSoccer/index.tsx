@@ -86,12 +86,9 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
                     data: Soccer,
                 },
             };
-           await dispatch(playOnline(soccerData) as any);
-           socket?.emit('game-data-changed', { roomCode: roomCode, userId:userData.id, gameData: gameData });
-           console.log('emit denemsi yapıldı',gameData)
+           await dispatch(playOnline(roomCode,userData.id,soccerData) as any);
         } else {
-            await dispatch(nextPlayerTurn() as any);
-            socket?.emit('game-data-changed', { roomCode: roomCode, userId:userData.id, gameData: gameData });
+            await dispatch(nextPlayerTurn(roomCode) as any);
         }
         closeModal();
         setData([]);
