@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Alert } from 'react-native';
-import baseAPI from '../../../http/base';
 interface Square {
     isCorrect: boolean;
     knowingPlayer: number | null;
@@ -38,12 +37,16 @@ const GameReducer = createSlice({
     name: 'board',
     initialState,
     reducers: {
+        fetched: (state) => {
+            state.isLoading = true;
+        },
         started: (state) => {
             state.gameStatus = true, state.isLoading = false;
         },
         finished: (state) => {
             state.gameStatus = false, state.isLoading = false
         },
+        
         play: (state, action) => {
             const index = action.payload.index;
             if (!state.soccerCells[index].data) {
@@ -130,47 +133,6 @@ const checkWinner = (Data: Square[]): boolean => {
     }
     return false; // oynayan oyuncu oyunu kaybetti
 }
-
-export const playOnline = (payload: any) => (dispatch: any) => {
-    dispatch(play(payload));
-};
-
-export const startGame = () => async (dispatch: any) => {
-    try {
-        const teams = (await baseAPI.get('game')).data;
-        await dispatch(setTeamCells(teams));
-        dispatch(started())
-    } catch (error) {
-        console.error('Bir şeyler yanlış gitti', error);
-    }
-};
-
-export const startOnlineGame = () => (dispatch: any) => {
-    dispatch(started());
-}
-
-export const updateTeamCells = (payload: any) => async (dispatch: any) => {
-    await dispatch(setTeamCells(payload));
-}
-
-export const finishGame = () => (dispatch: any) => {
-    dispatch(finished());
-    dispatch(resetGame());
-};
-
-export const nextRound = (payload: any) => (dispatch: any) => {
-    dispatch(goNextRound());
-    baseAPI
-        .get('game')
-        .then(res => dispatch(setTeamCells(res.data)))
-        .then(dispatch(started(payload)))
-        .catch(() => console.error('Bir şeyler yanlış gitti'));
-}
-
-export const synchronizeGame = (data: any) => (dispatch: any) => {
-    dispatch(sycnGame(data));
-}
-
 
 export const { play, resetGame, nextPlayer, setWinnerPlayer, selectCellID, setTeamCells, goNextRound, setPlayersData, started, finished, sycnGame } = GameReducer.actions;
 

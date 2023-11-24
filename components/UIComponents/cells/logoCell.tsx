@@ -13,7 +13,6 @@ const LogoCell = () => {
           style={imageStyles.logoimg}
         />
        
-      
         <Text style={{color: 'white',fontSize:width*0.04}}>3 5 2 </Text>
       </Flex>
     </View>

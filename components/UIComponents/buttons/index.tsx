@@ -1,15 +1,14 @@
 import {Button} from 'react-native-paper';
 import {HStack} from 'react-native-flex-layout';
 import React from 'react';
-import { finishGame, startGame, startOnlineGame } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
+import { finishGame, startGame } from '../../../utils/redux/actions/game';
 import useSoundPlayer from '../../../utils/soundPlayer';
 import {useDispatch, useSelector} from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
-export default function BottomButtons(props: any) {
+export default function BottomButtons() {
   const gameStatus = useSelector((state:RootState) => state.game.gameStatus);
   const dispatch = useDispatch();
   const {playSound} = useSoundPlayer();
-  const {startGameCB}=props;
   return (
     <HStack
       style={{
@@ -30,9 +29,10 @@ Oyunu Başlat
  <Button
  mode="contained"
  buttonColor="#448AFF"
- onPress={
-  ()=>startGameCB()
- }>
+ onPress={() => {
+  dispatch(startGame() as any);
+  playSound();
+}}>
 Oyunu Başlat
 </Button>
         }

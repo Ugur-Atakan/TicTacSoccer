@@ -1,11 +1,7 @@
 import {Dispatch, createSlice} from '@reduxjs/toolkit';
 import {Socket} from 'socket.io-client';
 
-export interface ISocketState {
-  socket?: Socket;
-}
-
-const initialState: ISocketState = {
+const initialState:any = {
   socket: undefined,
 };
 
@@ -21,7 +17,7 @@ export const socketSlice = createSlice({
 
 export const {registerSocket} = socketSlice.actions;
 
-export const registerSocketToRedux = (payload: ISocketState) => {
+export const registerSocketToRedux = (payload:any) => {
   return (dispatch: any) => {
     dispatch(registerSocket(payload));
   };

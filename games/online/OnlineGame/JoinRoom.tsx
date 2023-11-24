@@ -7,7 +7,7 @@ import { Text, IconButton, TextInput } from 'react-native-paper';
 import { width } from '../../../style';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
-import { joinRoomState } from '../../../utils/redux/reducers/roomReducer';
+import { joinRoomState } from '../../../utils/redux/actions/room';
 
 
 export default function JoinRoom({ navigation }: any) {

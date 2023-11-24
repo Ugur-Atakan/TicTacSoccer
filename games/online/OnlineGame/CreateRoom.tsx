@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Alert, Share, View, Image } from 'react-native';
+import React, { useEffect } from 'react';
+import { SafeAreaView, Alert, Share, View } from 'react-native';
 import { globalStlyes, width } from '../../../style';
 import { Button, Text, IconButton, Card } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateJoinedUsersState } from '../../../utils/redux/reducers/roomReducer';
+import {createRoom, updateJoinedUsersState } from '../../../utils/redux/actions/room';
 import { RootState } from '../../../utils/redux/stores/store';
-import { createRoom } from '../../../utils/redux/reducers/roomReducer';
-import { startOnlineGame, updateTeamCells } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
+import { startOnlineGame, updateTeamCells } from '../../../utils/redux/actions/game';
 import baseAPI from '../../../utils/http/base';
 
 export default function CreateRoom({ navigation }: any) {
@@ -19,7 +18,6 @@ export default function CreateRoom({ navigation }: any) {
     try {
       const teams = (await baseAPI.get('game')).data;
       await dispatch(updateTeamCells(teams) as any);
-       await dispatch(startOnlineGame() as any)
       socket?.emit('prepare-game', { roomCode: roomCode, teams: teams });
       navigation.navigate('OnlineGame');
     } catch (error) {

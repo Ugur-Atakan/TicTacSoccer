@@ -1,11 +1,11 @@
 import {applyMiddleware, configureStore} from '@reduxjs/toolkit';
-import userReducer from '../reducers/userReducer';
+import userReducer from '../reducers/userReducer.duck';
 import thunk from 'redux-thunk';
 import authReducer from '../auth.duck';
-import soundVolumeSlice from '../reducers/gameReducers/soundVolume';
-import socketReducer from '../reducers/socketReducer';
-import roomReducer from '../reducers/roomReducer';
-import gameReducer from '../reducers/gameReducers/gameReducer.duck';
+import soundVolumeSlice from '../reducers/soundVolume';
+import socketReducer from '../reducers/socketReducer.duck';
+import roomReducer from '../reducers/roomReducer.duck';
+import gameReducer from '../reducers/game.duck';
 
 export const store = configureStore({
   reducer: {

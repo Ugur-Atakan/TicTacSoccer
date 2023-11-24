@@ -10,7 +10,7 @@ import { VStack } from 'react-native-flex-layout';
 import baseAPI from '../../../utils/http/base';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../utils/redux/stores/store';
-import { play, nextPlayer, playOnline } from '../../../utils/redux/reducers/gameReducers/gameReducer.duck';
+import { nextPlayerTurn, playOnline } from '../../../utils/redux/actions/game';
 import { selectSoccerInputStyles } from '../../../style';
 
 interface SelectSoccerInputProps {
@@ -21,21 +21,23 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
     const [data, setData] = useState([]);
-    const teamCells = useSelector((state: RootState) => state.game.teamCells);
-    const { selectedCellId } = useSelector((state: RootState) => state.game);
+    const roomCode = useSelector((state: RootState) => state.room.roomCode);
+    const gameData = useSelector((state: RootState) => state.game);
+    const userData = useSelector((state: RootState) => state.user.userData);
+    const { socket } = useSelector((state: RootState) => state.socket);
 
     useEffect(() => {
         const fectData = () => {
-            const _teams = teamCells.map((t: any) => t.id).join(',');
+            const _teams = gameData.teamCells.map((t: any) => t.id).join(',');
             const query = `player/search-players?teams=${_teams}&name=${input}`;
             baseAPI.get(query).then(response => {
                 setData(response.data);
             });
         };
-        if (input.length > 2 && teamCells) {
+        if (input.length > 2 && gameData.teamCells) {
             fectData();
         }
-    }, [input, teamCells]);
+    }, [input, gameData.teamCells]);
 
     const _finCoords = (cellID: number) => {
         switch (cellID) {
@@ -63,7 +65,7 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
     }
 
     const _isCorrect = async (soccerID: number) => {
-        const query = `player/check-player?teams=${teamCells[_finCoords(selectedCellId).x]?.id},${teamCells[_finCoords(selectedCellId).y]?.id}&player=${soccerID}`;
+        const query = `player/check-player?teams=${gameData.teamCells[_finCoords(gameData.selectedCellId).x]?.id},${gameData.teamCells[_finCoords(gameData.selectedCellId).y]?.id}&player=${soccerID}`;
         const res = baseAPI.get(query).then(response => {
             if (response.data == true) {
                 return true;
@@ -77,22 +79,25 @@ export default function SelectSoccerInput({ closeModal }: SelectSoccerInputProps
     const handleInputSubmit = async (Soccer: any) => {
         const check = await _isCorrect(Soccer.id);
         if (check == true) {
-            dispatch(
-                playOnline({
-                    index: selectedCellId,
-                    soccer: {
-                        isCorrect: true,
-                        data: Soccer,
-                    },
-                }) as any,
-            );
+            let soccerData = {
+                index: gameData.selectedCellId,
+                soccer: {
+                    isCorrect: true,
+                    data: Soccer,
+                },
+            };
+           await dispatch(playOnline(soccerData) as any);
+           socket?.emit('game-data-changed', { roomCode: roomCode, userId:userData.id, gameData: gameData });
+           console.log('emit denemsi yapıldı',gameData)
         } else {
-            dispatch(nextPlayer());
+            await dispatch(nextPlayerTurn() as any);
+            socket?.emit('game-data-changed', { roomCode: roomCode, userId:userData.id, gameData: gameData });
         }
         closeModal();
         setData([]);
         setInput('');
     };
+
     return (
         <View style={{ backgroundColor: '#C5CAE9' }}>
             <View

@@ -11,11 +11,11 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { Checkbox, IconButton } from 'react-native-paper';
+import { Checkbox } from 'react-native-paper';
 import GoogleSignIn from '../../components/UIComponents/SocialLogin/Google';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { loginUser} from '../../utils/redux/reducers/userReducer';
+import { loginUser} from '../../utils/redux/actions/user';
 import {width} from '../../style';
 
 const LoginScreen = ({ navigation }: any) => {

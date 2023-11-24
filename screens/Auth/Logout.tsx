@@ -2,7 +2,7 @@ import { Alert } from "react-native";
 import { View } from "react-native";
 import { IconButton, Text } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../utils/redux/reducers/userReducer";
+import { logoutUser } from "../../utils/redux/actions/user";
 import { width } from "../../style";
 
 export default function LogoutScreen(){

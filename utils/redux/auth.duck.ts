@@ -38,7 +38,6 @@ const authReducer = (state = initialState, action: any) => {
       return {isLoggedIn: false, isLoading: true, user: null, error: null};
    
       case TYPES.LOGIN_SUCCESS:
-      console.log("action.user", action.user);
       return {
         isLoggedIn: true,
         isLoading: false,

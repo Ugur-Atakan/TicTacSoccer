@@ -2,7 +2,7 @@ import React from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { IconButton } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../../utils/redux/reducers/userReducer';
+import { loginSuccess } from '../../../utils/redux/reducers/userReducer.duck';
 import { width } from '../../../style';
 
 export default function GoogleSignIn() {

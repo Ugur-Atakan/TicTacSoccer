@@ -3,7 +3,7 @@
     import { Modal, Text, Button, Portal } from 'react-native-paper';
     import { RootState } from "../../../utils/redux/stores/store";
     import { useDispatch, useSelector } from "react-redux";
-    import { finishGame,nextRound } from "../../../utils/redux/reducers/gameReducers/gameReducer.duck";
+    import { finishGame,nextRound} from "../../../utils/redux/actions/game";
     import { modalStyles, textStyles } from "../../../style";
 
     export default function WinnerModal() {

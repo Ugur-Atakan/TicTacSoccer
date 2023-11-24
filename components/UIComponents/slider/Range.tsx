@@ -1,6 +1,6 @@
 import Slider from '@react-native-community/slider';
 import { useDispatch, useSelector } from 'react-redux';
-import { setVolume } from "../../../utils/redux/reducers/gameReducers/soundVolume";
+import { setVolume } from "../../../utils/redux/reducers/soundVolume";
 import { RootState } from '../../../utils/redux/stores/store';
 
 export default function Range() {

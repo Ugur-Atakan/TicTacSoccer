@@ -1,29 +1,9 @@
-import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  Alert,
-  Share,
-  View,
-  Image,
-  Touchable,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react';
+import { SafeAreaView,View,TouchableOpacity } from 'react-native';
 import {globalStlyes} from '../../../style';
-import {Button, Text, IconButton, Card, TextInput} from 'react-native-paper';
-import {width} from '../../../style';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../../utils/redux/stores/store';
-export default function OnlineGameManagement({navigation, route}: any) {
-  const [roomCode, setRoomCode] = useState('');
-  const {socket} = useSelector((state: RootState) => state.socket);
-  const {userData} = useSelector((state: RootState) => state.user);
-  const joinGame = () => {
-    console.log('code', roomCode);
-    if (socket) {
-      socket.emit('join-room', {roomCode, userId: userData.id});
-    }
-  };
+import {Text} from 'react-native-paper';
 
+export default function OnlineGameManagement({navigation, route}: any) {
   return (
     <SafeAreaView style={globalStlyes.container}>
       <View

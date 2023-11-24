@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { loginSuccess } from '../../../utils/redux/reducers/userReducer';
+import { loginSuccess } from '../../../utils/redux/reducers/userReducer.duck';
 import { width } from '../../../style';
 import { appleAuth, AppleButton } from '@invertase/react-native-apple-authentication';
 
@@ -11,9 +11,9 @@ import { appleAuth, AppleButton } from '@invertase/react-native-apple-authentica
 export default function AppleSignin() {
     const dispatch = useDispatch();
 
-    let user = null;
+    let user:any = null;
 
-    async function fetchAndUpdateCredentialState(updateCredentialStateForUser) {
+    async function fetchAndUpdateCredentialState(updateCredentialStateForUser:any) {
       if (user === null) {
         updateCredentialStateForUser('N/A');
       } else {
@@ -29,7 +29,7 @@ export default function AppleSignin() {
     /**
      * Starts the Sign In flow.
      */
-    async function onAppleButtonPress(updateCredentialStateForUser) {
+    async function onAppleButtonPress(updateCredentialStateForUser:any) {
       console.warn('Beginning Apple Authentication');
       try {
         const appleAuthRequestResponse = await appleAuth.performRequest({
@@ -79,7 +79,7 @@ export default function AppleSignin() {
       if (!appleAuth.isSupported) return;
     
       fetchAndUpdateCredentialState(updateCredentialStateForUser).catch(error =>
-        updateCredentialStateForUser(`Error: ${error.code}`),
+        updateCredentialStateForUser(`Error: ${error.code}` as any),
       );
     }, []);
     
@@ -89,7 +89,7 @@ export default function AppleSignin() {
       return appleAuth.onCredentialRevoked(async () => {
         console.warn('Credential Revoked');
         fetchAndUpdateCredentialState(updateCredentialStateForUser).catch(error =>
-          updateCredentialStateForUser(`Error: ${error.code}`),
+          updateCredentialStateForUser(`Error: ${error.code}` as any),
         );
       });
     }, []);
@@ -114,6 +114,7 @@ export default function AppleSignin() {
             }));
         }
         )}
+        
         onCredentialRevoked={async () => {
                 console.warn('Credential Revoked');
                 fetchAndUpdateCredentialState(updateCredentialStateForUser).catch(error =>

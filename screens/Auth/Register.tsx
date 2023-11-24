@@ -7,7 +7,6 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  Platform,
   Alert,
 } from 'react-native';
 
