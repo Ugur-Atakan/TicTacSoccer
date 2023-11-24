@@ -31,8 +31,9 @@ export const updateTeamCells = (payload: any) => async (dispatch: any) => {
     await dispatch(setTeamCells(payload));
 }
 
-export const finishGame = () => (dispatch: any) => {
+export const finishGame = (roomCode:any) => (dispatch: any) => {
     dispatch(resetGame());
+    socket?.emit('finish-game', {roomCode:roomCode});
 };
 
 export const nextPlayerTurn = (roomCode:any) => async (dispatch: any) => {
@@ -41,13 +42,15 @@ export const nextPlayerTurn = (roomCode:any) => async (dispatch: any) => {
 }
 
 
-export const nextRound = () => (dispatch: any) => {
+export const nextRound = (roomCode:any) => (dispatch: any) => {
+  
     dispatch(goNextRound());
     baseAPI
         .get('game')
         .then(res => dispatch(setTeamCells(res.data)))
         .then(dispatch(started()))
         .catch(() => console.error('Bir şeyler yanlış gitti'));
+    socket?.emit('next-round',{roomCode:roomCode});
 }
 
 export const synchronizeGame = (data: any) => (dispatch: any) => {
@@ -57,32 +60,6 @@ export const synchronizeGame = (data: any) => (dispatch: any) => {
 export const gameReset=()=>(dispatch:any)=>{
     dispatch(resetGame());
 }
-
-/// Path: utils/redux/actions/game.ts
-
-//emit senders
-/*
-game start socket.emit('start-game',{roomCode:roomCode})
-game finish
-next round
-next player turn
-play
-sync game
-*/
-
-//on listeners
-/*
-game start socket.on('start-game',()=>{})
-game finish
-next round
-next player turn
-play
-sync game
-*/
-
-
-/// SOCKET LİSTENER THUNKS
-
 export const playListener=(payload:any)=>(dispatch:any)=>{
     dispatch(play(payload));
 }
@@ -90,3 +67,10 @@ export const playListener=(payload:any)=>(dispatch:any)=>{
 export const listenerNextPlayerTurn = () => async (dispatch: any) => {
     dispatch(nextPlayer());
 }
+export const listenerNextRound = () => async (dispatch: any) => {
+    dispatch(goNextRound());
+}
+export const listenerFinishGame = () => async (dispatch: any) => {
+    dispatch(resetGame());
+}
+/// Path: utils/redux/actions/game.ts

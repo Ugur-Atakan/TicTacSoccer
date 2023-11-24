@@ -11,7 +11,7 @@ import BannerADS from '../../components/UIComponents/Banner';
 import WinnerModal from '../../components/UIComponents/Modal/WinnerModal';
 import { useFocusEffect } from '@react-navigation/native';
 import { Text } from 'react-native';
-import { finishGame, gameReset, listenerNextPlayerTurn, nextPlayerTurn, playListener, startOnlineGame, updateTeamCells } from '../../utils/redux/actions/game';
+import { finishGame, gameReset, listenerFinishGame, listenerNextPlayerTurn, nextPlayerTurn, playListener, startOnlineGame, updateTeamCells } from '../../utils/redux/actions/game';
 import baseAPI from '../../utils/http/base';
 import { HStack } from 'react-native-flex-layout';
 import { Button } from 'react-native-paper';
@@ -22,8 +22,6 @@ export default function OnlineGame({ route, navigation }: any) {
   const gameStatus = useSelector((state: RootState) => state.game.gameStatus);
   const soundVolume = useSelector((state: RootState) => state.soundVolume.soundVolume);
   const roomCode = useSelector((state: RootState) => state.room.roomCode);
-  const gameData = useSelector((state: RootState) => state.game.gameData);
-  const userData = useSelector((state: RootState) => state.user.userData);
   const { socket } = useSelector((state: RootState) => state.socket);
   const dispatch = useDispatch();
   const isHost = route.params.isHost == true ? true : false;
@@ -63,8 +61,7 @@ export default function OnlineGame({ route, navigation }: any) {
   const StopOnlineGame = async () => {
     console.log('StopOnlineGame');
     try {
-      await dispatch(finishGame() as any);
-      socket.emit('stop-game', { roomCode: roomCode });
+      await dispatch(finishGame(roomCode) as any);
     } catch (error) {
       console.error('Bir hata oluştu:', error);
     }
@@ -72,7 +69,7 @@ export default function OnlineGame({ route, navigation }: any) {
 
   const ListenStopOnlineGame = async () => {
     try {
-      await dispatch(finishGame() as any);
+      await dispatch(listenerFinishGame() as any);
     } catch (error) {
       console.error('Bir hata oluştu:', error);
     }
@@ -159,7 +156,7 @@ export default function OnlineGame({ route, navigation }: any) {
 
   return (
     <SafeAreaProvider style={globalStlyes.container}>
-      <WinnerModal />
+      <WinnerModal isHost={isHost} roomCode={roomCode} />
       <View style={globalStlyes.gameStatus}>
         <Text style={textStyles.fs15white}>ROOM CODE : {roomCode}</Text>
         <StatusBar />
