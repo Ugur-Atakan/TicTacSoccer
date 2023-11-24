@@ -31,7 +31,7 @@ export const finishGame = (roomCode: any) => (dispatch: any) => {
     socket?.emit("finish-game", { roomCode: roomCode });
 }
 
-export const nextPlayerTurn = (roomCode: any) => async (dispatch: any) => {
+export const nextPlayerTurn = (roomCode: any) =>(dispatch: any) => {
     dispatch(nextPlayer());
     socket?.emit("next-player", { roomCode: roomCode });
 }
