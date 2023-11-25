@@ -6,14 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { finishGame, listenerFinishGame, listenerNextRound, nextRound } from "../../../utils/redux/actions/game";
 import { modalStyles, textStyles } from "../../../style";
 
-export default function WinnerModal() {
+export default function WinnerModalOnline({ props }: any) {
     const [visible, setVisible] = React.useState(false);
     const { winnerUserData } = useSelector((state: RootState) => state.game);
     const Scores = useSelector((state: RootState) => state.game.scores);
     const socket = useSelector((state: RootState) => state.socket.socket);
     const dispatch = useDispatch();
     const hideModal = () => setVisible(false);
-    const roomCode = useSelector((state: RootState) => state.room.roomCode);
+    const { isHost, roomCode } = props;
+    console.log('WinnerModalOnline', props);
     useEffect(() => {
         if (winnerUserData?.id != null) {
             setVisible(true);
@@ -54,6 +55,7 @@ export default function WinnerModal() {
                     <Button
                         buttonColor="#448AFF"
                         mode="contained"
+                        disabled={isHost??!isHost}
                         onPress={() => {
                             hideModal();
                             dispatch(finishGame(roomCode) as any);
@@ -63,7 +65,7 @@ export default function WinnerModal() {
                     <Button
                         mode="contained"
                         buttonColor="#448AFF"
-                      
+                        disabled={isHost??!isHost}
                         onPress={
                             () => {
                                 dispatch(nextRound(roomCode) as any);

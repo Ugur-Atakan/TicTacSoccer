@@ -20,9 +20,11 @@ import Lobby from '../games/online/OnlineGame/Lobby';
 import Register from '../screens/Auth/Register';
 import ResetPassword from '../screens/Auth/ResetPassword';
 import LogoutScreen from '../screens/Auth/Logout';
+import DeleteAccount from '../screens/Auth/DeleteAccount';
 import { registerSocketToRedux } from './redux/reducers/socketReducer.duck';
 import { socket } from './SocketService';
 import { IconButton } from 'react-native-paper';
+import SettingsScreen from '../screens/Auth/Settings';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -37,9 +39,9 @@ function Root({ navigation }: any) {
           headerTitleStyle: { color: '#000' },
           headerRight: () => (
             <IconButton
-              icon="exit-to-app"
+              icon="cog"
               size={30}
-              onPress={() => navigation.navigate('Logout')}
+              onPress={() => navigation.navigate('Settings')}
             />
           ),
         }}
@@ -79,6 +81,12 @@ function Navigator(): JSX.Element {
         {accessToken ? (
           <>
             <Stack.Screen name="MainScreen" component={Root} />
+            <Stack.Screen
+              name='Settings'
+              component={SettingsScreen}
+              options={{ headerShown: true, title: 'Ayarlar' }}
+            />
+
             <Stack.Screen
               name="SingleGame"
               component={SingleGame}
@@ -129,6 +137,12 @@ function Navigator(): JSX.Element {
               component={LogoutScreen}
               options={{ headerShown: true, title: 'Çıkış Yap' }}
             />
+            <Stack.Screen
+              name="DeleteAccount"
+              component={DeleteAccount}
+              options={{ headerShown: true, title: 'Hesabı Sil' }}
+            />
+
           </>
         ) : (
           <>

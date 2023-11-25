@@ -24,7 +24,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
               w={compstyles.gamemode.width}
               h={compstyles.gamemode.height}
               center
-              style={{ backgroundColor: '#536DFE', borderRadius: 30 }}>
+              style={{ backgroundColor: '#536DFE', borderRadius: 15 }}>
               <TouchableOpacity onPress={() => navigation.navigate('SingleGame')}>
                 <Text style={{ alignSelf: 'center', fontSize: width * 0.08, color: 'white' }}>
                   Temel Oyun Modu
@@ -34,7 +34,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
                 </Text>
               </TouchableOpacity>
             </Flex>
-            <Flex
+            {/* <Flex
               w={compstyles.gamemode.width}
               h={compstyles.gamemode.height}
               center
@@ -47,13 +47,13 @@ function GamesScreen({ navigation }: any): JSX.Element {
                   Rastgele bir rakibe karşı
                 </Text>
               </TouchableOpacity>
-            </Flex>
+            </Flex> */}
 
             <Flex
               w={compstyles.gamemode.width}
               h={compstyles.gamemode.height}
               center
-              style={{ backgroundColor: '#536DFE', borderRadius: 30 }}>
+              style={{ backgroundColor: '#536DFE', borderRadius: 15 }}>
               <TouchableOpacity onPress={() => navigation.navigate('OnlineGameManagement')}>
                 <Text style={{ alignSelf: 'center', fontSize: width * 0.08, color: 'white' }}>
                   Düello Oyun Modu
@@ -64,7 +64,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
               </TouchableOpacity>
             </Flex>
 
-            <Flex
+            {/* <Flex
               w={compstyles.gamemode.width}
               h={compstyles.gamemode.height}
               center
@@ -77,7 +77,7 @@ function GamesScreen({ navigation }: any): JSX.Element {
                   Bu kadar eski bilgiye sahip misin bakalım
                 </Text>
               </TouchableOpacity>
-            </Flex>
+            </Flex> */}
           </VStack>
           <View
             style={{ justifyContent: 'flex-start', alignItems: 'center' }}>

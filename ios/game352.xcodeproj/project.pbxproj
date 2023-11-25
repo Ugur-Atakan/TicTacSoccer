@@ -71,6 +71,8 @@
 		54DE4EC2A0C3B677C816C6E1 /* Pods_game352_game352Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_game352_game352Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E213692EC957D6FB2E1D666 /* Pods-game352-game352Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-game352-game352Tests.release.xcconfig"; path = "Target Support Files/Pods-game352-game352Tests/Pods-game352-game352Tests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = game352/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C130EBDE2B12080B000A75B3 /* whistle.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = whistle.m4a; path = ../android/app/src/main/res/raw/whistle.m4a; sourceTree = "<group>"; };
+		C130EBDF2B12080B000A75B3 /* bgsound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgsound.m4a; path = ../android/app/src/main/res/raw/bgsound.m4a; sourceTree = "<group>"; };
 		C134DE9D2B0B4E40003BC51D /* iphone-notification-3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-notification-3x.png"; sourceTree = "<group>"; };
 		C134DE9E2B0B4E40003BC51D /* iphone-app-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-app-2x.png"; sourceTree = "<group>"; };
 		C134DE9F2B0B4E40003BC51D /* iphone-settings-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-settings-2x.png"; sourceTree = "<group>"; };
@@ -178,6 +180,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C130EBDF2B12080B000A75B3 /* bgsound.m4a */,
+				C130EBDE2B12080B000A75B3 /* whistle.m4a */,
 				C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* game352 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
