@@ -27,8 +27,8 @@ export const updateTeamCells = (payload: any) => async (dispatch: any) => {
 }
 
 export const finishGame = (roomCode: any) => (dispatch: any) => {
+    socket?.emit("stop-game", { roomCode: roomCode });
     dispatch(resetGame());
-    socket?.emit("finish-game", { roomCode: roomCode });
 }
 
 export const nextPlayerTurn = (roomCode: any) =>(dispatch: any) => {

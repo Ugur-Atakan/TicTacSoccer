@@ -26,7 +26,6 @@ export const logoutUser = () => {
     };
   };
   
-  
   export const loginUser = (credentials: Credentials) => {
     return async (dispatch: any) => {
       try {
@@ -53,3 +52,78 @@ export const logoutUser = () => {
       }
     };
   };
+
+  export const GoogleLogin = (credentials: any) => {
+    return async (dispatch: any) => {
+      try {
+        const response = await baseAPI.post('auth/sign-in-with-google', { ...credentials });
+        const { profile, accessToken } = response.data;
+        dispatch(loginSuccess({ user: profile, accessToken }));
+        socket.emit('register-socket', { id: profile.id });
+      }
+      catch (error: any) {
+        if (error.response) {
+          const errorMessage = error.response.data.message;
+        if (errorMessage === 'Not Found') {
+            console.log('Kullanıcı bulunamadı.');
+            Alert.alert('Kullanıcı bulunamadı.');
+          } else {
+            Alert.alert('Bilinmeyen bir hata oluştu.',errorMessage);
+          }
+        } else {
+          Alert.alert('Bilinmeyen bir hata oluştu.',error.message);
+        }
+      }
+    };
+  }
+
+  export const AppleLogin = (identityToken: any) => {
+    return async (dispatch: any) => {
+      try {
+        const response = await baseAPI.post('auth/sign-in-with-apple', {idToken:identityToken });
+        const { profile, accessToken } = response.data;
+        dispatch(loginSuccess({ user: profile, accessToken }));
+        socket.emit('register-socket', { id: profile.id });
+      }
+      catch (error: any) {
+        if (error.response) {
+          const errorMessage = error.response.data.message;
+        if (errorMessage === 'Not Found') {
+            console.log('Kullanıcı bulunamadı.');
+            Alert.alert('Kullanıcı bulunamadı.');
+          } else {
+            Alert.alert('Bilinmeyen bir hata oluştu.',errorMessage);
+          }
+        } else {
+          Alert.alert('Bilinmeyen bir hata oluştu.',error.message);
+        }
+      }
+    };
+  }
+
+  export const FacebookLogin = (credentials: any) => {
+    return async (dispatch: any) => {
+      try {
+        const response = await baseAPI.post('auth/sign-in-with-facebook', { ...credentials });
+        const { profile, accessToken } = response.data;
+        dispatch(loginSuccess({ user: profile, accessToken }));
+        socket.emit('register-socket', { id: profile.id });
+      }
+      catch (error: any) {
+        if (error.response) {
+          const errorMessage = error.response.data.message;
+          if (errorMessage === 'Duplicate record') {
+            Alert.alert('Bu e-posta adresi zaten kayıtlı.');
+            console.log('Bu e-posta adresi zaten kayıtlı.');
+          } else if (errorMessage === 'Not Found') {
+            console.log('Kullanıcı bulunamadı.');
+            Alert.alert('Kullanıcı bulunamadı.');
+          } else {
+            Alert.alert('Bilinmeyen bir hata oluştu.',errorMessage);
+          }
+        } else {
+          Alert.alert('Bilinmeyen bir hata oluştu.',error.message);
+        }
+      }
+    };
+  }

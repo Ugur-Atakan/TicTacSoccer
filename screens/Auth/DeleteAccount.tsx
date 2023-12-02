@@ -16,6 +16,22 @@ const [password, setPassword] = useState('');
       ]);
       return;
     }
+    Alert.alert(
+      "Hesabınızı silmek üzeresiniz",
+      "Hesabınızı silmek istediğinize emin misiniz? \n Bu işlem geri alınamaz ve tüm verileriniz silinecektir.",
+      [
+        {
+          text: "Hayır",
+          style: "cancel",
+        },
+        {
+          text: "Evet",
+          onPress: () => deleteAccount(),
+        },
+      ]
+    )
+  }
+  const deleteAccount = async () => {
     try {
       const response = await baseAPI.post('auth/delete-account', {
         email,
@@ -81,6 +97,9 @@ const [password, setPassword] = useState('');
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}
         keyboardShouldPersistTaps="handled"
       >
+        <View>
+          <Text>Hesabınızı silmek için email adresinizi ve parolanızı giriniz </Text>
+        </View>
         <View style={styles.logoContainer}>
           <Text style={styles.logo}>Hesabını Sil</Text>
         </View>
@@ -107,7 +126,9 @@ const [password, setPassword] = useState('');
             <Text style={styles.loginButtonText}>GÖNDER</Text>
           </TouchableOpacity>
         </View>
-
+        <View>
+          <Text>Bu işlem tamamen sizin sorumluluğunuzdadır. </Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

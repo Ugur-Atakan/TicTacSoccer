@@ -6,8 +6,7 @@ import { Text } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../utils/redux/stores/store';
 import { width } from '../style';
-import { gameReset, updateTeamCells } from '../utils/redux/actions/game';
-
+import { gameReset } from '../utils/redux/actions/game';
 function WelcomeScreen({ navigation }: any): JSX.Element {
   const [isConnected, setIsConnected] = useState(false);
   const { socket } = useSelector((state: RootState) => state.socket);
@@ -88,7 +87,6 @@ function WelcomeScreen({ navigation }: any): JSX.Element {
             Yada 2 bilir kaybedersin
           </Text>
         </VStack>
-
       </View>
       <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
         <Text style={{ fontSize: width * 0.04, color: '#fff' }}>

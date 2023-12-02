@@ -12,11 +12,12 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Checkbox } from 'react-native-paper';
-import GoogleSignIn from '../../components/UIComponents/SocialLogin/Google';
+import GoogleSignIn from '../../components/UIComponents/SocialLogin/GoogleLogin';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginUser} from '../../utils/redux/actions/user';
 import {width} from '../../style';
+import AppleSignin from '../../components/UIComponents/SocialLogin/AppleLogin';
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -70,18 +71,23 @@ const LoginScreen = ({ navigation }: any) => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
+          aria-label='Email'
           placeholder="Email"
           onChangeText={text => setEmail(text)}
           value={email}
           autoCapitalize="none"
           keyboardType="email-address"
+          placeholderTextColor={'#6D7E86'}
+          
         />
         <TextInput
+        aria-label='Parola'
           style={styles.input}
           placeholder="Parola"
           onChangeText={text => setPassword(text)}
           value={password}
           secureTextEntry
+          placeholderTextColor={'#6D7E86'}
         />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -92,7 +98,11 @@ const LoginScreen = ({ navigation }: any) => {
                 setChecked(!checked);
               }}
             />
-            <Text>Beni hatırla</Text>
+            <Text onPress={
+              () => {
+                setChecked(!checked);
+              }
+            }>Beni hatırla</Text>
           </View>
           <View>
             <Text
@@ -121,6 +131,7 @@ const LoginScreen = ({ navigation }: any) => {
           {Platform.OS === 'ios' ?
             <>
               <GoogleSignIn />
+              <AppleSignin />
             </>
             :
             <GoogleSignIn />

@@ -19,7 +19,12 @@ export default function JoinRoom({ navigation }: any) {
     const joinGame = async () => {
         await dispatch(joinRoomState({ roomCode: roomCode, user: userData }) as any);
         if (socket) {
-            socket.emit('join-room', { roomCode, userId: userData.id });
+            try {
+                socket.emit('join-room', { roomCode, userId: userData.id });
+            }
+            catch (err) {
+                console.log('HATA :',err);
+            }
         }
         navigation.navigate('Lobby');
     };

@@ -2,15 +2,15 @@
  * @format
  */
 import 'react-native-gesture-handler';
-import {AppRegistry} from 'react-native';
+import {Alert, AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 import { Linking } from 'react-native';
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 import messaging from '@react-native-firebase/messaging';
 import firebase from '@react-native-firebase/app';
-import PushNotification from 'react-native-push-notification';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { createChannel, NotifeeRequestPermission } from './utils/FirebaseNotifications';
 
 if (!firebase.apps.length) {
     firebase.initializeApp({});
@@ -22,7 +22,7 @@ if (!firebase.apps.length) {
     iosClientId:'1063264802770-dfvl17vpmd1cvoroerbk02pm8nj0gmve.apps.googleusercontent.com'
   });
 
-
+  
 
   const requestNotificationPermission = async () => {
   os = Platform.OS;
@@ -49,8 +49,17 @@ if (!firebase.apps.length) {
       });
       if (result === RESULTS.GRANTED) {
         console.log('Bildirimlere izin verildi');
+        Alert.alert('Bildirimlere izin verildi', 'Bildirimleri alabilirsiniz')
       } else {
         console.log('Bildirimlere izin verilmedi');
+        Alert.alert('Bildirimlere izin verilmedi', 'Bildirimleri alamazsınız', [
+          {
+            text: 'Tamam',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'Ayarlar', onPress: () => Linking.openSettings()},
+        ]);
       }
     } catch (err) {
       console.log(err);
@@ -59,20 +68,12 @@ if (!firebase.apps.length) {
 };
   requestNotificationPermission();
   
-  // Create channel for notification
-  PushNotification.createChannel(
-    {
-      channelId: 'notificationChannel01',
-      channelName: 'notificationChannel01',
-    },
-    created => console.log(`createChannel returned '${created}'`),
-  );
+  NotifeeRequestPermission();
+  createChannel();
   
-  // Register background handler
-  messaging().setBackgroundMessageHandler(async remoteMessage => {
-    console.log('Message handled in the background!', remoteMessage);
-  });
   //Genel Bildirimlere üye ettim.
   messaging().subscribeToTopic('genel_bildirimler');
 
+
 AppRegistry.registerComponent(appName, () => App);
+

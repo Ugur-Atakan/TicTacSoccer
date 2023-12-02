@@ -4,10 +4,12 @@ import {store} from './utils/redux/stores/store';
 import Navigator from './utils/navigation';
 import {MD3LightTheme as DefaultTheme, PaperProvider} from 'react-native-paper';
 import {
-  ALocalNotification,
-  notificationListenr,
+  PushNotification,
+  getToken,
+  notificationListener,
   requestUserPermission,
-} from './utils/commonUtils';
+} from './utils/FirebaseNotifications';
+
 
 const theme = {
   ...DefaultTheme,
@@ -23,10 +25,11 @@ export default function App() {
 
   React.useEffect(() => {
     requestUserPermission();
-    notificationListenr();
+    notificationListener();
   }, []);
-  ALocalNotification();
+  PushNotification();
 
+ 
 
   return (
     <Provider store={store}>

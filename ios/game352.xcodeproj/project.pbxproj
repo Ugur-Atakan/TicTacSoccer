@@ -22,7 +22,12 @@
 		C134DEAC2B0B4E40003BC51D /* iphone-app-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C134DEA32B0B4E40003BC51D /* iphone-app-3x.png */; };
 		C134DEAD2B0B4E40003BC51D /* iphone-spotlight-2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C134DEA42B0B4E40003BC51D /* iphone-spotlight-2x.png */; };
 		C134DEAE2B0B4E40003BC51D /* iphone-spotlight-3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C134DEA52B0B4E40003BC51D /* iphone-spotlight-3x.png */; };
-		C16BB3D22AF0F90700D24271 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */; };
+		C19D245C2B1B8ED2000FAE9F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C19D245B2B1B8ED2000FAE9F /* GoogleService-Info.plist */; };
+		C19D24602B1BA10C000FAE9F /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19D245F2B1BA10C000FAE9F /* dummy.swift */; };
+		C1C4F6CF2B1BA97700F8666E /* bgsound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C1C4F6CD2B1BA97700F8666E /* bgsound.m4a */; };
+		C1C4F6D02B1BA97700F8666E /* bgsound.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C1C4F6CD2B1BA97700F8666E /* bgsound.m4a */; };
+		C1C4F6D12B1BA97700F8666E /* whistle.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C1C4F6CE2B1BA97700F8666E /* whistle.m4a */; };
+		C1C4F6D22B1BA97700F8666E /* whistle.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C1C4F6CE2B1BA97700F8666E /* whistle.m4a */; };
 		C1DA959C2AE3294F00B5FF56 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DA95892AE3294F00B5FF56 /* Fontisto.ttf */; };
 		C1DA959D2AE3294F00B5FF56 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DA958A2AE3294F00B5FF56 /* Octicons.ttf */; };
 		C1DA959E2AE3294F00B5FF56 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DA958B2AE3294F00B5FF56 /* Feather.ttf */; };
@@ -71,8 +76,6 @@
 		54DE4EC2A0C3B677C816C6E1 /* Pods_game352_game352Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_game352_game352Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E213692EC957D6FB2E1D666 /* Pods-game352-game352Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-game352-game352Tests.release.xcconfig"; path = "Target Support Files/Pods-game352-game352Tests/Pods-game352-game352Tests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = game352/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C130EBDE2B12080B000A75B3 /* whistle.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = whistle.m4a; path = ../android/app/src/main/res/raw/whistle.m4a; sourceTree = "<group>"; };
-		C130EBDF2B12080B000A75B3 /* bgsound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgsound.m4a; path = ../android/app/src/main/res/raw/bgsound.m4a; sourceTree = "<group>"; };
 		C134DE9D2B0B4E40003BC51D /* iphone-notification-3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-notification-3x.png"; sourceTree = "<group>"; };
 		C134DE9E2B0B4E40003BC51D /* iphone-app-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-app-2x.png"; sourceTree = "<group>"; };
 		C134DE9F2B0B4E40003BC51D /* iphone-settings-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-settings-2x.png"; sourceTree = "<group>"; };
@@ -82,8 +85,12 @@
 		C134DEA32B0B4E40003BC51D /* iphone-app-3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-app-3x.png"; sourceTree = "<group>"; };
 		C134DEA42B0B4E40003BC51D /* iphone-spotlight-2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-spotlight-2x.png"; sourceTree = "<group>"; };
 		C134DEA52B0B4E40003BC51D /* iphone-spotlight-3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-spotlight-3x.png"; sourceTree = "<group>"; };
-		C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "game352/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C19D245B2B1B8ED2000FAE9F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "game352/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C19D245E2B1BA10C000FAE9F /* game352-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "game352-Bridging-Header.h"; sourceTree = "<group>"; };
+		C19D245F2B1BA10C000FAE9F /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
 		C1BE25EA2AFF899400C7E4FC /* game352.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = game352.entitlements; path = game352/game352.entitlements; sourceTree = "<group>"; };
+		C1C4F6CD2B1BA97700F8666E /* bgsound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = bgsound.m4a; path = ../android/app/src/main/res/raw/bgsound.m4a; sourceTree = "<group>"; };
+		C1C4F6CE2B1BA97700F8666E /* whistle.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = whistle.m4a; path = ../android/app/src/main/res/raw/whistle.m4a; sourceTree = "<group>"; };
 		C1DA95892AE3294F00B5FF56 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		C1DA958A2AE3294F00B5FF56 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		C1DA958B2AE3294F00B5FF56 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -147,6 +154,7 @@
 		13B07FAE1A68108700A75B9A /* game352 */ = {
 			isa = PBXGroup;
 			children = (
+				C19D245B2B1B8ED2000FAE9F /* GoogleService-Info.plist */,
 				C139B3CA2B03622300F6386E /* Resources */,
 				C1BE25EA2AFF899400C7E4FC /* game352.entitlements */,
 				C1DA95882AE3294F00B5FF56 /* Fonts */,
@@ -156,6 +164,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				C19D245F2B1BA10C000FAE9F /* dummy.swift */,
+				C19D245E2B1BA10C000FAE9F /* game352-Bridging-Header.h */,
 			);
 			name = game352;
 			sourceTree = "<group>";
@@ -180,9 +190,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C130EBDF2B12080B000A75B3 /* bgsound.m4a */,
-				C130EBDE2B12080B000A75B3 /* whistle.m4a */,
-				C16BB3D12AF0F90700D24271 /* GoogleService-Info.plist */,
+				C1C4F6CD2B1BA97700F8666E /* bgsound.m4a */,
+				C1C4F6CE2B1BA97700F8666E /* whistle.m4a */,
 				13B07FAE1A68108700A75B9A /* game352 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* game352Tests */,
@@ -336,7 +345,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -364,6 +373,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1C4F6D02B1BA97700F8666E /* bgsound.m4a in Resources */,
+				C1C4F6D22B1BA97700F8666E /* whistle.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,21 +395,23 @@
 				C1DA95AE2AE3294F00B5FF56 /* MaterialIcons.ttf in Resources */,
 				C1DA959F2AE3294F00B5FF56 /* FontAwesome6_Regular.ttf in Resources */,
 				C1DA95AA2AE3294F00B5FF56 /* EvilIcons.ttf in Resources */,
+				C1C4F6CF2B1BA97700F8666E /* bgsound.m4a in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C1DA95A62AE3294F00B5FF56 /* FontAwesome5_Solid.ttf in Resources */,
+				C19D245C2B1B8ED2000FAE9F /* GoogleService-Info.plist in Resources */,
 				C134DEA62B0B4E40003BC51D /* iphone-notification-3x.png in Resources */,
 				C1DA95AD2AE3294F00B5FF56 /* FontAwesome6_Brands.ttf in Resources */,
 				C1DA95A22AE3294F00B5FF56 /* MaterialCommunityIcons.ttf in Resources */,
 				C1DA95A02AE3294F00B5FF56 /* Entypo.ttf in Resources */,
 				C134DEA92B0B4E40003BC51D /* iphone-notification-2x.png in Resources */,
 				C134DEA82B0B4E40003BC51D /* iphone-settings-2x.png in Resources */,
+				C1C4F6D12B1BA97700F8666E /* whistle.m4a in Resources */,
 				C1DA95AB2AE3294F00B5FF56 /* FontAwesome6_Solid.ttf in Resources */,
 				C1DA959C2AE3294F00B5FF56 /* Fontisto.ttf in Resources */,
 				C1DA95A42AE3294F00B5FF56 /* Foundation.ttf in Resources */,
 				C1DA95A72AE3294F00B5FF56 /* FontAwesome5_Regular.ttf in Resources */,
 				C1DA95A32AE3294F00B5FF56 /* AntDesign.ttf in Resources */,
 				C134DEA72B0B4E40003BC51D /* iphone-app-2x.png in Resources */,
-				C16BB3D22AF0F90700D24271 /* GoogleService-Info.plist in Resources */,
 				C1DA95AC2AE3294F00B5FF56 /* SimpleLineIcons.ttf in Resources */,
 				C134DEAA2B0B4E40003BC51D /* iphone-settings-3x.png in Resources */,
 				C1DA95A92AE3294F00B5FF56 /* Zocial.ttf in Resources */,
@@ -597,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				C19D24602B1BA10C000FAE9F /* dummy.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -672,8 +686,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = game352/game352.entitlements;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = ZCSUTJ34AN;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZCSUTJ34AN;
 				ENABLE_BITCODE = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = game352/Info.plist;
@@ -682,7 +698,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -690,9 +706,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.game352;
 				PRODUCT_NAME = game352;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Test;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "game352-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -707,8 +726,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = game352/game352.entitlements;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = ZCSUTJ34AN;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZCSUTJ34AN;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = game352/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
@@ -716,7 +737,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -724,9 +745,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.game352;
 				PRODUCT_NAME = game352;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Test;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "game352-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";

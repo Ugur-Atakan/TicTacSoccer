@@ -1,0 +1,19 @@
+APPLE USER INFO IS: 
+{
+    "user": "001818.58de1f65f29140b7b81ed94a2b396379.2102",
+    "email": null,
+    "authorizedScopes": [],
+    "fullName": {
+        "namePrefix": null,
+        "givenName": null,
+        "familyName": null,
+        "nickname": null,
+        "middleName": null,
+        "nameSuffix": null
+    },
+    "identityToken": "eyJraWQiOiJZdXlYb1kiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwcGxlaWQuYXBwbGUuY29tIiwiYXVkIjoiY29tLmdhbWUzNTIiLCJleHAiOjE3MDE2MzAxNDksImlhdCI6MTcwMTU0Mzc0OSwic3ViIjoiMDAxODE4LjU4ZGUxZjY1ZjI5MTQwYjdiODFlZDk0YTJiMzk2Mzc5LjIxMDIiLCJub25jZSI6IjljZDIzMGM0NjRlNjQ0NThhODgzOTUzMGVhMDlkZDkzOTIwYmMwZmRjMzZiYTE4N2MxZDQ3MTdkMzRkMDBlZmMiLCJjX2hhc2giOiJLTkluYTJMNWhYT21fWVVVaVZVVi1BIiwiZW1haWwiOiJ1Z3VyYXRha2Fuc3VybWVsaUBpY2xvdWQuY29tIiwiZW1haWxfdmVyaWZpZWQiOiJ0cnVlIiwiYXV0aF90aW1lIjoxNzAxNTQzNzQ5LCJub25jZV9zdXBwb3J0ZWQiOnRydWV9.qsnTFJqfo8nL3oyvALOkDhJz8TbmyHbz5hrG8Ilz6nQJUunBeHY0FE19P32gbTqAWqUIcSuz9XiQILWtL_inyt5_NT2uthX9_gxeDCM14eWV7ud0ely9iD9n36BT6853-2AG4XS3XHZpRLcKkm7R_I-Lwg6Q3ERdzEbblFPXv3XdpWN5nxsewSydU4I2lwtsLmi_ijF60o7J6AesHFD_0qxuAeAdC9fHo26QIFnFCxxOpr0x5FQEuDliOJ2C29QG98OOdGDFoCNdVny4VUOgGztuFACBXCdgoGeM9n-whMgCKospeXMz1l4TssskQPvgRMMqtXGwMT1QHYZvny27lw",
+    "authorizationCode": "c76447e7dae034038821497303c60c2f1.0.rryry.y-pLlmwCSbq08HEjbF62iw",
+    "realUserStatus": 1,
+    "state": null,
+    "nonce": "5rfcCeAqG05R2_9aVu38V0Q8sEp9vMs7"
+}
