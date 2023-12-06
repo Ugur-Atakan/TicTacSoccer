@@ -27,7 +27,7 @@ if (!firebase.apps.length) {
   const requestNotificationPermission = async () => {
   os = Platform.OS;
   if (os === 'ios') {
-    const result = await check(PERMISSIONS.IOS.NOTIFICATIONS);
+    const result = await check(PERMISSIONS.IOS.POST_NOTIFICATIONS);
     if (result === RESULTS.GRANTED) {
       console.log('Bildirimlere izin verildi');
       // Bildirimleri kullanabilirsiniz
@@ -37,7 +37,7 @@ if (!firebase.apps.length) {
     }
   } else{
     try {
-      const result = await request(PERMISSIONS.ANDROID.NOTIFICATIONS, {
+      const result = await check(PERMISSIONS.ANDROID.POST_NOTIFICATIONS, {
         title: 'Bildirimlere izin verin',
         message:
           'Bu uygulama sana gerektiğinde bildirimler gönderecek ' +
@@ -49,7 +49,7 @@ if (!firebase.apps.length) {
       });
       if (result === RESULTS.GRANTED) {
         console.log('Bildirimlere izin verildi');
-        Alert.alert('Bildirimlere izin verildi', 'Bildirimleri alabilirsiniz')
+        // Bildirimleri kullanabilirsiniz
       } else {
         console.log('Bildirimlere izin verilmedi');
         Alert.alert('Bildirimlere izin verilmedi', 'Bildirimleri alamazsınız', [
